@@ -7,6 +7,7 @@
 ;; Created: 4 Jan 2015
 ;; Version: 0.0
 ;; Keywords: convenience
+;; URL: https://github.com/marcowahl/rope-read-mode
 
 ;; This file is not part of Emacs.
 
