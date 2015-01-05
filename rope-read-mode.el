@@ -98,7 +98,6 @@
 ;;; Code:
 ;; ** Variables
 ;; #+BEGIN_SRC emacs-lisp
-(defconst rope-read-version 0.0)
 (defcustom rope-read-indication-string-for-reversed-line
   ""
   "Suffix to indicate a reversed line.  E.g. '<' or '⟵'."
