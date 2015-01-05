@@ -352,4 +352,4 @@ The file name for the snapshot containing the number
 ;; # Local Variables:
 ;; # lentic-init: lentic-orgel-org-init
 ;; # End:
-;; ;;; rope-read-mode.el ends here
+;;; rope-read-mode.el ends here
