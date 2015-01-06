@@ -58,7 +58,7 @@
 
 ;; ** Price
 
-;;  - Learn to easily read upside-down-lines.
+;;  - Effort to learn read upside-down lines easily.
 
 ;; ** Links
 
@@ -100,6 +100,8 @@
 ;; ** Contributors
 
 ;; Syohei YOSHIDA
+;; Marco WAHL
+
 ;;; Code:
 ;; ** Variables
 ;; #+BEGIN_SRC emacs-lisp
@@ -360,4 +362,5 @@ The file name for the snapshot containing the number
 ;; # Local Variables:
 ;; # lentic-init: lentic-orgel-org-init
 ;; # End:
+
 ;;; rope-read-mode.el ends here
