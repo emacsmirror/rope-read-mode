@@ -119,6 +119,9 @@
   "Template for the filenames to be written to disk.")
 (defvar rope-read-mode nil)
 (make-variable-buffer-local 'rope-read-mode)
+
+(defvar rope-read-old-buffer-read-only)
+(make-variable-buffer-local 'rope-read-old-buffer-read-only)
 ;; #+END_SRC
 ;; ** Keys
 ;; #+BEGIN_SRC emacs-lisp
