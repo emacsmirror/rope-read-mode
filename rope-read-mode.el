@@ -62,7 +62,10 @@
 
 ;; ** Links
 
-;;  See elpa package spray for another alternative view mode.
+;;  See elpa package 'spray' for another alternative view mode.
+
+;;  See package 'fliptext' for an
+;;      ˙ʇxǝʇ pǝddılɟ ɹoɟ poɥʇǝɯ-ʇnduı
 
 ;; ** Development
 
