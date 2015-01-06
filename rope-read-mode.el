@@ -94,7 +94,9 @@
 
 ;; Contact the author for feedback, bug reports, feature requests,
 ;; enhancements, ideas.
+;; ** Contributors
 
+;; Syohei YOSHIDA
 ;;; Code:
 ;; ** Variables
 ;; #+BEGIN_SRC emacs-lisp
