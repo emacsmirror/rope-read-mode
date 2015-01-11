@@ -242,6 +242,19 @@ annoying search for the next line at the other side of the text."
 ;; For testing: (local-set-key (kbd "<f8>")
 ;; 'rope-read-snap-a-line-under-olimid-filename)
 ;; #+BEGIN_SRC emacs-lisp
+(defun rope-read-height-of-a-line ()
+  "Return the height of the line that contains `(point)'."
+  (save-excursion
+    (let* ((end (progn (end-of-line) (point)))
+           (height (progn
+                     (beginning-of-line)
+                     (cdr (nth 9 (posn-at-point (point))))) ; empty line default
+                   ))
+      (while (progn (forward-char)
+                    (< (point) end))
+        (setq height (max height (cdr (nth 9 (posn-at-point (point)))))))
+      height)))
+
 (defun rope-read-snap-a-line-under-olimid-filename ()
   "Snapshot the line that contains `(point)'.
 
