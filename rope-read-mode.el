@@ -136,6 +136,7 @@
 (defvar rope-read-mode-map
   (let ((map (make-sparse-keymap)))
     (define-key map " " 'rope-read-next-page)
+    (define-key map [?\S-\ ] 'rope-read-prev-page)
     (define-key map (kbd "<backspace>") 'rope-read-prev-page)
     (define-key map (kbd "<return>") 'rope-read-scroll-up-line)
     (define-key map "v" 'rope-read-scroll-up-line)
