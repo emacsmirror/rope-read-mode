@@ -5,7 +5,7 @@
 ;; Author: Marco Wahl <marcowahlsoft@gmail.com>
 ;; Maintainer: Marco Wahl <marcowahlsoft@gmail.com>
 ;; Created: 4 Jan 2015
-;; Version: 0.0
+;; Version: 0.1
 ;; Keywords: convenience
 ;; URL: https://github.com/marcowahl/rope-read-mode
 
@@ -101,6 +101,10 @@
 
 ;; Syohei YOSHIDA
 ;; Marco WAHL
+
+;;; History:
+
+;; 201501151211 v0.1 New option rope-read-calculate-exact-y-coordinates.
 
 ;;; Code:
 ;; ** Variables
