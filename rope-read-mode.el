@@ -105,6 +105,13 @@
 ;;; Code:
 ;; ** Variables
 ;; #+BEGIN_SRC emacs-lisp
+(defcustom rope-read-calculate-exact-y-coordinates
+  nil
+  "Set to t for exact calculation of y-coordinates of the lines.
+Set to nil for using a heuristic.  Exact often looks better but
+takes more time for the calculation."
+  :group 'rope-read)
+
 (defcustom rope-read-indication-string-for-reversed-line
   ""
   "Suffix to indicate a reversed line.  E.g. '<' or '⟵'."
@@ -237,24 +244,58 @@ annoying search for the next line at the other side of the text."
   (rope-read-mode 'toggle))  
 ;; #+END_SRC
 
-;; ** Snap the line which containts point
+;; ** Y-coordinates of a line
+;;    :PROPERTIES:
+;;    :ID:       5a57fcd8-66b1-4360-91de-c10a4a5987c4
+;;    :END:
+;; *** Exact y-coordinate calculation of a line
 
+;; This function to calculate the y-coordinates is straightforward
+;; AFAICS.  But it needs a lot of time.
+
+;; #+BEGIN_SRC emacs-lisp
+(defun rope-read-y-info-of-line ()
+  "Return the top coordinate and the height of the line that contains `(point)'.
+This function typically takes a while."
+  (save-excursion
+    (let* ((end (progn (end-of-line) (point)))
+           (posn-at-point (posn-at-point (point)))
+           (height (progn
+                     (beginning-of-line)
+                     (cdr (nth 9 posn-at-point))) ; empty line default
+                   )
+           (y-top (cdr (posn-x-y posn-at-point))))
+      (while (progn (forward-char)
+                    (< (point) end))
+        (let ((posn-at-point (posn-at-point (point))))
+          (setq height (max height (cdr (nth 9 posn-at-point))))
+          (setq y-top (min y-top (cdr (posn-x-y posn-at-point))))))
+      (cons y-top height))))
+;; #+END_SRC
+;; *** Heuristic
+
+;; Just take the first character of the line and use its y-data as the
+;; data for the whole line.  This is correct if all characters in the
+;; buffer have the same y-data structure.
+
+;; Benefit: This heuristic is faster than the exact function.  Price:
+;; This heuristic might fail.  Which might result in unreadable text.
+;; #+BEGIN_SRC emacs-lisp
+(defun rope-read-y-info-of-line-take-first-char ()
+  "Return a guess of the top coordinate and the height of the line that contains `(point)'."
+  (progn
+    (beginning-of-line)
+    (let ((posn-at-point (posn-at-point (point))))
+      (cons (cdr (posn-x-y posn-at-point))
+            (cdr (nth 9 posn-at-point))))))
+;; #+END_SRC
+;; *** TODO Try to speed up the function
+
+;; Try to answer first: Is the speed up possible?
+;; ** Snap the line which containts point
 ;; For testing: (local-set-key (kbd "<f8>")
 ;; 'rope-read-snap-a-line-under-olimid-filename)
 ;; #+BEGIN_SRC emacs-lisp
-(defun rope-read-height-of-a-line ()
-  "Return the height of the line that contains `(point)'."
-  (save-excursion
-    (let* ((end (progn (end-of-line) (point)))
-           (height (progn
-                     (beginning-of-line)
-                     (cdr (nth 9 (posn-at-point (point))))) ; empty line default
-                   ))
-      (while (progn (forward-char)
-                    (< (point) end))
-        (setq height (max height (cdr (nth 9 (posn-at-point (point)))))))
-      height)))
-
 (defun rope-read-snap-a-line-under-olimid-filename ()
   "Snapshot the line that contains `(point)'.
 
@@ -275,11 +316,15 @@ The file name for the snapshot containing the number
                       (car (posn-x-y (posn-at-point end)))
                       (car (posn-x-y (posn-at-point end-above))))
                      (car (posn-x-y (posn-at-point beg)))))
-           (height (progn (goto-char beg)
-                          (rope-read-height-of-a-line)))
+           (y-info-getter (if rope-read-calculate-exact-y-coordinates
+                              #'rope-read-y-info-of-line
+                            #'rope-read-y-info-of-line-take-first-char))
+           (y-top-height (progn (goto-char beg)
+                                (funcall y-info-getter)))
+           (y-pos-line (car y-top-height))
+           (height (cdr y-top-height))
            (x-win-left (nth 0 (window-inside-pixel-edges)))
            (y-win-top (nth 1 (window-inside-pixel-edges)))
-           (y-pos-line (cdr (posn-x-y (posn-at-point end))))
            (x-anchor (+ x-win-left))
            (y-anchor (+ y-win-top y-pos-line)))
       (call-process
@@ -314,56 +359,66 @@ The file name for the snapshot containing the number
    Courier.  It makes the text longer when using the
    rope-read-feature.  No idea, how to get rid of it."
   (interactive)
-  (save-excursion
-    (let* ((first-line
-            (progn (move-to-window-line 0) 
-                   (point)))
-           (last-line
-            (progn (move-to-window-line -1)
-                   (beginning-of-line)
-                   (point)))
-           (toggle t)
-           (olimid-start rope-read-olimid-next-unused)
-           (olimid-current olimid-start))
-      ;; pass 1: create the images.
-      (goto-char first-line)
-      (rope-read-advance-one-line)
-      (while (and (<= (point) last-line) (< (point) (point-max)))
-        (if toggle
-            (rope-read-snap-a-line-under-olimid-filename))
-        (setq toggle (not toggle))
-        (rope-read-advance-one-line))
-      ;; pass 2: insert the images as overlays.
-      (goto-char first-line)
-      (rope-read-advance-one-line)
-      (setq toggle t)
-      (while (and (<= (point) last-line) (< (point) (point-max)))
-        (if toggle
-            (let ((l-beg (progn (beginning-of-line) (point)))
-                  (l-end (progn (end-of-line) (point))))
-              (setq rope-read-overlays
-                    (cons (make-overlay l-beg l-end)
-                          rope-read-overlays))
-              (overlay-put
-               (car rope-read-overlays) 'display
-               (create-image
-                (expand-file-name
-                 (format 
-                  rope-read-image-overlay-filename-format-string
-                  olimid-current))
-                nil nil
-                :ascent 'center
-                ;; TODO: try to refine.  hint: try
-                ;; understand.  is this a font-dependent
-                ;; thing?  e.g. :ascent 83 is possible.
-                ;; there are further attributes...
-                ))
-              (setq olimid-current (1+ olimid-current))
-              (overlay-put
-               (car rope-read-overlays)
-               'after-string rope-read-indication-string-for-reversed-line)))
-        (setq toggle (not toggle))
-        (rope-read-advance-one-line)))))
+  (let
+      ((float-time (float-time)))
+    (save-excursion
+      (let* ((first-line
+              (progn (move-to-window-line 0) 
+                     (point)))
+             (last-line
+              (progn (move-to-window-line -1)
+                     (beginning-of-line)
+                     (point)))
+             (toggle t)
+             (olimid-start rope-read-olimid-next-unused)
+             (olimid-current olimid-start))
+        ;; pass 1: create the images.
+        (let ((processing-line 1))
+          (goto-char first-line)
+          (rope-read-advance-one-line)
+          (while (and (<= (point) last-line) (< (point) (point-max)))
+            (if toggle
+                (progn (rope-read-snap-a-line-under-olimid-filename)
+                       (message "pass1 %s" processing-line)
+                       (setq processing-line (1+ processing-line))))
+            (setq toggle (not toggle))
+            (rope-read-advance-one-line)))
+        ;; pass 2: insert the images as overlays.
+        (let ((processing-line 1))
+          (goto-char first-line)
+          (rope-read-advance-one-line)
+          (setq toggle t)
+          (while (and (<= (point) last-line) (< (point) (point-max)))
+            (if toggle
+                (let ((l-beg (progn (beginning-of-line) (point)))
+                      (l-end (progn (end-of-line) (point))))
+                  (setq rope-read-overlays
+                        (cons (make-overlay l-beg l-end)
+                              rope-read-overlays))
+                  (overlay-put
+                   (car rope-read-overlays) 'display
+                   (create-image
+                    (expand-file-name
+                     (format 
+                      rope-read-image-overlay-filename-format-string
+                      olimid-current))
+                    nil nil
+                    :ascent 'center
+                    ;; TODO: try to refine.  hint: try
+                    ;; understand.  is this a font-dependent
+                    ;; thing?  e.g. :ascent 83 is possible.
+                    ;; there are further attributes...
+                    ))
+                  (setq olimid-current (1+ olimid-current))
+                  (overlay-put
+                   (car rope-read-overlays)
+                   'after-string rope-read-indication-string-for-reversed-line)
+                  (message "pass2 %s" processing-line)
+                  (setq processing-line (1+ processing-line))))
+            (setq toggle (not toggle))
+            (rope-read-advance-one-line)))))
+    (message "secs elapsed: %s" (- (float-time) float-time))))
+
 ;; #+END_SRC
 
 ;; ** Provide the file as library
