@@ -43,6 +43,20 @@
 
 ;;  (global-set-key (kbd "<Scroll_Lock> <Scroll_Lock>") 'rope-read-mode)
 
+;; *** Transformation speed vs. quality
+
+;; The calculation of the relevant y-coordinates for the transformation
+;; can be controlled somewhat by variable
+;; `rope-read-calculate-exact-y-coordinates'.
+
+;; For uniform text (without superscripts and images) a heuristic most
+;; likely yields good results.  rope-read-calculate-exact-y-coordinates =
+;; nil (which is the default) means to use a heuristic.
+
+;; rope-read-calculate-exact-y-coordinates = t will calculate the
+;; y-coordinates exactly (hopefully).  This slows down the
+;; transformation.
+
 ;; ** Effect
 
 ;;  rope-read-mode reverses every other line in the visible part of a
@@ -73,7 +87,7 @@
 
 ;; - rope-read-mode fails when truncated lines occur.
 
-;; *** Features
+;; *** Wishes
 
 ;; - Make the transformation quicker.
 
