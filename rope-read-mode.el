@@ -31,8 +31,8 @@
 ;;  
 ;;  You can use:
 
-;;  SPC/<backspace> to scroll a screen.
-;;  v,<return>/V y to scroll one line.
+;;  SPC / <backspace> S-SPC to scroll a screen.
+;;  v <return> / V y to scroll one line.
 ;;  q to quit.
 ;;  g to refresh rope read for the current visible part of the buffer.
 ;;  ? open the help buffer.
