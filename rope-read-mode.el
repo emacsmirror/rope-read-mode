@@ -27,6 +27,12 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+;; ** Effect
+
+;;  rope-read-mode reverses every other line in the visible part of a
+;;  buffer.  When every other line has been reversed reading is like
+;;  following a rope.
+
 ;; ** Usage
 
 ;;  Type M-x rope-read-mode in a buffer and wait until the transformation
@@ -62,12 +68,6 @@
 ;; rope-read-calculate-exact-y-coordinates = t will calculate the
 ;; y-coordinates exactly (hopefully).  This slows down the
 ;; transformation.
-
-;; ** Effect
-
-;;  rope-read-mode reverses every other line in the visible part of a
-;;  buffer.  When every other line has been reversed reading is like
-;;  following a rope.
 
 ;; ** Benefit
 
