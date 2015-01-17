@@ -29,16 +29,19 @@
 ;;; Commentary:
 ;; ** Usage
 
-;;  Type M-x rope-read-mode in a buffer and wait until the
-;;  transformation of the buffer has been performed.
+;;  Type M-x rope-read-mode in a buffer and wait until the transformation
+;;  of the buffer has been performed.  Type M-x rope-read-mode again To
+;;  leave the mode.
 ;;  
 ;;  You can use:
 
-;;  SPC / <backspace> S-SPC to scroll a screen.
-;;  v <return> / V y to scroll one line.
-;;  q to quit.
-;;  g to refresh rope read for the current visible part of the buffer.
-;;  ? open the help buffer.
+;;  - q to quit.
+;;  - SPC / <backspace> S-SPC to scroll a screen.
+;;  - v <return> / V y to scroll one line.
+;;  - g to refresh rope read.
+;;  - ? to open the help buffer.
+;;  - any method to reach a location in the buffer and then press g to
+;;    trigger the transformation of the current view.
 
 ;;  For convenience command rope-read-mode can be associated to a key
 ;;  sequence.  For example to activate or deactivate rope-read-mode by
