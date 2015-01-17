@@ -97,6 +97,12 @@
 
 ;; - Make the transformation quicker.
 
+;; *** Vision
+
+;; rope-read-mode gets rope-mode which allows also editing.  rope-mode
+;; would provide a further possibility for the user to use Emacs, just as
+;; changing the default font.
+
 ;; *** Lentic Literate Style
 
 ;; This program is in literal style based on lentic-mode.  The
