@@ -88,14 +88,13 @@
 ;;      ˙ʇxǝʇ pǝddılɟ ɹoɟ poɥʇǝɯ-ʇnduı
 
 ;; ** Development
-
 ;; *** Bugs
 
 ;; - rope-read-mode fails when truncated lines occur.
 
 ;; *** Wishes
 
-;; - Make the transformation quicker.
+;; - Quicker transformation.
 
 ;; *** Vision
 
@@ -105,15 +104,17 @@
 
 ;; *** Lentic Literate Style
 
-;; This program is in literal style based on lentic-mode.  The
-;; lentic-views are emacs lisp and Org.
+;; This program is written in emacs lisp.
+
+;; So this file can be regarded just as an emacs lisp file.  But actually
+;; this program is written in literal style based on lentic-mode.  The
+;; lentic style results in certain comments in the el file which allow
+;; the interpretation of the el file as Org file.  Lentic-mode makes it
+;; easy to write this style.
 
 ;; A possible initialization of lentic is this:
 
-;; (load-library "lentic-org")
 ;; (global-lentic-start-mode)
-
-;; The el file is the source.  It is an emacs lisp file.
 
 ;; The el file fits to the lentic-mode, hopefully.  Use
 ;; lentic-mode-split-window-below to get a view on the program as Orgmode
