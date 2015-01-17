@@ -1,5 +1,7 @@
 ;;; rope-read-mode.el --- Rearrange lines to read text smoothly
 
+;;; Header:
+
 ;; Copyright 2015 Marco Wahl
 
 ;; Author: Marco Wahl <marcowahlsoft@gmail.com>
