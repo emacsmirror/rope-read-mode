@@ -23,6 +23,7 @@
 
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 ;;; Commentary:
 ;; ** Usage
 
@@ -122,6 +123,7 @@
 
 ;;; Code:
 ;; ** Variables
+
 ;; #+BEGIN_SRC emacs-lisp
 (defcustom rope-read-calculate-exact-y-coordinates
   nil
@@ -156,6 +158,7 @@ takes more time for the calculation."
 (make-variable-buffer-local 'rope-read-old-buffer-read-only)
 ;; #+END_SRC
 ;; ** Keys
+
 ;; #+BEGIN_SRC emacs-lisp
 (defvar rope-read-mode-hook nil)
 (defvar rope-read-mode-map
@@ -173,7 +176,9 @@ takes more time for the calculation."
     map)
   "Keymap for rope-read-mode.")
 ;; #+END_SRC
+
 ;; ** Mode rope-read
+
 ;; #+BEGIN_SRC emacs-lisp
 ;;;###autoload
 (define-minor-mode rope-read-mode
@@ -206,7 +211,9 @@ annoying search for the next line at the other side of the text."
   (setq rope-read-mode nil
         buffer-read-only rope-read-old-buffer-read-only))
 ;; #+END_SRC
+
 ;; ** Management and Navigation in Org
+
 ;; #+BEGIN_SRC emacs-lisp
 (defun rope-read-delete-overlays ()
   "Delete all overlays currently used with the rope-read-feature."
@@ -264,12 +271,9 @@ annoying search for the next line at the other side of the text."
 ;; #+END_SRC
 
 ;; ** Y-coordinates of a line
-;;    :PROPERTIES:
-;;    :ID:       5a57fcd8-66b1-4360-91de-c10a4a5987c4
-;;    :END:
 ;; *** Exact y-coordinate calculation of a line
 
-;; This function to calculate the y-coordinates is straightforward
+;; This function calculates the y-coordinates straightforward
 ;; AFAICS.  But it needs a lot of time.
 
 ;; #+BEGIN_SRC emacs-lisp
@@ -291,6 +295,7 @@ This function typically takes a while."
           (setq y-top (min y-top (cdr (posn-x-y posn-at-point))))))
       (cons y-top height))))
 ;; #+END_SRC
+
 ;; *** Heuristic
 
 ;; Just take the first character of the line and use its y-data as the
@@ -308,10 +313,13 @@ This function typically takes a while."
       (cons (cdr (posn-x-y posn-at-point))
             (cdr (nth 9 posn-at-point))))))
 ;; #+END_SRC
+
 ;; *** TODO Try to speed up the function
 
 ;; Try to answer first: Is the speed up possible?
+
 ;; ** Snap the line which containts point
+
 ;; For testing: (local-set-key (kbd "<f8>")
 ;; 'rope-read-snap-a-line-under-olimid-filename)
 ;; #+BEGIN_SRC emacs-lisp
@@ -362,6 +370,7 @@ The file name for the snapshot containing the number
               rope-read-olimid-next-unused
               (1+ rope-read-olimid-next-unused)))))))))))
 ;; #+END_SRC
+
 ;; ** Revers every other line
 
 ;; #+BEGIN_SRC emacs-lisp
@@ -445,6 +454,7 @@ The file name for the snapshot containing the number
 ;; #+BEGIN_SRC emacs-lisp
 (provide 'rope-read-mode)
 ;; #+END_SRC
+
 ;;; Tail:
 
 ;; # Local Variables:
