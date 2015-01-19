@@ -1,0 +1,139 @@
+# Created 2015-01-20 Tue 00:25
+#+TITLE: Commentary
+* What rope-read-mode is
+
+rope-read-mode reverses every other line in the visible part of a
+buffer.  When every other line has been reversed reading is like
+following a rope.
+
+** Illustration
+
+Find an illustration at
+[[https://github.com/marcowahl/rope-read-mode/wiki]].
+
+** Benefits
+
+- Find the next line easily.
+  - In particular for long lines.
+- Have an alternative view on text.
+- Have fun.
+
+** Price
+
+Typically you need to invest some time to learn to read upside-down
+lines.
+
+* Usage
+
+Type =M-x rope-read-mode= in a buffer and wait until the
+transformation of the buffer has been performed.  Type
+=M-x rope-read-mode= again to leave the mode.
+
+You can use:
+
+- q to quit.
+- SPC / <backspace> S-SPC to scroll a screen.
+- v <return> / V y to scroll one line.
+- g to refresh rope read.
+- ? to open the help buffer.
+- any method to reach a location in the buffer and then press g to
+  trigger the transformation of the current view.
+
+For convenience command rope-read-mode can be bound to a key
+sequence.  For example to activate or deactivate rope-read-mode by
+pressing scroll lock two times use the line
+
+#+BEGIN_EXAMPLE
+(global-set-key (kbd "<Scroll_Lock> <Scroll_Lock>") 'rope-read-mode)
+#+END_EXAMPLE
+
+** Transformation speed vs. quality
+
+The calculation of the relevant y-coordinates for the transformation
+can be controlled somewhat by variable
+`rope-read-calculate-exact-y-coordinates'.
+
+For uniform text (without superscripts and images) using the y-size of
+an arbitrary character of the text yields good results.  Set variable
+=rope-read-calculate-exact-y-coordinates= to nil to use this
+heuristic.  The variable can be set via =M-x customize-variable=.
+
+Set =rope-read-calculate-exact-y-coordinates= to t to calculate the
+y-coordinates exactly (hopefully).  This slows down the
+transformation considerably.
+
+* Install
+** Emacs Package
+
+When installed as Emacs package then there is no need of a special
+configuration.
+
+** Install from el file
+
+If you just have the emacs-lisp file then:
+- load the file into Emacs
+- do =M-x eval-buffer=
+
+That's it.  You installed rope-read-mode and =M-x rope-read-mode= is
+available.
+
+* Dependencies
+
+- Emacs is running under X.
+- The programm =convert= of the ImageMagick-suite is available.
+
+The =convert= program has the job to create images of lines and rotate
+them.
+
+* Development
+** Bugs
+
+- rope-read-mode fails when truncated lines occur.
+
+** Wishlist
+
+- Quicker transformation.
+
+** Vision
+
+rope-read-mode gets rope-mode which allows also editing.  rope-mode
+would provide a further possibility for the user to use Emacs, just as
+changing the default font.
+
+** Lentic Literate Style
+
+This program is written in emacs lisp in lentic style.
+
+So this file can be regarded just as an emacs lisp file.  But actually
+this program is written in literal style based on lentic-mode.  The
+lentic style results in certain comments in the el file which allow
+the interpretation of the el file as Org file.  Lentic-mode makes it
+easy to write this style.
+
+A possible initialization of lentic is this:
+
+#+BEGIN_EXAMPLE
+(global-lentic-start-mode)
+#+END_EXAMPLE
+
+The el file fits to the lentic-mode, hopefully.  Use
+=lentic-mode-split-window-below= to get a view on the program as
+Orgmode file.
+
+** Contributors
+
+Syohei YOSHIDA
+Marco WAHL
+
+* Communication
+
+Contact the author for feedback, bug reports, feature requests,
+enhancements, ideas.
+
+* Links
+
+- Elpa package 'spray' has another alternative view mode.
+- See elpa-package 'fliptext' for an
+  ˙ʇxǝʇ pǝddılɟ ɹoɟ poɥʇǝɯ-ʇnduı
+
+# Emacs 25.0.50.8 (Org mode 8.3beta)
