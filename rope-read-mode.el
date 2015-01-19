@@ -27,33 +27,47 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;; ** Effect
+;; ** What rope-read-mode is
 
-;;  rope-read-mode reverses every other line in the visible part of a
-;;  buffer.  When every other line has been reversed reading is like
-;;  following a rope.
+;; rope-read-mode reverses every other line in the visible part of a
+;; buffer.  When every other line has been reversed reading is like
+;; following a rope.
+
+;; *** Benefits
+
+;; - Find the next line easily.
+;;   - In particular for long lines.
+;; - Have an alternative view on text.
+;; - Have fun.
+
+;; *** Price
+
+;; Typically you need to invest some time to learn to read upside-down
+;; lines.
 
 ;; ** Usage
 
-;;  Type M-x rope-read-mode in a buffer and wait until the transformation
-;;  of the buffer has been performed.  Type M-x rope-read-mode again To
-;;  leave the mode.
-;;  
-;;  You can use:
+;; Type =M-x rope-read-mode= in a buffer and wait until the
+;; transformation of the buffer has been performed.  Type
+;; =M-x rope-read-mode= again to leave the mode.
 
-;;  - q to quit.
-;;  - SPC / <backspace> S-SPC to scroll a screen.
-;;  - v <return> / V y to scroll one line.
-;;  - g to refresh rope read.
-;;  - ? to open the help buffer.
-;;  - any method to reach a location in the buffer and then press g to
-;;    trigger the transformation of the current view.
+;; You can use:
 
-;;  For convenience command rope-read-mode can be associated to a key
-;;  sequence.  For example to activate or deactivate rope-read-mode by
-;;  pressing scroll lock two times use the line
+;; - q to quit.
+;; - SPC / <backspace> S-SPC to scroll a screen.
+;; - v <return> / V y to scroll one line.
+;; - g to refresh rope read.
+;; - ? to open the help buffer.
+;; - any method to reach a location in the buffer and then press g to
+;;   trigger the transformation of the current view.
 
-;;  (global-set-key (kbd "<Scroll_Lock> <Scroll_Lock>") 'rope-read-mode)
+;; For convenience command rope-read-mode can be bound to a key
+;; sequence.  For example to activate or deactivate rope-read-mode by
+;; pressing scroll lock two times use the line
+
+;; #+BEGIN_EXAMPLE
+;; (global-set-key (kbd "<Scroll_Lock> <Scroll_Lock>") 'rope-read-mode)
+;; #+END_EXAMPLE
 
 ;; *** Transformation speed vs. quality
 
@@ -61,31 +75,35 @@
 ;; can be controlled somewhat by variable
 ;; `rope-read-calculate-exact-y-coordinates'.
 
-;; For uniform text (without superscripts and images) a heuristic most
-;; likely yields good results.  rope-read-calculate-exact-y-coordinates =
-;; nil (which is the default) means to use a heuristic.
+;; For uniform text (without superscripts and images) using the y-size of
+;; an arbitrary character of the text yields good results.  Set variable
+;; =rope-read-calculate-exact-y-coordinates= to nil to use this
+;; heuristic.  The variable can be set via =M-x customize-variable=.
 
-;; rope-read-calculate-exact-y-coordinates = t will calculate the
+;; Set =rope-read-calculate-exact-y-coordinates= to t to calculate the
 ;; y-coordinates exactly (hopefully).  This slows down the
-;; transformation.
+;; transformation considerably.
+;; ** Install
+;; *** Emacs Package
 
-;; ** Benefit
+;; When installed as Emacs package then there is no need of a special
+;; configuration.
 
-;;  - Find the next line easily.
-;;    - In particular for long lines.
-;;  - Have an alternative view on text.
-;;  - Have fun.
+;; *** Install from el file
 
-;; ** Price
+;; If you just have the emacs-lisp file then:
+;; - load the file into Emacs
+;; - do =M-x eval-buffer=
 
-;;  - Effort to learn read upside-down lines easily.
+;; That's it.  You installed rope-read-mode and =M-x rope-read-mode= is
+;; available.
+;; ** Dependencies
 
-;; ** Links
+;; - Emacs is running under X.
+;; - The programm =convert= of the ImageMagick-suite is available.
 
-;;  See elpa package 'spray' for another alternative view mode.
-
-;;  See package 'fliptext' for an
-;;      ˙ʇxǝʇ pǝddılɟ ɹoɟ poɥʇǝɯ-ʇnduı
+;; The =convert= program has the job to create images of lines and rotate
+;; them.
 
 ;; ** Development
 ;; *** Bugs
@@ -104,7 +122,7 @@
 
 ;; *** Lentic Literate Style
 
-;; This program is written in emacs lisp.
+;; This program is written in emacs lisp in lentic style.
 
 ;; So this file can be regarded just as an emacs lisp file.  But actually
 ;; this program is written in literal style based on lentic-mode.  The
@@ -114,20 +132,29 @@
 
 ;; A possible initialization of lentic is this:
 
+;; #+BEGIN_EXAMPLE
 ;; (global-lentic-start-mode)
+;; #+END_EXAMPLE
 
 ;; The el file fits to the lentic-mode, hopefully.  Use
-;; lentic-mode-split-window-below to get a view on the program as Orgmode
-;; file.
+;; =lentic-mode-split-window-below= to get a view on the program as
+;; Orgmode file.
+
+;; *** Contributors
+
+;; Syohei YOSHIDA
+;; Marco WAHL
 
 ;; ** Communication
 
 ;; Contact the author for feedback, bug reports, feature requests,
 ;; enhancements, ideas.
-;; ** Contributors
 
-;; Syohei YOSHIDA
-;; Marco WAHL
+;; ** Links
+
+;; - Elpa package 'spray' has another alternative view mode.
+;; - See elpa-package 'fliptext' for an
+;;      ˙ʇxǝʇ pǝddılɟ ɹoɟ poɥʇǝɯ-ʇnduı
 
 ;;; History:
 
