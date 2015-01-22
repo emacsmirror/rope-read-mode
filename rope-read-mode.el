@@ -152,9 +152,12 @@
 
 ;; ** Links
 
-;; - Elpa package 'spray' has another alternative view mode.
-;; - See elpa-package 'fliptext' for an
-;;      ˙ʇxǝʇ pǝddılɟ ɹoɟ poɥʇǝɯ-ʇnduı
+;; - 'spray' which is available as Elpa package
+;;   [[http://melpa.org/#/spray][file:http://melpa.org/packages/spray-badge.svg]] realizes another
+;;   alternative view mode.
+;; - 'fliptext' which also is available as Elpa package
+;;   [[http://melpa.org/#/fliptext][file:http://melpa.org/packages/fliptext-badge.svg]] realizes an
+;;   ˙ʇxǝʇ pǝddılɟ ɹoɟ poɥʇǝɯ-ʇnduı
 
 ;;; History:
 
