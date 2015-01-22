@@ -29,7 +29,7 @@
 ;;; Commentary:
 ;; ** What rope-read-mode is
 
-;; rope-read-mode reverses every other line in the visible part of a
+;; =rope-read-mode= reverses every other line in the visible part of a
 ;; buffer.  When every other line has been reversed reading is like
 ;; following a rope.
 
@@ -99,6 +99,7 @@
 
 ;; That's it.  You installed rope-read-mode and =M-x rope-read-mode= is
 ;; available.
+
 ;; ** Dependencies
 
 ;; - Emacs is running under X.
@@ -108,7 +109,7 @@
 ;; them.
 
 ;; ** Development
-;; *** Bugs
+;; *** Known Bugs
 
 ;; - rope-read-mode fails when truncated lines occur.
 
@@ -143,13 +144,14 @@
 
 ;; *** Contributors
 
-;; Syohei YOSHIDA
-;; Marco WAHL
+;; | Syohei YOSHIDA |
+;; | Marco WAHL     |
 
 ;; ** Communication
 
-;; Contact the author for feedback, bug reports, feature requests,
-;; enhancements, ideas.
+;; Use the GitHub infrastructure i.e. pull requests or
+;; https://github.com/marcowahl/rope-read-mode/issues.  Or contact the
+;; author directly.
 
 ;; ** Links
 
@@ -160,9 +162,9 @@
 ;;   [[http://melpa.org/#/fliptext][file:http://melpa.org/packages/fliptext-badge.svg]] realizes an
 ;;   ˙ʇxǝʇ pǝddılɟ ɹoɟ poɥʇǝɯ-ʇnduı
 
-;;; History:
+;; ** History
 
-;; 201501151211 v0.1 New option rope-read-calculate-exact-y-coordinates.
+;; | 201501151211 | v0.1 New option rope-read-calculate-exact-y-coordinates |
 
 ;;; Code:
 ;; ** Variables
@@ -200,6 +202,7 @@ takes more time for the calculation."
 (defvar rope-read-old-buffer-read-only)
 (make-variable-buffer-local 'rope-read-old-buffer-read-only)
 ;; #+END_SRC
+
 ;; ** Keys
 
 ;; #+BEGIN_SRC emacs-lisp
