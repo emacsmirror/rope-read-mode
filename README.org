@@ -1,15 +1,10 @@
-# Created 2015-01-20 Tue 00:25
+# Created 2015-01-22 Thu 20:01
 #+TITLE: Commentary
 * What rope-read-mode is
 
-rope-read-mode reverses every other line in the visible part of a
+=rope-read-mode= reverses every other line in the visible part of a
 buffer.  When every other line has been reversed reading is like
 following a rope.
-
-** Illustration
-
-Find an illustration at
-[[https://github.com/marcowahl/rope-read-mode/wiki]].
 
 ** Benefits
 
@@ -65,8 +60,9 @@ transformation considerably.
 * Install
 ** Emacs Package
 
-When installed as Emacs package then there is no need of a special
-configuration.
+When installed as Emacs package
+[[http://melpa.org/#/rope-read-mode][[[file:http://melpa.org/packages/rope-read-mode-badge.svg]]]] then there is
+no need of a special configuration.
 
 ** Install from el file
 
@@ -86,11 +82,11 @@ The =convert= program has the job to create images of lines and rotate
 them.
 
 * Development
-** Bugs
+** Known Bugs
 
 - rope-read-mode fails when truncated lines occur.
 
-** Wishlist
+** Wishes
 
 - Quicker transformation.
 
@@ -102,13 +98,13 @@ changing the default font.
 
 ** Lentic Literate Style
 
-This program is written in emacs lisp in lentic style.
+This program is written in emacs lisp in lentic style based on the
+'lentic' package [[http://melpa.org/#/lentic][[[file:http://melpa.org/packages/lentic-badge.svg]]]].
 
-So this file can be regarded just as an emacs lisp file.  But actually
-this program is written in literal style based on lentic-mode.  The
-lentic style results in certain comments in the el file which allow
-the interpretation of the el file as Org file.  Lentic-mode makes it
-easy to write this style.
+This means the that this file can be regarded just as an emacs lisp
+file.  But actually this file contains extra comments which allow the
+interpretation of the file as Org file.  Lentic-mode makes it easy to
+write this style.
 
 A possible initialization of lentic is this:
 
@@ -116,24 +112,31 @@ A possible initialization of lentic is this:
 (global-lentic-start-mode)
 #+END_EXAMPLE
 
-The el file fits to the lentic-mode, hopefully.  Use
-=lentic-mode-split-window-below= to get a view on the program as
-Orgmode file.
+Find more about lentic at
+[[http://melpa.org/#/lentic][[[file:http://melpa.org/packages/lentic-badge.svg]]]].
 
 ** Contributors
 
-Syohei YOSHIDA
-Marco WAHL
+| Syohei YOSHIDA |
+| Marco WAHL     |
 
 * Communication
 
-Contact the author for feedback, bug reports, feature requests,
-enhancements, ideas.
+Use the GitHub infrastructure i.e. pull requests or
+[[https://github.com/marcowahl/rope-read-mode/issues]].  Or contact the
+author directly.
 
 * Links
 
-- Elpa package 'spray' has another alternative view mode.
-- See elpa-package 'fliptext' for an
+- 'spray' which is available as Elpa package
+  [[http://melpa.org/#/spray][[[file:http://melpa.org/packages/spray-badge.svg]]]] realizes another
+  alternative view mode.
+- 'fliptext' which also is available as Elpa package
+  [[http://melpa.org/#/fliptext][[[file:http://melpa.org/packages/fliptext-badge.svg]]]] realizes an
   ˙ʇxǝʇ pǝddılɟ ɹoɟ poɥʇǝɯ-ʇnduı
+
+* History
+
+| 201501151211 | v0.1 New option rope-read-calculate-exact-y-coordinates |
 
 # Emacs 25.0.50.8 (Org mode 8.3beta)
