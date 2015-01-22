@@ -83,11 +83,13 @@
 ;; Set =rope-read-calculate-exact-y-coordinates= to t to calculate the
 ;; y-coordinates exactly (hopefully).  This slows down the
 ;; transformation considerably.
+
 ;; ** Install
 ;; *** Emacs Package
 
-;; When installed as Emacs package then there is no need of a special
-;; configuration.
+;; When installed as Emacs package
+;; [[http://melpa.org/#/rope-read-mode][file:http://melpa.org/packages/rope-read-mode-badge.svg]] then there is
+;; no need of a special configuration.
 
 ;; *** Install from el file
 
@@ -122,13 +124,13 @@
 
 ;; *** Lentic Literate Style
 
-;; This program is written in emacs lisp in lentic style.
+;; This program is written in emacs lisp in lentic style based on the
+;; 'lentic' package [[http://melpa.org/#/lentic][file:http://melpa.org/packages/lentic-badge.svg]].
 
-;; So this file can be regarded just as an emacs lisp file.  But actually
-;; this program is written in literal style based on lentic-mode.  The
-;; lentic style results in certain comments in the el file which allow
-;; the interpretation of the el file as Org file.  Lentic-mode makes it
-;; easy to write this style.
+;; This means the that this file can be regarded just as an emacs lisp
+;; file.  But actually this file contains extra comments which allow the
+;; interpretation of the file as Org file.  Lentic-mode makes it easy to
+;; write this style.
 
 ;; A possible initialization of lentic is this:
 
@@ -136,9 +138,8 @@
 ;; (global-lentic-start-mode)
 ;; #+END_EXAMPLE
 
-;; The el file fits to the lentic-mode, hopefully.  Use
-;; =lentic-mode-split-window-below= to get a view on the program as
-;; Orgmode file.
+;; Find more about lentic at
+;; [[http://melpa.org/#/lentic][file:http://melpa.org/packages/lentic-badge.svg]].
 
 ;; *** Contributors
 
