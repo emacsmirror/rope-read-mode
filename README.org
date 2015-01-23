@@ -1,4 +1,4 @@
-# Created 2015-01-22 Thu 20:01
+# Created 2015-01-23 Fri 12:32
 #+TITLE: Commentary
 * What rope-read-mode is
 
@@ -6,13 +6,16 @@
 buffer.  When every other line has been reversed reading is like
 following a rope.
 
+** Illustration
+
+[[file:rope-read-illustration.png][[[file:./rope-read-illustration.png]]]]
+
 ** Benefits
 
 - Find the next line easily.
   - In particular for long lines.
 - Have an alternative view on text.
 - Have fun.
-
 ** Price
 
 Typically you need to invest some time to learn to read upside-down

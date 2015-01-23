@@ -4,8 +4,9 @@
 <ul>
 <li><a href="#sec-1">1. What rope-read-mode is</a>
 <ul>
-<li><a href="#sec-1-1">1.1. Benefits</a></li>
-<li><a href="#sec-1-2">1.2. Price</a></li>
+<li><a href="#sec-1-1">1.1. Illustration</a></li>
+<li><a href="#sec-1-2">1.2. Benefits</a></li>
+<li><a href="#sec-1-3">1.3. Price</a></li>
 </ul>
 </li>
 <li><a href="#sec-2">2. Usage</a>
@@ -42,14 +43,18 @@
 buffer.  When every other line has been reversed reading is like
 following a rope.
 
-## Benefits<a id="sec-1-1"></a>
+## Illustration<a id="sec-1-1"></a>
+
+[![img](./rope-read-illustration.png)](rope-read-illustration.png)
+
+## Benefits<a id="sec-1-2"></a>
 
 -   Find the next line easily.
     -   In particular for long lines.
 -   Have an alternative view on text.
 -   Have fun.
 
-## Price<a id="sec-1-2"></a>
+## Price<a id="sec-1-3"></a>
 
 Typically you need to invest some time to learn to read upside-down
 lines.
