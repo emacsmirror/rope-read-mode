@@ -33,6 +33,10 @@
 ;; buffer.  When every other line has been reversed reading is like
 ;; following a rope.
 
+;; *** Illustration
+
+;; [[file:rope-read-illustration.png][file:./rope-read-illustration.png]]
+
 ;; *** Benefits
 
 ;; - Find the next line easily.
