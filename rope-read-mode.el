@@ -330,20 +330,19 @@ annoying search for the next line at the other side of the text."
 (defun rope-read-y-info-of-line ()
   "Return the top coordinate and the height of the line that contains `(point)'.
 This function typically takes a while."
-  (save-excursion
-    (let* ((end (progn (end-of-line) (point)))
-           (posn-at-point (posn-at-point (point)))
-           (height (progn
-                     (beginning-of-line)
-                     (cdr (nth 9 posn-at-point))) ; empty line default
-                   )
-           (y-top (cdr (posn-x-y posn-at-point))))
-      (while (progn (forward-char)
-                    (< (point) end))
-        (let ((posn-at-point (posn-at-point (point))))
-          (setq height (max height (cdr (nth 9 posn-at-point))))
-          (setq y-top (min y-top (cdr (posn-x-y posn-at-point))))))
-      (cons y-top height))))
+  (let* ((end (progn (end-of-line) (point)))
+         (posn-at-point (progn
+                          (beginning-of-line)
+                          (posn-at-point (point))))
+         (y-top (cdr (posn-x-y posn-at-point)))
+         (height (cdr (nth 9 posn-at-point))))
+    (while (progn (forward-char)
+                  (<= (point) end))
+      (setq
+       posn-at-point (posn-at-point (point))
+       height (max height (cdr (nth 9 posn-at-point)))
+       y-top (min y-top (cdr (posn-x-y posn-at-point)))))
+    (cons y-top height)))
 ;; #+END_SRC
 
 ;; *** Heuristic
