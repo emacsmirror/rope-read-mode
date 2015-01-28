@@ -336,8 +336,9 @@ This function typically takes a while."
                           (posn-at-point (point))))
          (y-top (cdr (posn-x-y posn-at-point)))
          (height (cdr (nth 9 posn-at-point))))
-    (while (progn (forward-char)
-                  (<= (point) end))
+    (while (and (< (point) (point-max))
+                (progn (forward-char)
+                       (<= (point) end)))
       (setq
        posn-at-point (posn-at-point (point))
        height (max height (cdr (nth 9 posn-at-point)))
