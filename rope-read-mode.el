@@ -450,51 +450,41 @@ The file name for the snapshot containing the number
              (toggle t)
              (olimid-start rope-read-olimid-next-unused)
              (olimid-current olimid-start))
-        ;; pass 1: create the images.
         (let ((processing-line 1))
           (goto-char first-line)
           (rope-read-advance-one-line)
+          (setq processing-line (1+ processing-line))
           (while (and (<= (point) last-line) (< (point) (point-max)))
             (if toggle
                 (progn (rope-read-snap-a-line-under-olimid-filename)
-                       (message "pass1 %s" processing-line)
-                       (setq processing-line (1+ processing-line))))
+                       (let ((l-beg (progn (beginning-of-line) (point)))
+                             (l-end (progn (end-of-line) (point))))
+                         (setq rope-read-overlays
+                               (cons (make-overlay l-beg l-end)
+                                     rope-read-overlays))
+                         (overlay-put
+                          (car rope-read-overlays) 'display
+                          (create-image
+                           (expand-file-name
+                            (format 
+                             rope-read-image-overlay-filename-format-string
+                             olimid-current))
+                           nil nil
+                           :ascent 'center
+                           ;; TODO: try to refine.  hint: try
+                           ;; understand.  is this a font-dependent
+                           ;; thing?  e.g. :ascent 83 is possible.
+                           ;; there are further attributes...
+                           ))
+                         (redisplay t)
+                         ;; (overlay-put
+                         ;;  (car rope-read-overlays)
+                         ;;  'after-string rope-read-indication-string-for-reversed-line)
+                         (setq olimid-current (1+ olimid-current))
+                         (message "pass2 %s" processing-line))))
             (setq toggle (not toggle))
-            (rope-read-advance-one-line)))
-        ;; pass 2: insert the images as overlays.
-        (let ((processing-line 1))
-          (goto-char first-line)
-          (rope-read-advance-one-line)
-          (setq toggle t)
-          (while (and (<= (point) last-line) (< (point) (point-max)))
-            (if toggle
-                (let ((l-beg (progn (beginning-of-line) (point)))
-                      (l-end (progn (end-of-line) (point))))
-                  (setq rope-read-overlays
-                        (cons (make-overlay l-beg l-end)
-                              rope-read-overlays))
-                  (overlay-put
-                   (car rope-read-overlays) 'display
-                   (create-image
-                    (expand-file-name
-                     (format 
-                      rope-read-image-overlay-filename-format-string
-                      olimid-current))
-                    nil nil
-                    :ascent 'center
-                    ;; TODO: try to refine.  hint: try
-                    ;; understand.  is this a font-dependent
-                    ;; thing?  e.g. :ascent 83 is possible.
-                    ;; there are further attributes...
-                    ))
-                  (setq olimid-current (1+ olimid-current))
-                  (overlay-put
-                   (car rope-read-overlays)
-                   'after-string rope-read-indication-string-for-reversed-line)
-                  (message "pass2 %s" processing-line)
-                  (setq processing-line (1+ processing-line))))
-            (setq toggle (not toggle))
-            (rope-read-advance-one-line)))))
+            (rope-read-advance-one-line)
+            (setq processing-line (1+ processing-line))))))
     (message "secs elapsed: %s" (- (float-time) float-time))))
 
 ;; #+END_SRC
