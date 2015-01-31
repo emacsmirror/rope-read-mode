@@ -68,14 +68,6 @@ performs.
 Interrupt `rope-read-mode` any time with `C-g`.  Type `M-x
 rope-read-mode` again or press 'q' to leave the mode.
 
-In `rope-read-mode` you can use:
-
--   q to quit.
--   SPC / <backspace> S-SPC to scroll a screen.
--   v <return> / V y to scroll one line.
--   g to refresh rope read.
--   ? to get some help.
-
 When `rope-read-mode` is active you can use any method to reach a
 location of interest followed by a press on 'g' to trigger a refresh
 of the view.
