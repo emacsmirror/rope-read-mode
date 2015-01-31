@@ -27,6 +27,7 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+
 ;; ** What rope-read-mode is
 
 ;; =rope-read-mode= reverses every other line in the visible part of a
@@ -96,7 +97,8 @@
 
 ;; For uniform text (without superscripts and images) using the size of
 ;; an arbitrary character of the text typically is enough to get the
-;; y-geometry.  This is the 'heuristic' strategy.
+;; y-geometry.  This is the 'heuristic' strategy.  Strategy 'heuristic'
+;; is faster than 'exact' but it fails easily.
 
 ;; Use =M-x customize-variable rope-read-calculate-exact-y-coordinates=
 ;; to change the strategy.
@@ -191,6 +193,7 @@
 ;; | 201501311657 | v0.2 Replace whenever a line is ready                   |
 
 ;;; Code:
+
 ;; ** Variables
 
 ;; #+BEGIN_SRC emacs-lisp
