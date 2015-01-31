@@ -481,7 +481,7 @@ The file name for the snapshot containing the number
                           (car rope-read-overlays)
                           'after-string rope-read-indication-string-for-reversed-line)
                          (setq olimid-current (1+ olimid-current))
-                         (message "pass2 %s" processing-line))))
+                         (message "Processing line %s" processing-line))))
             (setq toggle (not toggle))
             (rope-read-advance-one-line)
             (setq processing-line (1+ processing-line))))))
