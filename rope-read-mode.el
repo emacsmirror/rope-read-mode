@@ -101,6 +101,12 @@
 ;; Use =M-x customize-variable rope-read-calculate-exact-y-coordinates=
 ;; to change the strategy.
 
+;; *** Image files
+
+;; The reverse representation of lines is realized with images.  They get
+;; collected in directory =rope-read-image-overlay-path=.  You can delete
+;; this directory any time.
+
 ;; ** Install
 ;; *** Emacs Package
 
