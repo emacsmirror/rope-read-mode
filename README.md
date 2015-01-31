@@ -38,8 +38,6 @@
 </div>
 </div>
 
-
-
 # What rope-read-mode is<a id="sec-1"></a>
 
 `rope-read-mode` reverses every other line in the visible part of a
@@ -48,7 +46,7 @@ following a rope.
 
 ## Illustration<a id="sec-1-1"></a>
 
-[[![img](rope-read-illustration.png][[[file:./rope-read-illustration.png)]]]]
+[![img](./rope-read-illustration.png)](rope-read-illustration.png)
 
 ## Benefits<a id="sec-1-2"></a>
 
@@ -124,7 +122,7 @@ this directory any time.
 ## Emacs Package<a id="sec-3-1"></a>
 
 When installed as Emacs package
-[[![img](//melpa.org/#/rope-read-mode][[[file:http:/melpa.org/packages/rope-read-mode-badge.svg)]]]] then there is
+[![img](http://melpa.org/packages/rope-read-mode-badge.svg)](http://melpa.org/#/rope-read-mode) then there is
 no need of a special configuration.
 
 ## Install from el file<a id="sec-3-2"></a>
@@ -164,7 +162,7 @@ changing the default font.
 ## Lentic Literate Style<a id="sec-5-4"></a>
 
 This program is written in emacs lisp in lentic style based on the
-'lentic' package [[![img](//melpa.org/#/lentic][[[file:http:/melpa.org/packages/lentic-badge.svg)]]]].
+'lentic' package [![img](http://melpa.org/packages/lentic-badge.svg)](http://melpa.org/#/lentic).
 
 This means the that this file can be regarded just as an emacs lisp
 file.  But actually this file contains extra comments which allow the
@@ -176,7 +174,7 @@ A possible initialization of lentic is this:
     (global-lentic-start-mode)
 
 Find more about lentic at
-[[![img](//melpa.org/#/lentic][[[file:http:/melpa.org/packages/lentic-badge.svg)]]]].
+[![img](http://melpa.org/packages/lentic-badge.svg)](http://melpa.org/#/lentic).
 
 ## Contributors<a id="sec-5-5"></a>
 
@@ -207,10 +205,10 @@ author directly.
 # Links<a id="sec-7"></a>
 
 -   'spray' which is available as Elpa package
-    [[![img](//melpa.org/#/spray][[[file:http:/melpa.org/packages/spray-badge.svg)]]]] realizes another
+    [![img](http://melpa.org/packages/spray-badge.svg)](http://melpa.org/#/spray) realizes another
     alternative view mode.
 -   'fliptext' which also is available as Elpa package
-    [[![img](//melpa.org/#/fliptext][[[file:http:/melpa.org/packages/fliptext-badge.svg)]]]] realizes an
+    [![img](http://melpa.org/packages/fliptext-badge.svg)](http://melpa.org/#/fliptext) realizes an
     ˙ʇxǝʇ pǝddılɟ ɹoɟ poɥʇǝɯ-ʇnduı
 
 # History<a id="sec-8"></a>
