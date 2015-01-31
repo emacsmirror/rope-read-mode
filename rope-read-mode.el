@@ -477,9 +477,9 @@ The file name for the snapshot containing the number
                            ;; there are further attributes...
                            ))
                          (redisplay t)
-                         ;; (overlay-put
-                         ;;  (car rope-read-overlays)
-                         ;;  'after-string rope-read-indication-string-for-reversed-line)
+                         (overlay-put
+                          (car rope-read-overlays)
+                          'after-string rope-read-indication-string-for-reversed-line)
                          (setq olimid-current (1+ olimid-current))
                          (message "pass2 %s" processing-line))))
             (setq toggle (not toggle))
