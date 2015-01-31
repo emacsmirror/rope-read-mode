@@ -12,6 +12,7 @@
 <li><a href="#sec-2">2. Usage</a>
 <ul>
 <li><a href="#sec-2-1">2.1. Transformation speed vs. quality</a></li>
+<li><a href="#sec-2-2">2.2. Image files</a></li>
 </ul>
 </li>
 <li><a href="#sec-3">3. Install</a>
@@ -37,6 +38,8 @@
 </div>
 </div>
 
+
+
 # What rope-read-mode is<a id="sec-1"></a>
 
 `rope-read-mode` reverses every other line in the visible part of a
@@ -45,7 +48,7 @@ following a rope.
 
 ## Illustration<a id="sec-1-1"></a>
 
-[![img](./rope-read-illustration.png)](rope-read-illustration.png)
+[[![img](rope-read-illustration.png][[[file:./rope-read-illustration.png)]]]]
 
 ## Benefits<a id="sec-1-2"></a>
 
@@ -61,19 +64,31 @@ lines.
 
 # Usage<a id="sec-2"></a>
 
-Type `M-x rope-read-mode` in a buffer and wait until the
-transformation of the buffer has been performed.  Type
-`M-x rope-read-mode` again to leave the mode.
+Type `M-x rope-read-mode` in a buffer and see how the transformation
+performs.
 
-You can use:
+Interrupt `rope-read-mode` any time with `C-g`.  Type `M-x
+rope-read-mode` again or press 'q' to leave the mode.
+
+In `rope-read-mode` you can use:
+
+-   q to quit.
+-   SPC / <backspace> S-SPC to scroll a screen.
+-   v <return> / V y to scroll one line.
+-   g to refresh rope read.
+-   ? to get some help.
+
+When `rope-read-mode` is active you can use any method to reach a
+location of interest followed by a press on 'g' to trigger a refresh
+of the view.
+
+In `rope-read-mode` you can use:
 
 -   q to quit.
 -   SPC / <backspace> S-SPC to scroll a screen.
 -   v <return> / V y to scroll one line.
 -   g to refresh rope read.
 -   ? to open the help buffer.
--   any method to reach a location in the buffer and then press g to
-    trigger the transformation of the current view.
 
 For convenience command rope-read-mode can be bound to a key
 sequence.  For example to activate or deactivate rope-read-mode by
@@ -87,21 +102,29 @@ The calculation of the relevant y-coordinates for the transformation
 can be controlled somewhat by variable
 \`rope-read-calculate-exact-y-coordinates'.
 
-For uniform text (without superscripts and images) using the y-size of
-an arbitrary character of the text yields good results.  Set variable
-`rope-read-calculate-exact-y-coordinates` to nil to use this
-heuristic.  The variable can be set via `M-x customize-variable`.
+To get the bounding box of a line of text the geometry of every
+character of the line must be checked.  This is the 'exact' strategy.
 
-Set `rope-read-calculate-exact-y-coordinates` to t to calculate the
-y-coordinates exactly (hopefully).  This slows down the
-transformation considerably.
+For uniform text (without superscripts and images) using the size of
+an arbitrary character of the text typically is enough to get the
+y-geometry.  This is the 'heuristic' strategy.  Strategy 'heuristic'
+is faster than 'exact' but it fails easily.
+
+Use `M-x customize-variable rope-read-calculate-exact-y-coordinates`
+to change the strategy.
+
+## Image files<a id="sec-2-2"></a>
+
+The reverse representation of lines is realized with images.  They get
+collected in directory `rope-read-image-overlay-path`.  You can delete
+this directory any time.
 
 # Install<a id="sec-3"></a>
 
 ## Emacs Package<a id="sec-3-1"></a>
 
 When installed as Emacs package
-[![img](http://melpa.org/packages/rope-read-mode-badge.svg)](http://melpa.org/#/rope-read-mode) then there is
+[[![img](//melpa.org/#/rope-read-mode][[[file:http:/melpa.org/packages/rope-read-mode-badge.svg)]]]] then there is
 no need of a special configuration.
 
 ## Install from el file<a id="sec-3-2"></a>
@@ -141,7 +164,7 @@ changing the default font.
 ## Lentic Literate Style<a id="sec-5-4"></a>
 
 This program is written in emacs lisp in lentic style based on the
-'lentic' package [![img](http://melpa.org/packages/lentic-badge.svg)](http://melpa.org/#/lentic).
+'lentic' package [[![img](//melpa.org/#/lentic][[[file:http:/melpa.org/packages/lentic-badge.svg)]]]].
 
 This means the that this file can be regarded just as an emacs lisp
 file.  But actually this file contains extra comments which allow the
@@ -153,7 +176,7 @@ A possible initialization of lentic is this:
     (global-lentic-start-mode)
 
 Find more about lentic at
-[![img](http://melpa.org/packages/lentic-badge.svg)](http://melpa.org/#/lentic).
+[[![img](//melpa.org/#/lentic][[[file:http:/melpa.org/packages/lentic-badge.svg)]]]].
 
 ## Contributors<a id="sec-5-5"></a>
 
@@ -184,10 +207,10 @@ author directly.
 # Links<a id="sec-7"></a>
 
 -   'spray' which is available as Elpa package
-    [![img](http://melpa.org/packages/spray-badge.svg)](http://melpa.org/#/spray) realizes another
+    [[![img](//melpa.org/#/spray][[[file:http:/melpa.org/packages/spray-badge.svg)]]]] realizes another
     alternative view mode.
 -   'fliptext' which also is available as Elpa package
-    [![img](http://melpa.org/packages/fliptext-badge.svg)](http://melpa.org/#/fliptext) realizes an
+    [[![img](//melpa.org/#/fliptext][[[file:http:/melpa.org/packages/fliptext-badge.svg)]]]] realizes an
     ˙ʇxǝʇ pǝddılɟ ɹoɟ poɥʇǝɯ-ʇnduı
 
 # History<a id="sec-8"></a>
@@ -204,6 +227,12 @@ author directly.
 <tr>
 <td class="right">201501151211</td>
 <td class="left">v0.1 New option rope-read-calculate-exact-y-coordinates</td>
+</tr>
+
+
+<tr>
+<td class="right">201501311657</td>
+<td class="left">v0.2 Replace whenever a line is ready</td>
 </tr>
 </tbody>
 </table>
