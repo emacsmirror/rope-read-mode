@@ -51,19 +51,31 @@
 
 ;; ** Usage
 
-;; Type =M-x rope-read-mode= in a buffer and wait until the
-;; transformation of the buffer has been performed.  Type
-;; =M-x rope-read-mode= again to leave the mode.
+;; Type =M-x rope-read-mode= in a buffer and see how the transformation
+;; performs.
 
-;; You can use:
+;; Interrupt =rope-read-mode= any time with =C-g=.  Type =M-x
+;; rope-read-mode= again or press 'q' to leave the mode.
+
+;; In =rope-read-mode= you can use:
+
+;; - q to quit.
+;; - SPC / <backspace> S-SPC to scroll a screen.
+;; - v <return> / V y to scroll one line.
+;; - g to refresh rope read.
+;; - ? to get some help.
+
+;; When =rope-read-mode= is active you can use any method to reach a
+;; location of interest followed by a press on 'g' to trigger a refresh
+;; of the view.
+
+;; In =rope-read-mode= you can use:
 
 ;; - q to quit.
 ;; - SPC / <backspace> S-SPC to scroll a screen.
 ;; - v <return> / V y to scroll one line.
 ;; - g to refresh rope read.
 ;; - ? to open the help buffer.
-;; - any method to reach a location in the buffer and then press g to
-;;   trigger the transformation of the current view.
 
 ;; For convenience command rope-read-mode can be bound to a key
 ;; sequence.  For example to activate or deactivate rope-read-mode by
@@ -79,14 +91,15 @@
 ;; can be controlled somewhat by variable
 ;; `rope-read-calculate-exact-y-coordinates'.
 
-;; For uniform text (without superscripts and images) using the y-size of
-;; an arbitrary character of the text yields good results.  Set variable
-;; =rope-read-calculate-exact-y-coordinates= to nil to use this
-;; heuristic.  The variable can be set via =M-x customize-variable=.
+;; To get the bounding box of a line of text the geometry of every
+;; character of the line must be checked.  This is the 'exact' strategy.
 
-;; Set =rope-read-calculate-exact-y-coordinates= to t to calculate the
-;; y-coordinates exactly (hopefully).  This slows down the
-;; transformation considerably.
+;; For uniform text (without superscripts and images) using the size of
+;; an arbitrary character of the text typically is enough to get the
+;; y-geometry.  This is the 'heuristic' strategy.
+
+;; Use =M-x customize-variable rope-read-calculate-exact-y-coordinates=
+;; to change the strategy.
 
 ;; ** Install
 ;; *** Emacs Package
