@@ -510,6 +510,108 @@ The file name for the snapshot containing the number
     (message "secs elapsed: %s" (- (float-time) float-time))))
 
 ;; #+END_SRC
+;; ** Handle a split line
+
+;; #+BEGIN_SRC emacs-lisp
+(defun rope-read-advance-one-visual-line ()
+  (interactive)
+  (beginning-of-visual-line 2))
+
+(defun rope-read-reol ()
+  "Reverse every other line in the visible part.
+
+Starting from current line."
+  (interactive)
+  (save-excursion
+    (let* ((one-above-first-line
+            (progn (beginning-of-visual-line)
+                   (point)))
+           (last-line
+            (progn (move-to-window-line -1)
+                   (point)))
+           (toggle t))
+      (goto-char one-above-first-line)
+      (rope-read-advance-one-visual-line)
+      (while (and (<= (point) last-line) (< (point) (point-max)))
+        (if toggle
+            (progn (rope-read-snap-visual-line-under-olimid-filename)
+                   (let* ((l-beg (save-excursion (beginning-of-visual-line) (point)))
+                          (l-end (save-excursion (end-of-visual-line) (point)))
+                          (l-next (save-excursion
+                                    (goto-char l-beg) (beginning-of-visual-line 2) (point)))
+                          ; try to use for identify truncation of the line
+                          (olimid-current (1- rope-read-olimid-next-unused)))
+                     (setq rope-read-overlays
+                           (cons (make-overlay l-beg l-end)
+                                 rope-read-overlays))
+                     (overlay-put
+                      (car rope-read-overlays) 'display
+                      (create-image
+                       (expand-file-name
+                        (format 
+                         rope-read-image-overlay-filename-format-string
+                         olimid-current))
+                       nil nil
+                       :ascent 'center
+                       ;; TODO: try to refine.  hint: try
+                       ;; understand.  is this a font-dependent
+                       ;; thing?  e.g. :ascent 83 is possible.
+                       ;; there are further attributes...
+                       ))
+                     (if (= l-end l-next) ;truncated line
+                         (progn
+                           (overlay-put
+                                 (car rope-read-overlays)
+                                 'after-string
+                                 "\n"
+                                 )
+                           (beginning-of-visual-line -1)))
+                     (redisplay t)
+                     (setq olimid-current (1+ olimid-current)))))
+        (setq toggle (not toggle))
+        (rope-read-advance-one-visual-line)))))
+
+(defun rope-read-snap-visual-line-under-olimid-filename ()
+  "Snapshot the visual line with `(point)' flipflopped.
+
+The file name for the snapshot containing the number
+`rope-read-olimid-next-unused' as index."
+  (interactive "P")
+  (save-excursion
+    (let* ((beg (progn (beginning-of-visual-line) (point)))
+           (end (progn (end-of-visual-line) (point)))
+           (beg-next (progn  (goto-char beg) (beginning-of-visual-line 2) ))
+           (width (if (= end beg-next)
+                      (- (nth 2 (window-inside-pixel-edges))
+                         (nth 0 (window-inside-pixel-edges)))
+                    (- (car (posn-x-y (posn-at-point end)))
+                       (car (posn-x-y (posn-at-point beg))))))
+           (y-info-getter #'rope-read-y-info-of-line)
+           (y-top-height (progn (goto-char beg)
+                                (funcall y-info-getter)))
+           (y-pos-line (car y-top-height))
+           (height (cdr y-top-height))
+           (x-win-left (nth 0 (window-inside-pixel-edges)))
+           (y-win-top (nth 1 (window-inside-pixel-edges)))
+           (x-anchor (+ x-win-left))
+           (y-anchor (+ y-win-top y-pos-line)))
+      (call-process
+       "convert" nil nil nil
+       (format "x:%s[%dx%d+%d+%d]"
+               (frame-parameter nil 'window-id)
+               width height x-anchor y-anchor)
+       "-flip"
+       "-flop"
+        (expand-file-name
+        (format
+         rope-read-image-overlay-filename-format-string
+         ((lambda ()
+            (1-
+             (setq
+              rope-read-olimid-next-unused
+              (1+ rope-read-olimid-next-unused)))))))))))
+;; #+END_SRC
+
 
 ;; ** Provide the file as library
 
