@@ -351,12 +351,14 @@ annoying search for the next line at the other side of the text."
 (defun rope-read-y-info-of-line ()
   "Return the top coordinate and the height of the line that contains `(point)'.
 This function typically takes a while."
-  (let* ((end (progn (end-of-line) (point)))
-         (posn-at-point (progn
-                          (beginning-of-line)
-                          (posn-at-point (point))))
+  (let* ((beg (progn (beginning-of-visual-line) (point)))
+         (posn-at-point
+          (progn
+            (posn-at-point (point))))
          (y-top (cdr (posn-x-y posn-at-point)))
-         (height (cdr (nth 9 posn-at-point))))
+         (height (cdr (nth 9 posn-at-point)))
+         (end (progn (end-of-visual-line) (point))))
+    (goto-char beg)
     (while (and (< (point) (point-max))
                 (progn (forward-char)
                        (< (point) end)))
