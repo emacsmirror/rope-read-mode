@@ -625,6 +625,13 @@ The file name for the snapshot containing the number
               (1+ rope-read-olimid-next-unused)))))))))))
 ;; #+END_SRC
 
+;; #+BEGIN_SRC emacs-lisp
+(defun rope-read-reol-in-visible-buffer-part-with-images-vv ()
+    (move-to-window-line 0)    
+    (rope-read-reol))
+;; #+END_SRC
+
+
 
 ;; ** Provide the file as library
 
