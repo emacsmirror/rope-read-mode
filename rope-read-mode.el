@@ -593,7 +593,7 @@ The file name for the snapshot containing the number
            (end (progn (end-of-visual-line) (point)))
            (end-above (save-excursion (goto-char beg) (end-of-visual-line 0) (point)))
            (beg-next (progn  (goto-char beg) (beginning-of-visual-line 2) ))
-           (width (if (= end beg-next)
+           (width (if (or (= end beg-next) (= end-above beg))
                       (- (nth 2 (window-inside-pixel-edges))
                          (nth 0 (window-inside-pixel-edges)))
                     (- (max (car (posn-x-y (posn-at-point end)))
