@@ -574,17 +574,22 @@ Starting from current line."
 (defun rope-read-snap-visual-line-under-olimid-filename ()
   "Snapshot the visual line with `(point)' flipflopped.
 
+When the above line is longer than current snap that length.
+This helps reading at paragraph ends.
+
 The file name for the snapshot containing the number
 `rope-read-olimid-next-unused' as index."
   (interactive "P")
   (save-excursion
     (let* ((beg (progn (beginning-of-visual-line) (point)))
            (end (progn (end-of-visual-line) (point)))
+           (end-above (save-excursion (goto-char beg) (end-of-visual-line 0) (point)))
            (beg-next (progn  (goto-char beg) (beginning-of-visual-line 2) ))
            (width (if (= end beg-next)
                       (- (nth 2 (window-inside-pixel-edges))
                          (nth 0 (window-inside-pixel-edges)))
-                    (- (car (posn-x-y (posn-at-point end)))
+                    (- (max (car (posn-x-y (posn-at-point end)))
+                            (car (posn-x-y (posn-at-point end-above))))
                        (car (posn-x-y (posn-at-point beg))))))
            (y-info-getter #'rope-read-y-info-of-line)
            (y-top-height (progn (goto-char beg)
