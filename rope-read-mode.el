@@ -248,6 +248,14 @@ line-reversal considerably."
   "Keymap for rope-read-mode.")
 ;; #+END_SRC
 
+
+;; #+BEGIN_SRC emacs-lisp
+(defvar rope-read-transform-fun
+;  #'rope-read-reol-in-visible-buffer-part-with-images
+  #'rope-read-reol-in-visible-buffer-part-with-images-vv
+  "The function which transforms a screen for rope-reading.")
+;; #+END_SRC
+
 ;; ** Mode rope-read
 
 ;; #+BEGIN_SRC emacs-lisp
@@ -274,7 +282,7 @@ annoying search for the next line at the other side of the text."
   (setq rope-read-mode t
         rope-read-old-buffer-read-only buffer-read-only
         buffer-read-only t)
-  (rope-read-reol-in-visible-buffer-part-with-images)
+  (funcall rope-read-transform-fun)
   (run-hooks 'rope-read-mode-hook))
 
 (defun rope-read-mode-disable ()
@@ -297,21 +305,21 @@ annoying search for the next line at the other side of the text."
   (rope-read-delete-overlays)
   (scroll-up-command)
   (redisplay t)
-  (rope-read-reol-in-visible-buffer-part-with-images))
+  (funcall rope-read-transform-fun))
 
 (defun rope-read-prev-page ()
   (interactive)
   (rope-read-delete-overlays)
   (scroll-down-command)
   (redisplay t)
-  (rope-read-reol-in-visible-buffer-part-with-images))
+  (funcall rope-read-transform-fun))
 
 (defun rope-read-scroll-line (n)
   "Scroll the buffer N lines and reverse every other visible line."
   (rope-read-delete-overlays)
   (scroll-up-line n)
   (redisplay t)
-  (rope-read-reol-in-visible-buffer-part-with-images))
+  (funcall rope-read-transform-fun))
 
 (defun rope-read-scroll-up-line (n)
   "Scroll the buffer up N lines and reverse every other visible line.
@@ -334,7 +342,7 @@ annoying search for the next line at the other side of the text."
   (interactive)
   (rope-read-delete-overlays)
   (redisplay t)
-  (rope-read-reol-in-visible-buffer-part-with-images))
+  (funcall rope-read-transform-fun))
 
 (defun rope-read-quit ()
   (interactive)
