@@ -531,53 +531,53 @@ The file name for the snapshot containing the number
 Starting from current line."
   (interactive)
   (save-excursion
-    (let* ((one-above-first-line
-            (progn (beginning-of-visual-line)
-                   (point)))
-           (last-line
-            (progn (move-to-window-line -1)
-                   (point)))
-           (toggle t))
-      (goto-char one-above-first-line)
+    (let ((point-at-start (point))
+          (last-line
+           (progn (move-to-window-line -1)
+                  (point))))
+      (goto-char point-at-start)
+      (beginning-of-visual-line)
       (rope-read-advance-one-visual-line)
-      (while (and (<= (point) last-line) (< (point) (point-max)))
-        (if toggle
-            (progn (rope-read-snap-visual-line-under-olimid-filename)
-                   (let* ((l-beg (save-excursion (beginning-of-visual-line) (point)))
-                          (l-end (save-excursion (end-of-visual-line) (point)))
-                          (l-next (save-excursion
-                                    (goto-char l-beg) (beginning-of-visual-line 2) (point)))
-                          ; try to use for identify truncation of the line
-                          (olimid-current (1- rope-read-olimid-next-unused)))
-                     (setq rope-read-overlays
-                           (cons (make-overlay l-beg l-end)
-                                 rope-read-overlays))
-                     (overlay-put
-                      (car rope-read-overlays) 'display
-                      (create-image
-                       (expand-file-name
-                        (format 
-                         rope-read-image-overlay-filename-format-string
-                         olimid-current))
-                       nil nil
-                       :ascent 'center
-                       ;; TODO: try to refine.  hint: try
-                       ;; understand.  is this a font-dependent
-                       ;; thing?  e.g. :ascent 83 is possible.
-                       ;; there are further attributes...
-                       ))
-                     (if (= l-end l-next) ;truncated line
-                         (progn
-                           (overlay-put
-                                 (car rope-read-overlays)
-                                 'after-string
-                                 "\n"
-                                 )
-                           (beginning-of-visual-line -1)))
-                     (redisplay t)
-                     (setq olimid-current (1+ olimid-current)))))
-        (setq toggle (not toggle))
-        (rope-read-advance-one-visual-line)))))
+      (while (and (< (point) last-line) ; todo: handle case of last line
+                  (< (save-excursion (end-of-visual-line) (point))
+                     (point-max))) ; todo: try to handle also the very
+                                        ; last line.  the last line is
+                                        ; special because it is
+                                        ; special for the
+                                        ; beginning-of-visual-line
+                                        ; command.  no further
+                                        ; iteration!
+        (rope-read-snap-visual-line-under-olimid-filename)
+        (let* ((l-above (save-excursion (beginning-of-visual-line 0) (point)))
+               (l-beg   (save-excursion (beginning-of-visual-line) (point)))
+               (l-end   (save-excursion (end-of-visual-line) (point)))
+               (l-next  (save-excursion
+                          (goto-char l-beg) (beginning-of-visual-line 2) (point)))
+                                        ; try to use for identify truncation of the line
+               (olimid-current (1- rope-read-olimid-next-unused)))
+          (push (make-overlay l-beg l-end) rope-read-overlays)
+          (overlay-put
+           (car rope-read-overlays) 'display
+           (create-image
+            (expand-file-name
+             (format 
+              rope-read-image-overlay-filename-format-string
+              olimid-current))
+            nil nil
+            :ascent 'center
+            ;; TODO: try to refine.  hint: try
+            ;; understand.  is this a font-dependent
+            ;; thing?  e.g. :ascent 83 is possible.
+            ;; there are further attributes...
+            ))
+          (when (= l-end l-next)
+            (overlay-put (car rope-read-overlays) 'after-string "\n")
+            ; todo: do something similar in the analogue case of 'before'.
+            )
+          (goto-char l-next)
+                                        ;          (rope-read-advance-one-visual-line)
+          (redisplay t)
+          (rope-read-advance-one-visual-line))))))
 
 (defun rope-read-snap-visual-line-under-olimid-filename ()
   "Snapshot the visual line with `(point)' flipflopped.
