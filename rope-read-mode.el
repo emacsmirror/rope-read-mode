@@ -40,8 +40,8 @@
 
 ;; *** Benefits
 
-;; - Find the next line easily.
-;;   - In particular for long lines.
+;; - =rope-read-mode= often allows fluent reading by finding the start of
+;;   the next line easily.
 ;; - Have an alternative view on text.
 ;; - Have fun.
 
