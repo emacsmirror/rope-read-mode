@@ -364,55 +364,9 @@ This function typically takes a while."
 
 ;; Try to answer first: Is the speed up possible?
 
-;; ** Snap the line which containts point
+;; ** Reverse every other line
 
-;; For testing: (local-set-key (kbd "<f8>")
-;; 'rope-read-snap-a-line-under-olimid-filename)
 ;; #+BEGIN_SRC emacs-lisp
-(defun rope-read-snap-a-line-under-olimid-filename ()
-  "Snapshot the line that contains `(point)'.
-
-Also consider the line above the line containing `(point)'.  If
-the line above is longer then extend the snapshot to use the
-length of the line above.
-
-Rationale: This often eases continuation of reading for short lines.
-
-The file name for the snapshot containing the number
-`rope-read-olimid-next-unused' as index."
-  (interactive "P")
-  (save-excursion
-    (let* ((beg (progn (beginning-of-line) (point)))
-           (end (progn (end-of-line) (point)))
-           (end-above (progn  (end-of-line 0) (point)))
-           (width (- (max
-                      (car (posn-x-y (posn-at-point end)))
-                      (car (posn-x-y (posn-at-point end-above))))
-                     (car (posn-x-y (posn-at-point beg)))))
-           (y-info-getter #'rope-read-y-info-of-line)
-           (y-top-height (progn (goto-char beg)
-                                (funcall y-info-getter)))
-           (y-pos-line (car y-top-height))
-           (height (cdr y-top-height))
-           (x-win-left (nth 0 (window-inside-pixel-edges)))
-           (y-win-top (nth 1 (window-inside-pixel-edges)))
-           (x-anchor (+ x-win-left))
-           (y-anchor (+ y-win-top y-pos-line)))
-      (call-process
-       "convert" nil nil nil
-       (format "x:%s[%dx%d+%d+%d]"
-               (frame-parameter nil 'window-id)
-               width height x-anchor y-anchor)
-       "-flip"
-       "-flop"
-       (expand-file-name
-        (format
-         rope-read-image-overlay-filename-format-string
-         ((lambda ()
-            (1-
-             (setq
-              rope-read-olimid-next-unused
-              (1+ rope-read-olimid-next-unused)))))))))))
 ;; #+END_SRC
 
 ;; ** Revers every other line
