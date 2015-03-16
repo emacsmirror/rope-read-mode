@@ -149,16 +149,20 @@
 ;; Find more about lentic at
 ;; [[http://melpa.org/#/lentic][file:http://melpa.org/packages/lentic-badge.svg]].
 
-;; *** Contributors
-
-;; | Syohei YOSHIDA |
-;; | Marco WAHL     |
-
-;; ** Communication
+;; *** Communication
 
 ;; Use the GitHub infrastructure i.e. pull requests or
 ;; https://github.com/marcowahl/rope-read-mode/issues.  Or contact the
 ;; author directly.
+
+;; *** Contribution
+
+;; Contributions in any respect are welcome, e.g. ideas and improvements.
+
+;; *** Contributors
+
+;; | Syohei YOSHIDA |
+;; | Marco WAHL     |
 
 ;; ** Links
 
@@ -167,6 +171,7 @@
 ;;   alternative view mode.
 ;; - 'fliptext' which also is available as Elpa package
 ;;   [[http://melpa.org/#/fliptext][file:http://melpa.org/packages/fliptext-badge.svg]] realizes an
+
 ;;   ˙ʇxǝʇ pǝddılɟ ɹoɟ poɥʇǝɯ-ʇnduı
 
 ;; ** History
