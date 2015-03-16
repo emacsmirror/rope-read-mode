@@ -7,8 +7,8 @@
 ;; Author: Marco Wahl <marcowahlsoft@gmail.com>
 ;; Maintainer: Marco Wahl <marcowahlsoft@gmail.com>
 ;; Created: 4 Jan 2015
-;; Version: 0.2
-;; Keywords: convenience
+;; Version: 0.3
+;; Keywords: reading, convenience
 ;; URL: https://github.com/marcowahl/rope-read-mode
 
 ;; This file is not part of Emacs.
@@ -178,7 +178,8 @@
 
 ;; | 201501151211 | v0.1 New option rope-read-calculate-exact-y-coordinates |
 ;; | 201501311657 | v0.2 Replace whenever a line is ready                   |
-;; | 201503160841 | Dropped option rope-read-calculate-exact-y-coordinates |
+;; | 201503160841 | Dropped option heuristic y-coordinates calculation      |
+;; | 201503161010 | v0.3 Operations based on visual movement-commands       |
 
 ;;; Code:
 
