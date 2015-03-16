@@ -244,8 +244,7 @@ line-reversal considerably."
 
 ;; #+BEGIN_SRC emacs-lisp
 (defvar rope-read-transform-fun
-;  #'rope-read-reol-in-visible-buffer-part-with-images
-  #'rope-read-reol-in-visible-buffer-part-with-images-vv
+  #'rope-read-reol-in-visible-buffer-part-with-images
   "The function which transforms a screen for rope-reading.")
 ;; #+END_SRC
 
@@ -446,80 +445,12 @@ The file name for the snapshot containing the number
 ;; ** Revers every other line
 
 ;; #+BEGIN_SRC emacs-lisp
-(defun rope-read-advance-one-line ()
-  (forward-line 1))
-
-(defun rope-read-reol-in-visible-buffer-part-with-images ()
-  "Reversal of every other line (reol) in the visible part.
-
-  Results are quite good for font Courier and ProFont.
-
-   BUG: [2014-01-24 Fri 12:43] There is an additional
-   one-pixel-line for each image for several fonts, but not
-   Courier.  It makes the text longer when using the
-   rope-read-feature.  No idea, how to get rid of it."
-  (interactive)
-  (let
-      ((float-time (float-time)))
-    (save-excursion
-      (let* ((first-line
-              (progn (move-to-window-line 0) 
-                     (point)))
-             (last-line
-              (progn (move-to-window-line -1)
-                     (beginning-of-line)
-                     (point)))
-             (toggle t)
-             (olimid-current rope-read-olimid-next-unused))
-        (let ((processing-line 1))
-          (goto-char first-line)
-          (rope-read-advance-one-line)
-          (setq processing-line (1+ processing-line))
-          (while (and (<= (point) last-line) (< (point) (point-max)))
-            (if toggle
-                (progn (rope-read-snap-a-line-under-olimid-filename)
-                       (let ((l-beg (progn (beginning-of-line) (point)))
-                             (l-end (progn (end-of-line) (point))))
-                         (setq rope-read-overlays
-                               (cons (make-overlay l-beg l-end)
-                                     rope-read-overlays))
-                         (overlay-put
-                          (car rope-read-overlays) 'display
-                          (create-image
-                           (expand-file-name
-                            (format 
-                             rope-read-image-overlay-filename-format-string
-                             olimid-current))
-                           nil nil
-                           :ascent 'center
-                           ;; TODO: try to refine.  hint: try
-                           ;; understand.  is this a font-dependent
-                           ;; thing?  e.g. :ascent 83 is possible.
-                           ;; there are further attributes...
-                           ))
-                         (redisplay t)
-                         (overlay-put
-                          (car rope-read-overlays)
-                          'after-string rope-read-indication-string-for-reversed-line)
-                         (setq olimid-current (1+ olimid-current))
-                         (message "Processing line %s" processing-line))))
-            (setq toggle (not toggle))
-            (rope-read-advance-one-line)
-            (setq processing-line (1+ processing-line))))))
-    (message "secs elapsed: %s" (- (float-time) float-time))))
-
-;; #+END_SRC
-;; ** Handle a split line
-
-;; #+BEGIN_SRC emacs-lisp
 (defun rope-read-advance-one-visual-line ()
   (interactive)
   (beginning-of-visual-line 2))
 
 (defun rope-read-reol ()
-  "Reverse every other line in the visible part.
-
-Starting from current line."
+  "Reverse every other line in the visible part starting with line after point."
   (interactive)
   (save-excursion
     (let ((point-at-start (point))
@@ -617,7 +548,7 @@ The file name for the snapshot containing the number
 ;; #+END_SRC
 
 ;; #+BEGIN_SRC emacs-lisp
-(defun rope-read-reol-in-visible-buffer-part-with-images-vv ()
+(defun rope-read-reol-in-visible-buffer-part-with-images ()
     (move-to-window-line 0)    
     (rope-read-reol))
 ;; #+END_SRC
