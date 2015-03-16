@@ -78,23 +78,6 @@
 ;; (global-set-key (kbd "<Scroll_Lock> <Scroll_Lock>") 'rope-read-mode)
 ;; #+END_EXAMPLE
 
-;; *** Transformation speed vs. quality
-
-;; The calculation of the relevant y-coordinates for the transformation
-;; can be controlled somewhat by variable
-;; `rope-read-calculate-exact-y-coordinates'.
-
-;; To get the bounding box of a line of text the geometry of every
-;; character of the line must be checked.  This is the 'exact' strategy.
-
-;; For uniform text (without superscripts and images) using the size of
-;; an arbitrary character of the text typically is enough to get the
-;; y-geometry.  This is the 'heuristic' strategy.  Strategy 'heuristic'
-;; is faster than 'exact' but it fails easily.
-
-;; Use =M-x customize-variable rope-read-calculate-exact-y-coordinates=
-;; to change the strategy.
-
 ;; *** Image files
 
 ;; The reverse representation of lines is realized with images.  They get
