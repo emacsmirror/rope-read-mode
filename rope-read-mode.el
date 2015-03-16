@@ -367,13 +367,13 @@ This function typically takes a while."
 ;; ** Reverse every other line
 
 ;; #+BEGIN_SRC emacs-lisp
+(defun rope-read-reol-in-visible-buffer-part-with-images ()
+    (move-to-window-line 0)    
+    (rope-read-reol))
 ;; #+END_SRC
-
-;; ** Revers every other line
 
 ;; #+BEGIN_SRC emacs-lisp
 (defun rope-read-advance-one-visual-line ()
-  (interactive)
   (beginning-of-visual-line 2))
 
 (defun rope-read-reol ()
@@ -421,22 +421,32 @@ This function typically takes a while."
             ))
           (when (= l-end l-next)
             (overlay-put (car rope-read-overlays) 'after-string "\n")
+            ;; this newline makes the images appear in some cases.
             ;; todo: at least think about doing something similar in
             ;; the analog case of 'before'.
             )
           (goto-char l-next)
-                                        ;          (rope-read-advance-one-visual-line)
           (redisplay t)
           (rope-read-advance-one-visual-line))))))
+;; #+END_SRC
 
+;; ** Snap the line which contains point
+
+;; For testing: (local-set-key (kbd "<f8>")
+;; 'rope-read-snap-visual-line-under-olimid-filename)
+
+;; #+BEGIN_SRC emacs-lisp
 (defun rope-read-snap-visual-line-under-olimid-filename ()
   "Snapshot the visual line with `(point)' flipflopped.
 
-When the above line is longer than current snap that length.
-This helps reading at paragraph ends.
+Also consider the line above the line containing `(point)'.  If
+the line above is longer then extend the snapshot to use the
+length of the line above.  This often eases continuation of
+reading for short lines.
 
-The file name for the snapshot containing the number
-`rope-read-olimid-next-unused' as index."
+The file name for the snapshot contains the number
+`rope-read-olimid-next-unused' as index.  Use the source for all
+detail."
   (interactive "P")
   (save-excursion
     (let* ((beg (progn (beginning-of-visual-line) (point)))
@@ -474,14 +484,6 @@ The file name for the snapshot containing the number
               rope-read-olimid-next-unused
               (1+ rope-read-olimid-next-unused)))))))))))
 ;; #+END_SRC
-
-;; #+BEGIN_SRC emacs-lisp
-(defun rope-read-reol-in-visible-buffer-part-with-images ()
-    (move-to-window-line 0)    
-    (rope-read-reol))
-;; #+END_SRC
-
-
 
 ;; ** Provide the file as library
 
