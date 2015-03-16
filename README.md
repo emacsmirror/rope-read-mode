@@ -11,8 +11,7 @@
 </li>
 <li><a href="#sec-2">2. Usage</a>
 <ul>
-<li><a href="#sec-2-1">2.1. Transformation speed vs. quality</a></li>
-<li><a href="#sec-2-2">2.2. Image files</a></li>
+<li><a href="#sec-2-1">2.1. Image files</a></li>
 </ul>
 </li>
 <li><a href="#sec-3">3. Install</a>
@@ -28,12 +27,13 @@
 <li><a href="#sec-5-2">5.2. Wishes</a></li>
 <li><a href="#sec-5-3">5.3. Vision</a></li>
 <li><a href="#sec-5-4">5.4. Lentic Literate Style</a></li>
-<li><a href="#sec-5-5">5.5. Contributors</a></li>
+<li><a href="#sec-5-5">5.5. Communication</a></li>
+<li><a href="#sec-5-6">5.6. Contribution</a></li>
+<li><a href="#sec-5-7">5.7. Contributors</a></li>
 </ul>
 </li>
-<li><a href="#sec-6">6. Communication</a></li>
-<li><a href="#sec-7">7. Links</a></li>
-<li><a href="#sec-8">8. History</a></li>
+<li><a href="#sec-6">6. Links</a></li>
+<li><a href="#sec-7">7. History</a></li>
 </ul>
 </div>
 </div>
@@ -50,8 +50,8 @@ following a rope.
 
 ## Benefits<a id="sec-1-2"></a>
 
--   Find the next line easily.
-    -   In particular for long lines.
+-   `rope-read-mode` often allows fluent reading by finding the start of
+    the next line easily.
 -   Have an alternative view on text.
 -   Have fun.
 
@@ -86,24 +86,7 @@ pressing scroll lock two times use the line
 
     (global-set-key (kbd "<Scroll_Lock> <Scroll_Lock>") 'rope-read-mode)
 
-## Transformation speed vs. quality<a id="sec-2-1"></a>
-
-The calculation of the relevant y-coordinates for the transformation
-can be controlled somewhat by variable
-\`rope-read-calculate-exact-y-coordinates'.
-
-To get the bounding box of a line of text the geometry of every
-character of the line must be checked.  This is the 'exact' strategy.
-
-For uniform text (without superscripts and images) using the size of
-an arbitrary character of the text typically is enough to get the
-y-geometry.  This is the 'heuristic' strategy.  Strategy 'heuristic'
-is faster than 'exact' but it fails easily.
-
-Use `M-x customize-variable rope-read-calculate-exact-y-coordinates`
-to change the strategy.
-
-## Image files<a id="sec-2-2"></a>
+## Image files<a id="sec-2-1"></a>
 
 The reverse representation of lines is realized with images.  They get
 collected in directory `rope-read-image-overlay-path`.  You can delete
@@ -139,7 +122,12 @@ them.
 
 ## Known Bugs<a id="sec-5-1"></a>
 
--   rope-read-mode fails when truncated lines occur.
+-   rope-read-mode sometimes spontaneously fails.
+    -   In this case a refresh with 'g' might help.
+    -   You can always try 'C-g q' and start again.
+-   rope-read-mode often does not work for org-mode files.
+    -   Possibly this is due to the interference of overlays of org and
+        rope-read.
 
 ## Wishes<a id="sec-5-2"></a>
 
@@ -168,7 +156,17 @@ A possible initialization of lentic is this:
 Find more about lentic at
 [![img](http://melpa.org/packages/lentic-badge.svg)](http://melpa.org/#/lentic).
 
-## Contributors<a id="sec-5-5"></a>
+## Communication<a id="sec-5-5"></a>
+
+Use the GitHub infrastructure i.e. pull requests or
+<https://github.com/marcowahl/rope-read-mode/issues>.  Or contact the
+author directly.
+
+## Contribution<a id="sec-5-6"></a>
+
+Contributions in any respect are welcome, e.g. ideas and improvements.
+
+## Contributors<a id="sec-5-7"></a>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -188,22 +186,17 @@ Find more about lentic at
 </tbody>
 </table>
 
-# Communication<a id="sec-6"></a>
-
-Use the GitHub infrastructure i.e. pull requests or
-<https://github.com/marcowahl/rope-read-mode/issues>.  Or contact the
-author directly.
-
-# Links<a id="sec-7"></a>
+# Links<a id="sec-6"></a>
 
 -   'spray' which is available as Elpa package
     [![img](http://melpa.org/packages/spray-badge.svg)](http://melpa.org/#/spray) realizes another
     alternative view mode.
 -   'fliptext' which also is available as Elpa package
     [![img](http://melpa.org/packages/fliptext-badge.svg)](http://melpa.org/#/fliptext) realizes an
+    
     ˙ʇxǝʇ pǝddılɟ ɹoɟ poɥʇǝɯ-ʇnduı
 
-# History<a id="sec-8"></a>
+# History<a id="sec-7"></a>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -223,6 +216,18 @@ author directly.
 <tr>
 <td class="right">201501311657</td>
 <td class="left">v0.2 Replace whenever a line is ready</td>
+</tr>
+
+
+<tr>
+<td class="right">201503160841</td>
+<td class="left">Dropped option heuristic y-coordinates calculation</td>
+</tr>
+
+
+<tr>
+<td class="right">201503161010</td>
+<td class="left">v0.3 Operations based on visual movement-commands</td>
 </tr>
 </tbody>
 </table>

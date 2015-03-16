@@ -1,4 +1,4 @@
-# Created 2015-01-31 Sat 17:59
+# Created 2015-03-16 Mon 10:18
 #+TITLE: Commentary
 * What rope-read-mode is
 
@@ -12,8 +12,8 @@ following a rope.
 
 ** Benefits
 
-- Find the next line easily.
-  - In particular for long lines.
+- =rope-read-mode= often allows fluent reading by finding the start of
+  the next line easily.
 - Have an alternative view on text.
 - Have fun.
 
@@ -50,23 +50,6 @@ pressing scroll lock two times use the line
 (global-set-key (kbd "<Scroll_Lock> <Scroll_Lock>") 'rope-read-mode)
 #+END_EXAMPLE
 
-** Transformation speed vs. quality
-
-The calculation of the relevant y-coordinates for the transformation
-can be controlled somewhat by variable
-`rope-read-calculate-exact-y-coordinates'.
-
-To get the bounding box of a line of text the geometry of every
-character of the line must be checked.  This is the 'exact' strategy.
-
-For uniform text (without superscripts and images) using the size of
-an arbitrary character of the text typically is enough to get the
-y-geometry.  This is the 'heuristic' strategy.  Strategy 'heuristic'
-is faster than 'exact' but it fails easily.
-
-Use =M-x customize-variable rope-read-calculate-exact-y-coordinates=
-to change the strategy.
-
 ** Image files
 
 The reverse representation of lines is realized with images.  They get
@@ -74,6 +57,7 @@ collected in directory =rope-read-image-overlay-path=.  You can delete
 this directory any time.
 
 * Install
+
 ** Emacs Package
 
 When installed as Emacs package
@@ -98,9 +82,15 @@ The =convert= program has the job to create images of lines and rotate
 them.
 
 * Development
+
 ** Known Bugs
 
-- rope-read-mode fails when truncated lines occur.
+- rope-read-mode sometimes spontaneously fails.
+  - In this case a refresh with 'g' might help.
+  - You can always try 'C-g q' and start again.
+- rope-read-mode often does not work for org-mode files.
+  - Possibly this is due to the interference of overlays of org and
+    rope-read.
 
 ** Wishes
 
@@ -131,16 +121,20 @@ A possible initialization of lentic is this:
 Find more about lentic at
 [[http://melpa.org/#/lentic][[[file:http://melpa.org/packages/lentic-badge.svg]]]].
 
-** Contributors
-
-| Syohei YOSHIDA |
-| Marco WAHL     |
-
-* Communication
+** Communication
 
 Use the GitHub infrastructure i.e. pull requests or
 [[https://github.com/marcowahl/rope-read-mode/issues]].  Or contact the
 author directly.
+
+** Contribution
+
+Contributions in any respect are welcome, e.g. ideas and improvements.
+
+** Contributors
+
+| Syohei YOSHIDA |
+| Marco WAHL     |
 
 * Links
 
@@ -149,11 +143,14 @@ author directly.
   alternative view mode.
 - 'fliptext' which also is available as Elpa package
   [[http://melpa.org/#/fliptext][[[file:http://melpa.org/packages/fliptext-badge.svg]]]] realizes an
+
   ˙ʇxǝʇ pǝddılɟ ɹoɟ poɥʇǝɯ-ʇnduı
 
 * History
 
 | 201501151211 | v0.1 New option rope-read-calculate-exact-y-coordinates |
 | 201501311657 | v0.2 Replace whenever a line is ready                   |
+| 201503160841 | Dropped option heuristic y-coordinates calculation      |
+| 201503161010 | v0.3 Operations based on visual movement-commands       |
 
-# Emacs 25.0.50.1 (Org mode 8.3beta)
+# Emacs 25.0.50.2 (Org mode 8.3beta)
