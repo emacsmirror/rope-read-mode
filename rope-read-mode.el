@@ -85,6 +85,7 @@
 ;; this directory any time.
 
 ;; ** Install
+
 ;; *** Emacs Package
 
 ;; When installed as Emacs package
@@ -109,9 +110,15 @@
 ;; them.
 
 ;; ** Development
+
 ;; *** Known Bugs
 
-;; - rope-read-mode fails when truncated lines occur.
+;; - rope-read-mode sometimes spontaneously fails.
+;;   - In this case a refresh with 'g' might help.
+;;   - You can always try 'C-g q' and start again.
+;; - rope-read-mode often does not work for org-mode files.
+;;   - Possibly this is due to the interference of overlays of org and
+;;     rope-read.
 
 ;; *** Wishes
 
