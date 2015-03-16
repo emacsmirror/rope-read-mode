@@ -360,24 +360,6 @@ This function typically takes a while."
     (cons y-top height)))
 ;; #+END_SRC
 
-;; *** Heuristic
-
-;; Just take the first character of the line and use its y-data as the
-;; data for the whole line.  This is correct if all characters in the
-;; buffer have the same y-data structure.
-
-;; Benefit: This heuristic is faster than the exact function.  Price:
-;; This heuristic might fail.  Which might result in unreadable text.
-;; #+BEGIN_SRC emacs-lisp
-(defun rope-read-y-info-of-line-take-first-char ()
-  "Return a guess of the top coordinate and the height of the line that contains `(point)'."
-  (progn
-    (beginning-of-line)
-    (let ((posn-at-point (posn-at-point (point))))
-      (cons (cdr (posn-x-y posn-at-point))
-            (cdr (nth 9 posn-at-point))))))
-;; #+END_SRC
-
 ;; *** TODO Try to speed up the function
 
 ;; Try to answer first: Is the speed up possible?
