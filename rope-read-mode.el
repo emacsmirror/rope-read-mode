@@ -200,6 +200,7 @@
 (defvar rope-read-image-overlay-filename-format-string
   (concat (file-name-directory rope-read-image-overlay-path) "%d.png")
   "Template for the filenames to be written to disk.")
+
 (defvar rope-read-mode nil)
 (make-variable-buffer-local 'rope-read-mode)
 
@@ -211,6 +212,7 @@
 
 ;; #+BEGIN_SRC emacs-lisp
 (defvar rope-read-mode-hook nil)
+
 (defvar rope-read-mode-map
   (let ((map (make-sparse-keymap)))
     (define-key map " " 'rope-read-next-page)
@@ -227,11 +229,13 @@
   "Keymap for rope-read-mode.")
 ;; #+END_SRC
 
-
 ;; #+BEGIN_SRC emacs-lisp
 (defvar rope-read-transform-fun
   #'rope-read-reol-in-visible-buffer-part-with-images
-  "The function which transforms a screen for rope-reading.")
+  "The function which transforms a screen for rope-reading.
+
+This indirection is for the comfort of any coder to try
+out something new.")
 ;; #+END_SRC
 
 ;; ** Mode rope-read
@@ -269,7 +273,7 @@ annoying search for the next line at the other side of the text."
         buffer-read-only rope-read-old-buffer-read-only))
 ;; #+END_SRC
 
-;; ** Management and Navigation in Org
+;; ** Management and Navigation
 
 ;; #+BEGIN_SRC emacs-lisp
 (defun rope-read-delete-overlays ()
@@ -328,10 +332,11 @@ annoying search for the next line at the other side of the text."
 ;; #+END_SRC
 
 ;; ** Y-coordinates of a line
+
 ;; *** Exact y-coordinate calculation of a line
 
-;; This function calculates the y-coordinates straightforward
-;; AFAICS.  But it needs a lot of time.
+;; This function calculates the y-coordinates straightforward.  This
+;; function takes a lot of time.
 
 ;; #+BEGIN_SRC emacs-lisp
 (defun rope-read-y-info-of-line ()
