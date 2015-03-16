@@ -494,7 +494,8 @@ The file name for the snapshot containing the number
             ))
           (when (= l-end l-next)
             (overlay-put (car rope-read-overlays) 'after-string "\n")
-            ; todo: do something similar in the analogue case of 'before'.
+            ;; todo: at least think about doing something similar in
+            ;; the analog case of 'before'.
             )
           (goto-char l-next)
                                         ;          (rope-read-advance-one-visual-line)
@@ -537,7 +538,7 @@ The file name for the snapshot containing the number
                width height x-anchor y-anchor)
        "-flip"
        "-flop"
-        (expand-file-name
+       (expand-file-name
         (format
          rope-read-image-overlay-filename-format-string
          ((lambda ()
