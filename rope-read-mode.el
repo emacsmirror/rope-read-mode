@@ -185,15 +185,6 @@
 ;; ** Variables
 
 ;; #+BEGIN_SRC emacs-lisp
-(defcustom rope-read-indication-string-for-reversed-line
-  ""
-  "Suffix to indicate a reversed line.  E.g. '<' or '⟵'.
-
-This variable is deprecated and likely to disappear soon.  It
-gives not much value AFAICS.  Further it complicates the
-line-reversal considerably."
-  :group 'rope-read)
-
 (defvar rope-read-overlays nil
   "List of rope-read-overlays.")
 
