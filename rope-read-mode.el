@@ -183,20 +183,13 @@
 
 ;; | 201501151211 | v0.1 New option rope-read-calculate-exact-y-coordinates |
 ;; | 201501311657 | v0.2 Replace whenever a line is ready                   |
+;; | 201503160841 | Dropped option rope-read-calculate-exact-y-coordinates |
 
 ;;; Code:
 
 ;; ** Variables
 
 ;; #+BEGIN_SRC emacs-lisp
-(defcustom rope-read-calculate-exact-y-coordinates nil
-  "Set to t for exact calculation of y-coordinates of the lines.
-Set to nil for using a heuristic.  Heuristic takes much less time
-for finding coordinates but is not always exact."
-  :type '(choice (const :tag "Exact" t)
-                 (const :tag "Heuristic" nil))
-  :group 'rope-read)
-
 (defcustom rope-read-indication-string-for-reversed-line
   ""
   "Suffix to indicate a reversed line.  E.g. '<' or '⟵'.
@@ -424,9 +417,7 @@ The file name for the snapshot containing the number
                       (car (posn-x-y (posn-at-point end)))
                       (car (posn-x-y (posn-at-point end-above))))
                      (car (posn-x-y (posn-at-point beg)))))
-           (y-info-getter (if rope-read-calculate-exact-y-coordinates
-                              #'rope-read-y-info-of-line
-                            #'rope-read-y-info-of-line-take-first-char))
+           (y-info-getter #'rope-read-y-info-of-line)
            (y-top-height (progn (goto-char beg)
                                 (funcall y-info-getter)))
            (y-pos-line (car y-top-height))
