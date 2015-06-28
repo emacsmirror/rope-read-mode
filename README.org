@@ -1,4 +1,4 @@
-# Created 2015-03-16 Mon 10:18
+# Created 2015-06-28 Sun 15:53
 #+TITLE: Commentary
 * What rope-read-mode is
 
@@ -138,6 +138,8 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
 
 * Links
 
+- rope-read for firefox at
+  [[https://greasyfork.org/en/scripts/10634-rope-read]]
 - 'spray' which is available as Elpa package
   [[http://melpa.org/#/spray][[[file:http://melpa.org/packages/spray-badge.svg]]]] realizes another
   alternative view mode.
@@ -152,5 +154,3 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
 | 201501311657 | v0.2 Replace whenever a line is ready                   |
 | 201503160841 | Dropped option heuristic y-coordinates calculation      |
 | 201503161010 | v0.3 Operations based on visual movement-commands       |
-
-# Emacs 25.0.50.2 (Org mode 8.3beta)

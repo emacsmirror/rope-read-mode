@@ -166,6 +166,8 @@
 
 ;; ** Links
 
+;; - rope-read for firefox at
+;;   https://greasyfork.org/en/scripts/10634-rope-read
 ;; - 'spray' which is available as Elpa package
 ;;   [[http://melpa.org/#/spray][file:http://melpa.org/packages/spray-badge.svg]] realizes another
 ;;   alternative view mode.
