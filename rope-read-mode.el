@@ -234,7 +234,8 @@
 
 ;; #+BEGIN_SRC emacs-lisp
 (defvar rope-read-transform-fun
-  #'rope-read-reol-in-visible-buffer-part-with-images
+  ;; #'rope-read-reol-in-visible-buffer-part-with-images
+  #'rope-read-reol
   "The function which transforms a screen for rope-reading.
 
 This indirection is for the comfort of any coder to try
@@ -290,6 +291,7 @@ annoying search for the next line at the other side of the text."
   (rope-read-delete-overlays)
   (scroll-up-command)
   (redisplay t)
+  (move-to-window-line 0)
   (funcall rope-read-transform-fun))
 
 (defun rope-read-prev-page ()
@@ -297,6 +299,7 @@ annoying search for the next line at the other side of the text."
   (rope-read-delete-overlays)
   (scroll-down-command)
   (redisplay t)
+  (move-to-window-line 0)
   (funcall rope-read-transform-fun))
 
 (defun rope-read-scroll-line (n)
@@ -304,6 +307,7 @@ annoying search for the next line at the other side of the text."
   (rope-read-delete-overlays)
   (scroll-up-line n)
   (redisplay t)
+  (move-to-window-line 0)
   (funcall rope-read-transform-fun))
 
 (defun rope-read-scroll-up-line (n)
@@ -327,6 +331,7 @@ annoying search for the next line at the other side of the text."
   (interactive)
   (rope-read-delete-overlays)
   (redisplay t)
+  (move-to-window-line 0)
   (funcall rope-read-transform-fun))
 
 (defun rope-read-quit ()
@@ -371,8 +376,9 @@ This function typically takes a while."
 
 ;; #+BEGIN_SRC emacs-lisp
 (defun rope-read-reol-in-visible-buffer-part-with-images ()
-    (move-to-window-line 0)    
-    (rope-read-reol))
+  "Reverse every other line in the visible buffer part."
+  (move-to-window-line 0)
+  (rope-read-reol))
 ;; #+END_SRC
 
 ;; #+BEGIN_SRC emacs-lisp
