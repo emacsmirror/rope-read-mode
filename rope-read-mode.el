@@ -26,6 +26,12 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+;; ** Generate the README.md
+
+;; 1. View this file in org-mode via lentic.
+;; 2. Export the section Commentary as markdown into a buffer.
+;; 3. Save the buffer as README.md.
+
 ;;; Commentary:
 
 ;; ** What rope-read-mode is
