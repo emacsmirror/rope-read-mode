@@ -9,40 +9,41 @@
 <li><a href="#orgheadline3">1.3. Price</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline6">2. Usage</a>
+<li><a href="#orgheadline7">2. Usage</a>
 <ul>
 <li><a href="#orgheadline5">2.1. Image files</a></li>
+<li><a href="#orgheadline6">2.2. Security</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline9">3. Install</a>
+<li><a href="#orgheadline10">3. Install</a>
 <ul>
-<li><a href="#orgheadline7">3.1. Emacs Package</a></li>
-<li><a href="#orgheadline8">3.2. Install from el file</a></li>
+<li><a href="#orgheadline8">3.1. Emacs Package</a></li>
+<li><a href="#orgheadline9">3.2. Install from el file</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline10">4. Dependencies</a></li>
-<li><a href="#orgheadline18">5. Development</a>
+<li><a href="#orgheadline11">4. Dependencies</a></li>
+<li><a href="#orgheadline19">5. Development</a>
 <ul>
-<li><a href="#orgheadline11">5.1. Known Bugs</a></li>
-<li><a href="#orgheadline12">5.2. Wishes</a></li>
-<li><a href="#orgheadline13">5.3. Vision</a></li>
-<li><a href="#orgheadline14">5.4. Lentic Literate Style</a></li>
-<li><a href="#orgheadline15">5.5. Communication</a></li>
-<li><a href="#orgheadline16">5.6. Contribution</a></li>
-<li><a href="#orgheadline17">5.7. Contributors</a></li>
+<li><a href="#orgheadline12">5.1. Known Bugs</a></li>
+<li><a href="#orgheadline13">5.2. Wishes</a></li>
+<li><a href="#orgheadline14">5.3. Vision</a></li>
+<li><a href="#orgheadline15">5.4. Lentic Literate Style</a></li>
+<li><a href="#orgheadline16">5.5. Communication</a></li>
+<li><a href="#orgheadline17">5.6. Contribution</a></li>
+<li><a href="#orgheadline18">5.7. Contributors</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline19">6. Links</a></li>
-<li><a href="#orgheadline20">7. History</a></li>
+<li><a href="#orgheadline20">6. Links</a></li>
+<li><a href="#orgheadline21">7. History</a></li>
 </ul>
 </div>
 </div>
 
 # What rope-read-mode is<a id="orgheadline4"></a>
 
-`rope-read-mode` reverses every other line in the visible part of a
-buffer.  When every other line has been reversed reading is like
-following a rope.
+`rope-read-mode` reverses every other line in a part of a buffer.
+When every other line has been reversed reading is like following a
+rope.
 
 ## Illustration<a id="orgheadline1"></a>
 
@@ -50,20 +51,19 @@ following a rope.
 
 ## Benefits<a id="orgheadline2"></a>
 
--   `rope-read-mode` often allows fluent reading by finding the start of
-    the next line easily.
+-   Chill.  `rope-read-mode` often allows fluent reading by finding the
+    start of the next line easily.
 -   Have an alternative view on text.
--   Have fun.
 
 ## Price<a id="orgheadline3"></a>
 
 Typically you need to invest some time to learn to read upside-down
-lines.
+lines easily.
 
-# Usage<a id="orgheadline6"></a>
+# Usage<a id="orgheadline7"></a>
 
 Type `M-x rope-read-mode` in a buffer and see how the transformation
-performs.
+performs starting from the cursor position (aka as 'point').
 
 Interrupt `rope-read-mode` any time with `C-g`.  Type `M-x
 rope-read-mode` again or press 'q' to leave the mode.
@@ -92,15 +92,23 @@ The reverse representation of lines is realized with images.  They get
 collected in directory `rope-read-image-overlay-path`.  You can delete
 this directory any time.
 
-# Install<a id="orgheadline9"></a>
+## Security<a id="orgheadline6"></a>
 
-## Emacs Package<a id="orgheadline7"></a>
+`rope-read-mode` does not change the content of a buffer.  In the
+sense of data loss `rope-read-mode` is perfectly save.
+
+Note that the overlay-image files get stored on disk.  This could be a
+security issue.
+
+# Install<a id="orgheadline10"></a>
+
+## Emacs Package<a id="orgheadline8"></a>
 
 When installed as Emacs package
 [![img](http://melpa.org/packages/rope-read-mode-badge.svg)](http://melpa.org/#/rope-read-mode) then there is
 no need of a special configuration.
 
-## Install from el file<a id="orgheadline8"></a>
+## Install from el file<a id="orgheadline9"></a>
 
 If you just have the emacs-lisp file then:
 
@@ -110,7 +118,7 @@ If you just have the emacs-lisp file then:
 That's it.  You installed rope-read-mode and `M-x rope-read-mode` is
 available.
 
-# Dependencies<a id="orgheadline10"></a>
+# Dependencies<a id="orgheadline11"></a>
 
 -   Emacs is running under X.
 -   The programm `convert` of the ImageMagick-suite is available.
@@ -118,9 +126,9 @@ available.
 The `convert` program has the job to create images of lines and rotate
 them.
 
-# Development<a id="orgheadline18"></a>
+# Development<a id="orgheadline19"></a>
 
-## Known Bugs<a id="orgheadline11"></a>
+## Known Bugs<a id="orgheadline12"></a>
 
 -   rope-read-mode sometimes spontaneously fails.
     -   In this case a refresh with 'g' might help.
@@ -129,17 +137,17 @@ them.
     -   Possibly this is due to the interference of overlays of org and
         rope-read.
 
-## Wishes<a id="orgheadline12"></a>
+## Wishes<a id="orgheadline13"></a>
 
 -   Quicker transformation.
 
-## Vision<a id="orgheadline13"></a>
+## Vision<a id="orgheadline14"></a>
 
 rope-read-mode gets rope-mode which allows also editing.  rope-mode
 would provide a further possibility for the user to use Emacs, just as
 changing the default font.
 
-## Lentic Literate Style<a id="orgheadline14"></a>
+## Lentic Literate Style<a id="orgheadline15"></a>
 
 This program is written in emacs lisp in lentic style based on the
 'lentic' package [![img](http://melpa.org/packages/lentic-badge.svg)](http://melpa.org/#/lentic).
@@ -156,17 +164,17 @@ A possible initialization of lentic is this:
 Find more about lentic at
 [![img](http://melpa.org/packages/lentic-badge.svg)](http://melpa.org/#/lentic).
 
-## Communication<a id="orgheadline15"></a>
+## Communication<a id="orgheadline16"></a>
 
 Use the GitHub infrastructure i.e. pull requests or
 <https://github.com/marcowahl/rope-read-mode/issues>.  Or contact the
 author directly.
 
-## Contribution<a id="orgheadline16"></a>
+## Contribution<a id="orgheadline17"></a>
 
 Contributions in any respect are welcome, e.g. ideas and improvements.
 
-## Contributors<a id="orgheadline17"></a>
+## Contributors<a id="orgheadline18"></a>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -186,7 +194,7 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
 </tbody>
 </table>
 
-# Links<a id="orgheadline19"></a>
+# Links<a id="orgheadline20"></a>
 
 -   rope-read for firefox at
     <https://greasyfork.org/en/scripts/10634-rope-read>
@@ -198,7 +206,7 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
     
     ˙ʇxǝʇ pǝddılɟ ɹoɟ poɥʇǝɯ-ʇnduı
 
-# History<a id="orgheadline20"></a>
+# History<a id="orgheadline21"></a>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -230,6 +238,12 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
 <tr>
 <td class="org-right">201503161010</td>
 <td class="org-left">v0.3 Operations based on visual movement-commands</td>
+</tr>
+
+
+<tr>
+<td class="org-right">201508081255</td>
+<td class="org-left">v0.31 rope-read-mode starts line reversing at point</td>
 </tr>
 </tbody>
 </table>
