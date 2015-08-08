@@ -7,7 +7,7 @@
 ;; Author: Marco Wahl <marcowahlsoft@gmail.com>
 ;; Maintainer: Marco Wahl <marcowahlsoft@gmail.com>
 ;; Created: 4 Jan 2015
-;; Version: 0.31
+;; Version: 0.3.1
 ;; Keywords: reading, convenience
 ;; URL: https://github.com/marcowahl/rope-read-mode
 
@@ -195,7 +195,7 @@
 ;; | 201501311657 | v0.2 Replace whenever a line is ready                   |
 ;; | 201503160841 | Dropped option heuristic y-coordinates calculation      |
 ;; | 201503161010 | v0.3 Operations based on visual movement-commands       |
-;; | 201508081255 | v0.31 rope-read-mode starts line reversing at point     |
+;; | 201508081255 | v0.3.1 rope-read-mode starts line reversing at point     |
 
 ;;; Code:
 
