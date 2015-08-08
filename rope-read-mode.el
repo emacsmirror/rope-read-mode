@@ -84,6 +84,14 @@
 ;; collected in directory =rope-read-image-overlay-path=.  You can delete
 ;; this directory any time.
 
+;; *** Security
+
+;; =rope-read-mode= does not change the content of a buffer.  In the
+;; sense of data loss =rope-read-mode= is perfectly save.
+
+;; Note that the overlay-image files get stored on disk.  This could be a
+;; security issue.
+
 ;; ** Install
 
 ;; *** Emacs Package
