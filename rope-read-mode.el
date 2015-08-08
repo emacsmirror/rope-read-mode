@@ -7,7 +7,7 @@
 ;; Author: Marco Wahl <marcowahlsoft@gmail.com>
 ;; Maintainer: Marco Wahl <marcowahlsoft@gmail.com>
 ;; Created: 4 Jan 2015
-;; Version: 0.3
+;; Version: 0.31
 ;; Keywords: reading, convenience
 ;; URL: https://github.com/marcowahl/rope-read-mode
 
@@ -30,9 +30,9 @@
 
 ;; ** What rope-read-mode is
 
-;; =rope-read-mode= reverses every other line in the visible part of a
-;; buffer.  When every other line has been reversed reading is like
-;; following a rope.
+;; =rope-read-mode= reverses every other line in a part of a buffer.
+;; When every other line has been reversed reading is like following a
+;; rope.
 
 ;; *** Illustration
 
@@ -40,20 +40,19 @@
 
 ;; *** Benefits
 
-;; - =rope-read-mode= often allows fluent reading by finding the start of
-;;   the next line easily.
+;; - Chill.  =rope-read-mode= often allows fluent reading by finding the
+;;   start of the next line easily.
 ;; - Have an alternative view on text.
-;; - Have fun.
 
 ;; *** Price
 
 ;; Typically you need to invest some time to learn to read upside-down
-;; lines.
+;; lines easily.
 
 ;; ** Usage
 
 ;; Type =M-x rope-read-mode= in a buffer and see how the transformation
-;; performs.
+;; performs starting from the cursor position (aka as 'point').
 
 ;; Interrupt =rope-read-mode= any time with =C-g=.  Type =M-x
 ;; rope-read-mode= again or press 'q' to leave the mode.
@@ -190,6 +189,7 @@
 ;; | 201501311657 | v0.2 Replace whenever a line is ready                   |
 ;; | 201503160841 | Dropped option heuristic y-coordinates calculation      |
 ;; | 201503161010 | v0.3 Operations based on visual movement-commands       |
+;; | 201508081255 | v0.31 rope-read-mode starts line reversing at point     |
 
 ;;; Code:
 
