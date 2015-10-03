@@ -348,7 +348,7 @@ annoying search for the next line at the other side of the text."
 
 (defun rope-read-quit ()
   (interactive)
-  (rope-read-mode 'toggle))  
+  (when rope-read-mode (rope-read-mode 'toggle)))
 ;; #+END_SRC
 
 ;; ** Y-coordinates of a line
