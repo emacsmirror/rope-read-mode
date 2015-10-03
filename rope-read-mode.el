@@ -279,16 +279,14 @@ annoying search for the next line at the other side of the text."
 (defun rope-read-mode-enable ()
   (unless (file-exists-p rope-read-image-overlay-path)
     (make-directory rope-read-image-overlay-path))
-  (setq rope-read-mode t
-        rope-read-old-buffer-read-only buffer-read-only
+  (setq rope-read-old-buffer-read-only buffer-read-only
         buffer-read-only t)
   (funcall rope-read-transform-fun)
   (run-hooks 'rope-read-mode-hook))
 
 (defun rope-read-mode-disable ()
   (rope-read-delete-overlays)
-  (setq rope-read-mode nil
-        buffer-read-only rope-read-old-buffer-read-only))
+  (setq buffer-read-only rope-read-old-buffer-read-only))
 ;; #+END_SRC
 
 ;; ** Management and Navigation
