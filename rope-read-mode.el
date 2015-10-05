@@ -232,18 +232,19 @@
 
 (defvar rope-read-mode-map
   (let ((map (make-sparse-keymap)))
-    (define-key map " " 'rope-read-next-page)
-    (define-key map [?\S-\ ] 'rope-read-prev-page)
-    (define-key map (kbd "<backspace>") 'rope-read-prev-page)
-    (define-key map (kbd "<return>") 'rope-read-scroll-up-line)
-    (define-key map "v" 'rope-read-scroll-up-line)
-    (define-key map "y" 'rope-read-scroll-down-line)
-    (define-key map "V" 'rope-read-scroll-down-line)
-    (define-key map "g" 'rope-read-refresh)
-    (define-key map "q" 'rope-read-quit)
-    (define-key map "?" 'describe-mode)
+    (define-key map " " #'rope-read-next-page)
+    (define-key map [?\S-\ ] #'rope-read-prev-page)
+    (define-key map (kbd "<backspace>") #'rope-read-prev-page)
+    (define-key map (kbd "<return>") #'rope-read-scroll-up-line)
+    (define-key map "v" #'rope-read-scroll-up-line)
+    (define-key map "y" #'rope-read-scroll-down-line)
+    (define-key map "V" #'rope-read-scroll-down-line)
+    (define-key map "g" #'rope-read-refresh)
+    (define-key map "q" #'rope-read-quit)
+    (define-key map "p" #'rope-read-next-paragraph)
+    (define-key map "?" #'describe-mode)
     map)
-  "Keymap for rope-read-mode.")
+  "Keymap for ‘rope-read-mode’.")
 ;; #+END_SRC
 
 ;; #+BEGIN_SRC emacs-lisp
@@ -504,6 +505,75 @@ detail."
              (setq
               rope-read-olimid-next-unused
               (1+ rope-read-olimid-next-unused)))))))))))
+;; #+END_SRC
+
+;; ** Play
+
+;; #+BEGIN_SRC emacs-lisp
+(defun rope-read-reol-in-region (start end)
+  "Reverse every other line starting with line with pos START.
+Do this at most up to pos END."
+  (interactive "r")
+  (rope-read-delete-overlays)
+  (save-excursion
+    (transient-mark-mode -1)
+    (let ((point-at-start start)
+          (point-at-end (min end (progn (move-to-window-line -1) (point)))))
+      (goto-char point-at-start)
+      (beginning-of-visual-line)
+      (rope-read-advance-one-visual-line)
+      (while (and (< (point) point-at-end) ; todo: handle case of last line
+                  (< (save-excursion (end-of-visual-line) (point))
+                     (min point-at-end (point-max)))) ; todo: try to handle also the very
+                                        ; last line.  the last line is
+                                        ; special because it is
+                                        ; special for the
+                                        ; beginning-of-visual-line
+                                        ; command.  no further
+                                        ; iteration!
+        (rope-read-snap-visual-line-under-olimid-filename)
+        (let* ((l-above (save-excursion (beginning-of-visual-line 0) (point)))
+               (l-beg   (save-excursion (beginning-of-visual-line) (point)))
+               (l-end   (save-excursion (end-of-visual-line) (point)))
+               (l-next  (save-excursion
+                          (goto-char l-beg) (beginning-of-visual-line 2) (point)))
+                                        ; try to use for identify truncation of the line
+               (olimid-current (1- rope-read-olimid-next-unused)))
+          (push (make-overlay l-beg l-end) rope-read-overlays)
+          (overlay-put
+           (car rope-read-overlays) 'display
+           (create-image
+            (expand-file-name
+             (format
+              rope-read-image-overlay-filename-format-string
+              olimid-current))
+            nil nil
+            :ascent 'center
+            ;; TODO: try to refine.  hint: try
+            ;; understand.  is this a font-dependent
+            ;; thing?  e.g. :ascent 83 is possible.
+            ;; there are further attributes...
+            ))
+          (when (= l-end l-next)
+            (overlay-put (car rope-read-overlays) 'after-string "\n")
+            ;; this newline makes the images appear in some cases.
+            ;; todo: at least think about doing something similar in
+            ;; the analog case of 'before'.
+            )
+          (goto-char l-next)
+          (redisplay t)
+          (rope-read-advance-one-visual-line))))))
+
+(defun rope-read-next-paragraph ()
+  "Experimental playing with narrowing and rrmode."
+  (interactive)
+  (forward-paragraph)
+  (save-excursion
+    (let ((beg (progn (backward-paragraph) (forward-line 1) (point)))
+          (end (progn (forward-paragraph) (point))))
+      (rope-read-reol-in-region beg end))))
+
+(global-set-key (kbd "M-]") #'rope-read-next-paragraph)
 ;; #+END_SRC
 
 ;; ** Provide the file as library
