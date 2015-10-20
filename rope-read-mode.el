@@ -249,10 +249,12 @@
     (define-key map "y" 'rope-read-scroll-down-line)
     (define-key map "V" 'rope-read-scroll-down-line)
     (define-key map "g" 'rope-read-refresh)
+    (define-key map "d" 'rope-read-reol)
+    (define-key map "r" 'rope-read-delete-overlays)
     (define-key map "q" 'rope-read-quit)
     (define-key map "?" 'describe-mode)
     map)
-  "Keymap for rope-read-mode.")
+  "Keymap for ‘rope-read-mode’.")
 ;; #+END_SRC
 
 ;; #+BEGIN_SRC emacs-lisp
