@@ -57,27 +57,36 @@
 
 ;; ** Usage
 
-;; Type =M-x rope-read-mode= in a buffer and see how the transformation
-;; performs starting from the cursor position (aka as 'point').
+;; *** Turning it on and off
 
-;; Interrupt =rope-read-mode= any time with =C-g=.  Type =M-x
-;; rope-read-mode= again or press 'q' to leave the mode.
+;; Type =M-x rope-read-mode= in a buffer to activate rope-read.  No
+;; visible change is to be expected.
 
-;; When =rope-read-mode= is active you can use any method to reach a
-;; location of interest followed by a press on 'g' to trigger a refresh
-;; of the view.
+;; When =rope-read-mode= is on type =M-x rope-read-mode= or press
+;; 'q' to quit the mode.
 
-;; In =rope-read-mode= you can use:
+;; Isn't this amazing?
 
-;; - q to quit.
-;; - SPC / <backspace> S-SPC to scroll a screen.
-;; - v <return> / V y to scroll one line.
-;; - g to refresh rope read.
-;; - ? to open the help buffer.
+;; *** Action
 
-;; For convenience command rope-read-mode can be bound to a key
-;; sequence.  For example to activate or deactivate rope-read-mode by
-;; pressing scroll lock two times use the line
+;; When =rope-read-mode= is on you can press
+;; - =C-g= to interrupt any =rope-read-mode= performance,
+;; - 'g' to get a view of the window (which is the currently
+;;   visible part of the buffer) with every other line reversed,
+;; - 'r' to go back to the representation of the buffer without
+;;   reversed line,
+;; - 'd' to reverse every other line starting with the line below
+;;   the current cursor position,
+;; - 'SPC' to scroll a screen down,
+;; - '<backspace>' or 'S-SPC' to scroll a screen up,
+;; - 'v' or '<return>' to scroll one line down,
+;; - 'V' or 'y' to scroll one line up,
+;; - '?' to open the help buffer,
+;; - 'q' to quit.
+
+;; For convenience you can bind command =rope-read-mode= to a key.  For
+;; example to activate or deactivate rope-read-mode by pressing scroll
+;; lock two times use the line
 
 ;; #+BEGIN_EXAMPLE
 ;; (global-set-key (kbd "<Scroll_Lock> <Scroll_Lock>") 'rope-read-mode)
@@ -92,7 +101,7 @@
 ;; *** Security
 
 ;; =rope-read-mode= does not change the content of a buffer.  In the
-;; sense of data loss =rope-read-mode= is perfectly save.
+;; sense of data loss =rope-read-mode= looks save.
 
 ;; Note that the overlay-image files get stored on disk.  This could be a
 ;; security issue.
@@ -195,7 +204,7 @@
 ;; | 201501311657 | v0.2 Replace whenever a line is ready                   |
 ;; | 201503160841 | Dropped option heuristic y-coordinates calculation      |
 ;; | 201503161010 | v0.3 Operations based on visual movement-commands       |
-;; | 201508081255 | v0.3.1 rope-read-mode starts line reversing at point     |
+;; | 201508081255 | v0.3.1 rope-read-mode starts line reversing at point    |
 
 ;;; Code:
 
@@ -281,7 +290,6 @@ annoying search for the next line at the other side of the text."
     (make-directory rope-read-image-overlay-path))
   (setq rope-read-old-buffer-read-only buffer-read-only
         buffer-read-only t)
-  (funcall rope-read-transform-fun)
   (run-hooks 'rope-read-mode-hook))
 
 (defun rope-read-mode-disable ()
