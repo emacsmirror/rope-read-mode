@@ -1,6 +1,7 @@
 ;;; rope-read-mode.el --- Rearrange lines to read text smoothly
+;; #+options: toc:2
 
-;;; Header:
+;;; Header:                                                           :noexport:
 
 ;; Copyright 2015 Marco Wahl
 
@@ -50,9 +51,9 @@
 
 ;; ** What rope-read-mode is
 
-;; =rope-read-mode= reverses every other line in a part of a buffer.
-;; When every other line has been reversed reading is like following a
-;; rope.
+;; =rope-read-mode= can reverse every other line of a buffer or in a part
+;; of a buffer.  With every other line reversed reading is like following
+;; a rope.
 
 ;; *** Illustration
 
@@ -85,18 +86,18 @@
 
 ;; When =rope-read-mode= is on you can press
 ;; - =C-g= to interrupt any =rope-read-mode= performance,
-;; - 'g' to get a view of the window (which is the currently
+;; - =g= to get a view of the window (which is the currently
 ;;   visible part of the buffer) with every other line reversed,
-;; - 'r' to go back to the representation of the buffer without
+;; - =r= to go back to the representation of the buffer without
 ;;   reversed line,
-;; - 'd' to reverse every other line starting with the line below
+;; - =d= to reverse every other line starting with the line below
 ;;   the current cursor position,
-;; - 'SPC' to scroll a screen down,
-;; - '<backspace>' or 'S-SPC' to scroll a screen up,
-;; - 'v' or '<return>' to scroll one line down,
-;; - 'V' or 'y' to scroll one line up,
-;; - '?' to open the help buffer,
-;; - 'q' to quit.
+;; - =SPC= to scroll a screen down,
+;; - =<backspace>= or =S-SPC= to scroll a screen up,
+;; - =v= or =<return>= to scroll one line down,
+;; - =V= or =y= to scroll one line up,
+;; - =?= to open the help buffer,
+;; - =q= to quit.
 
 ;; For convenience you can bind command =rope-read-mode= to a key.  For
 ;; example to activate or deactivate rope-read-mode by pressing scroll
@@ -150,8 +151,8 @@
 ;; *** Known Bugs
 
 ;; - rope-read-mode sometimes spontaneously fails.
-;;   - In this case a refresh with 'g' might help.
-;;   - You can always try 'C-g q' and start again.
+;;   - In this case a refresh with =g= might help.
+;;   - You can always try =C-g q= and start again.
 ;; - rope-read-mode often does not work for org-mode files.
 ;;   - Possibly this is due to the interference of overlays of org and
 ;;     rope-read.
