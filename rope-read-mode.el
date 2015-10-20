@@ -220,6 +220,7 @@
 ;; | 201503160841 | Dropped option heuristic y-coordinates calculation      |
 ;; | 201503161010 | v0.3 Operations based on visual movement-commands       |
 ;; | 201508081255 | v0.3.1 rope-read-mode starts line reversing at point    |
+;; | 201510202326 | v0.3.2 rope-read-mode does nothing at start             |
 
 ;;; Code:
 
