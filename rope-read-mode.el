@@ -610,7 +610,7 @@ Do this at most up to pos END."
 (provide 'rope-read-mode)
 ;; #+END_SRC
 
-;;; Tail:
+;;; Tail:                                                             :noexport:
 
 ;; # Local Variables:
 ;; # lentic-init: lentic-orgel-org-init
