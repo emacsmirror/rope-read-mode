@@ -2,8 +2,30 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline24">1. Commentary</a></li>
-<li><a href="#orgheadline35">2. Code</a></li>
+<li><a href="#orgheadline24">1. Commentary</a>
+<ul>
+<li><a href="#orgheadline4">1.1. What rope-read-mode is</a></li>
+<li><a href="#orgheadline9">1.2. Usage</a></li>
+<li><a href="#orgheadline12">1.3. Install</a></li>
+<li><a href="#orgheadline13">1.4. Dependencies</a></li>
+<li><a href="#orgheadline21">1.5. Development</a></li>
+<li><a href="#orgheadline22">1.6. Links</a></li>
+<li><a href="#orgheadline23">1.7. History</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline35">2. Code</a>
+<ul>
+<li><a href="#orgheadline25">2.1. Variables</a></li>
+<li><a href="#orgheadline26">2.2. Keys</a></li>
+<li><a href="#orgheadline27">2.3. Mode rope-read</a></li>
+<li><a href="#orgheadline28">2.4. Management and Navigation</a></li>
+<li><a href="#orgheadline31">2.5. Y-coordinates of a line</a></li>
+<li><a href="#orgheadline32">2.6. Reverse every other line</a></li>
+<li><a href="#orgheadline33">2.7. Snap the line which contains point</a></li>
+<li><a href="#orgheadline34">2.8. Provide the file as library</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline36">3. Tail</a></li>
 </ul>
 </div>
 </div>
@@ -226,6 +248,12 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
 <tr>
 <td class="org-right">201508081255</td>
 <td class="org-left">v0.3.1 rope-read-mode starts line reversing at point</td>
+</tr>
+
+
+<tr>
+<td class="org-right">201510202326</td>
+<td class="org-left">v0.3.2 rope-read-mode does nothing at start</td>
 </tr>
 </tbody>
 </table>
@@ -525,3 +553,7 @@ For testing: (local-set-key (kbd "<f8>")
 ## Provide the file as library<a id="orgheadline34"></a>
 
     (provide 'rope-read-mode)
+
+# Tail<a id="orgheadline36"></a>
+
+;;; rope-read-mode.el ends here
