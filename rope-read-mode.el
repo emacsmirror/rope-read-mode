@@ -29,8 +29,22 @@
 ;; ** Generate the README.md
 
 ;; 1. View this file in org-mode via lentic.
-;; 2. Export the section Commentary as markdown into a buffer.
-;; 3. Save the buffer as README.md.
+;; 2. Export as markdown README.md.
+
+;; #+BEGIN_SRC emacs-lisp
+(find-file "rope-read-mode.el")
+(set-buffer "rope-read-mode.el")
+(lentic-garbage-collect-config)
+(unless lentic-config
+  (lentic-mode-create-from-init))
+(set-buffer "rope-read-mode.org")
+(org-export-to-file 'md "README.md")
+;; #+END_SRC
+
+;; #+RESULTS:
+;; : README.md
+
+;; *** TODO Refactor with https://github.com/marcowahl/.emacs.d/blob/master/compile-docu.org
 
 ;;; Commentary:
 
