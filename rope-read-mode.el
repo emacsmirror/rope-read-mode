@@ -565,7 +565,7 @@ Do this at most up to pos END."
                 (goto-char l-next)
                 (redisplay t)
                 (rope-read-advance-one-visual-line))))))
-    (transient-mark-mode transient-mark-mode-before))))
+    (transient-mark-mode transient-mark-mode-before)))
 
 (defun rope-read-next-paragraph ()
   "Experimental playing with narrowing and rrmode."
