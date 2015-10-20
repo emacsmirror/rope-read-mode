@@ -1,6 +1,7 @@
 ;;; rope-read-mode.el --- Rearrange lines to read text smoothly
+;; #+options: toc:2
 
-;;; Header:
+;;; Header:                                                           :noexport:
 
 ;; Copyright 2015 Marco Wahl
 
@@ -8,7 +9,7 @@
 ;; Maintainer: Marco Wahl <marcowahlsoft@gmail.com>
 ;; Created: 4 Jan 2015
 ;; Version: 0.3.1
-;; Keywords: reading, convenience
+;; Keywords: reading, convenience, chill
 ;; URL: https://github.com/marcowahl/rope-read-mode
 
 ;; This file is not part of Emacs.
@@ -29,16 +30,30 @@
 ;; ** Generate the README.md
 
 ;; 1. View this file in org-mode via lentic.
-;; 2. Export the section Commentary as markdown into a buffer.
-;; 3. Save the buffer as README.md.
+;; 2. Export as markdown README.md.
+
+;; #+BEGIN_SRC emacs-lisp
+(find-file "rope-read-mode.el")
+(set-buffer "rope-read-mode.el")
+(lentic-garbage-collect-config)
+(unless lentic-config
+  (lentic-mode-create-from-init))
+(set-buffer "rope-read-mode.org")
+(org-export-to-file 'md "README.md")
+;; #+END_SRC
+
+;; #+RESULTS:
+;; : README.md
+
+;; *** TODO Refactor with https://github.com/marcowahl/.emacs.d/blob/master/compile-docu.org
 
 ;;; Commentary:
 
 ;; ** What rope-read-mode is
 
-;; =rope-read-mode= reverses every other line in a part of a buffer.
-;; When every other line has been reversed reading is like following a
-;; rope.
+;; =rope-read-mode= can reverse every other line of a buffer or in a part
+;; of a buffer.  With every other line reversed reading is like following
+;; a rope.
 
 ;; *** Illustration
 
@@ -57,27 +72,36 @@
 
 ;; ** Usage
 
-;; Type =M-x rope-read-mode= in a buffer and see how the transformation
-;; performs starting from the cursor position (aka as 'point').
+;; *** Turning it on and off
 
-;; Interrupt =rope-read-mode= any time with =C-g=.  Type =M-x
-;; rope-read-mode= again or press 'q' to leave the mode.
+;; Type =M-x rope-read-mode= in a buffer to activate rope-read.  No
+;; visible change is to be expected.
 
-;; When =rope-read-mode= is active you can use any method to reach a
-;; location of interest followed by a press on 'g' to trigger a refresh
-;; of the view.
+;; When =rope-read-mode= is on type =M-x rope-read-mode= or press
+;; 'q' to quit the mode.
 
-;; In =rope-read-mode= you can use:
+;; Isn't this amazing?
 
-;; - q to quit.
-;; - SPC / <backspace> S-SPC to scroll a screen.
-;; - v <return> / V y to scroll one line.
-;; - g to refresh rope read.
-;; - ? to open the help buffer.
+;; *** Action
 
-;; For convenience command rope-read-mode can be bound to a key
-;; sequence.  For example to activate or deactivate rope-read-mode by
-;; pressing scroll lock two times use the line
+;; When =rope-read-mode= is on you can press
+;; - =C-g= to interrupt any =rope-read-mode= performance,
+;; - =g= to get a view of the window (which is the currently
+;;   visible part of the buffer) with every other line reversed,
+;; - =r= to go back to the representation of the buffer without
+;;   reversed line,
+;; - =d= to reverse every other line starting with the line below
+;;   the current cursor position,
+;; - =SPC= to scroll a screen down,
+;; - =<backspace>= or =S-SPC= to scroll a screen up,
+;; - =v= or =<return>= to scroll one line down,
+;; - =V= or =y= to scroll one line up,
+;; - =?= to open the help buffer,
+;; - =q= to quit.
+
+;; For convenience you can bind command =rope-read-mode= to a key.  For
+;; example to activate or deactivate rope-read-mode by pressing scroll
+;; lock two times use the line
 
 ;; #+BEGIN_EXAMPLE
 ;; (global-set-key (kbd "<Scroll_Lock> <Scroll_Lock>") 'rope-read-mode)
@@ -92,7 +116,7 @@
 ;; *** Security
 
 ;; =rope-read-mode= does not change the content of a buffer.  In the
-;; sense of data loss =rope-read-mode= is perfectly save.
+;; sense of data loss =rope-read-mode= looks save.
 
 ;; Note that the overlay-image files get stored on disk.  This could be a
 ;; security issue.
@@ -127,8 +151,8 @@
 ;; *** Known Bugs
 
 ;; - rope-read-mode sometimes spontaneously fails.
-;;   - In this case a refresh with 'g' might help.
-;;   - You can always try 'C-g q' and start again.
+;;   - In this case a refresh with =g= might help.
+;;   - You can always try =C-g q= and start again.
 ;; - rope-read-mode often does not work for org-mode files.
 ;;   - Possibly this is due to the interference of overlays of org and
 ;;     rope-read.
@@ -195,7 +219,8 @@
 ;; | 201501311657 | v0.2 Replace whenever a line is ready                   |
 ;; | 201503160841 | Dropped option heuristic y-coordinates calculation      |
 ;; | 201503161010 | v0.3 Operations based on visual movement-commands       |
-;; | 201508081255 | v0.3.1 rope-read-mode starts line reversing at point     |
+;; | 201508081255 | v0.3.1 rope-read-mode starts line reversing at point    |
+;; | 201510202326 | v0.3.2 rope-read-mode does nothing at start             |
 
 ;;; Code:
 
@@ -232,17 +257,20 @@
 
 (defvar rope-read-mode-map
   (let ((map (make-sparse-keymap)))
-    (define-key map " " #'rope-read-next-page)
-    (define-key map [?\S-\ ] #'rope-read-prev-page)
-    (define-key map (kbd "<backspace>") #'rope-read-prev-page)
-    (define-key map (kbd "<return>") #'rope-read-scroll-up-line)
-    (define-key map "v" #'rope-read-scroll-up-line)
-    (define-key map "y" #'rope-read-scroll-down-line)
-    (define-key map "V" #'rope-read-scroll-down-line)
-    (define-key map "g" #'rope-read-refresh)
-    (define-key map "q" #'rope-read-quit)
+    (define-key map " " 'rope-read-next-page)
+    (define-key map [?\S-\ ] 'rope-read-prev-page)
+    (define-key map (kbd "<backspace>") 'rope-read-prev-page)
+    (define-key map (kbd "<return>") 'rope-read-scroll-up-line)
+    (define-key map "v" 'rope-read-scroll-up-line)
+    (define-key map "y" 'rope-read-scroll-down-line)
+    (define-key map "V" 'rope-read-scroll-down-line)
+    (define-key map "g" 'rope-read-refresh)
+    (define-key map "d" 'rope-read-reol)
     (define-key map "p" #'rope-read-next-paragraph)
-    (define-key map "?" #'describe-mode)
+    (define-key map "r" 'rope-read-delete-overlays)
+    (define-key map "q" 'rope-read-quit)
+    (define-key map "?" 'describe-mode)
+
     map)
   "Keymap for ‘rope-read-mode’.")
 ;; #+END_SRC
@@ -282,7 +310,6 @@ annoying search for the next line at the other side of the text."
     (make-directory rope-read-image-overlay-path))
   (setq rope-read-old-buffer-read-only buffer-read-only
         buffer-read-only t)
-  (funcall rope-read-transform-fun)
   (run-hooks 'rope-read-mode-hook))
 
 (defun rope-read-mode-disable ()
@@ -575,8 +602,6 @@ Do this at most up to pos END."
     (let ((beg (progn (backward-paragraph) (forward-line 1) (point)))
           (end (progn (forward-paragraph) (point))))
       (rope-read-reol-in-region beg end))))
-
-(global-set-key (kbd "M-]") #'rope-read-next-paragraph)
 ;; #+END_SRC
 
 ;; ** Provide the file as library
