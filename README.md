@@ -25,7 +25,6 @@
 <li><a href="#orgheadline34">2.8. Provide the file as library</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline36">3. Tail</a></li>
 </ul>
 </div>
 </div>
@@ -299,9 +298,11 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
         (define-key map "V" 'rope-read-scroll-down-line)
         (define-key map "g" 'rope-read-refresh)
         (define-key map "d" 'rope-read-reol)
+        (define-key map "p" #'rope-read-next-paragraph)
         (define-key map "r" 'rope-read-delete-overlays)
         (define-key map "q" 'rope-read-quit)
         (define-key map "?" 'describe-mode)
+    
         map)
       "Keymap for ‘rope-read-mode’.")
 
@@ -553,7 +554,3 @@ For testing: (local-set-key (kbd "<f8>")
 ## Provide the file as library<a id="orgheadline34"></a>
 
     (provide 'rope-read-mode)
-
-# Tail<a id="orgheadline36"></a>
-
-;;; rope-read-mode.el ends here
