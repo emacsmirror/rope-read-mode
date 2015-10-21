@@ -514,7 +514,7 @@ detail."
               (1+ rope-read-olimid-next-unused)))))))))))
 ;; #+END_SRC
 
-;; ** Play
+;; ** Play   :noexport:
 
 ;; #+BEGIN_SRC emacs-lisp
 (defun rope-read-reol-in-region (start end)
