@@ -254,6 +254,12 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
 <td class="org-right">201510202326</td>
 <td class="org-left">v0.3.2 rope-read-mode does nothing at start</td>
 </tr>
+
+
+<tr>
+<td class="org-right">201511182342</td>
+<td class="org-left">Paragraph wise rope-read is useful.</td>
+</tr>
 </tbody>
 </table>
 
@@ -289,20 +295,19 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
     
     (defvar rope-read-mode-map
       (let ((map (make-sparse-keymap)))
-        (define-key map " " 'rope-read-next-page)
-        (define-key map [?\S-\ ] 'rope-read-prev-page)
-        (define-key map (kbd "<backspace>") 'rope-read-prev-page)
-        (define-key map (kbd "<return>") 'rope-read-scroll-up-line)
-        (define-key map "v" 'rope-read-scroll-up-line)
-        (define-key map "y" 'rope-read-scroll-down-line)
-        (define-key map "V" 'rope-read-scroll-down-line)
-        (define-key map "g" 'rope-read-refresh)
-        (define-key map "d" 'rope-read-reol)
+        (define-key map " " #'rope-read-next-page)
+        (define-key map [?\S-\ ] #'rope-read-prev-page)
+        (define-key map (kbd "<backspace>") #'rope-read-prev-page)
+        (define-key map (kbd "<return>") #'rope-read-scroll-up-line)
+        (define-key map "v" #'rope-read-scroll-up-line)
+        (define-key map "y" #'rope-read-scroll-down-line)
+        (define-key map "V" #'rope-read-scroll-down-line)
+        (define-key map "g" #'rope-read-refresh)
+        (define-key map "d" #'rope-read-reol)
         (define-key map "p" #'rope-read-next-paragraph)
-        (define-key map "r" 'rope-read-delete-overlays)
-        (define-key map "q" 'rope-read-quit)
-        (define-key map "?" 'describe-mode)
-    
+        (define-key map "r" #'rope-read-delete-overlays)
+        (define-key map "q" #'rope-read-quit)
+        (define-key map "?" #'describe-mode)
         map)
       "Keymap for ‘rope-read-mode’.")
 
