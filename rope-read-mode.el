@@ -573,13 +573,19 @@ Do this at most up to pos END."
     (transient-mark-mode transient-mark-mode-before))))
 
 (defun rope-read-next-paragraph ()
-  "Experimental playing with narrowing and rrmode."
+  "Apply rope read up to the end of the paragraph and move point there."
   (interactive)
-  (forward-paragraph)
-  (save-excursion
-    (let ((beg (progn (backward-paragraph) (forward-line 1) (point)))
-          (end (progn (forward-paragraph) (point))))
-      (rope-read-reol-in-region beg end))))
+  (c-skip-ws-forward)
+  (let ((end (save-excursion
+               (let ((point-in-bottom-line
+                      (save-excursion
+                        (move-to-window-line -1)
+                        (point))))
+                 (forward-paragraph)
+                 (min (point) point-in-bottom-line))))
+        (beg (point)))
+    (rope-read-reol-in-region beg end)))
+
 ;; #+END_SRC
 
 ;; ** Provide the file as library
