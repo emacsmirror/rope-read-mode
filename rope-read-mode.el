@@ -72,6 +72,9 @@
 ;;   reversed line,
 ;; - =d= to reverse every other line starting with the line below
 ;;   the current cursor position,
+;; - =p= to reverse every other line starting with the line below the
+;;   current cursor position up to the end of the paragraph if possible
+;;   and move point there.
 ;; - =SPC= to scroll a screen down,
 ;; - =<backspace>= or =S-SPC= to scroll a screen up,
 ;; - =v= or =<return>= to scroll one line down,
