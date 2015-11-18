@@ -60,8 +60,7 @@ lines easily.
 Type `M-x rope-read-mode` in a buffer to activate rope-read.  No
 visible change is to be expected.
 
-When `rope-read-mode` is on type `M-x rope-read-mode` or press
-'q' to quit the mode.
+Type `M-x rope-read-mode` or press 'q' to quit rope-read.
 
 Isn't this amazing?
 
