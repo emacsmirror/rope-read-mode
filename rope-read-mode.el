@@ -201,6 +201,7 @@
 ;; | 201503161010 | v0.3 Operations based on visual movement-commands       |
 ;; | 201508081255 | v0.3.1 rope-read-mode starts line reversing at point    |
 ;; | 201510202326 | v0.3.2 rope-read-mode does nothing at start             |
+;; | 201511182342 | Paragraph wise rope-read is useful.                     |
 
 ;;; Code:
 
@@ -573,18 +574,26 @@ Do this at most up to pos END."
     (transient-mark-mode transient-mark-mode-before))))
 
 (defun rope-read-next-paragraph ()
-  "Apply rope read up to the end of the paragraph and move point there."
+  "Apply rope read up to the end of the paragraph and move point there.
+Special handling for paragraphs which continue on beyond the window."
   (interactive)
   (c-skip-ws-forward)
-  (let ((end (save-excursion
+  (let ((beg (point))
+        (end (save-excursion
                (let ((point-in-bottom-line
                       (save-excursion
                         (move-to-window-line -1)
                         (point))))
                  (forward-paragraph)
-                 (min (point) point-in-bottom-line))))
-        (beg (point)))
-    (rope-read-reol-in-region beg end)))
+                 (min (point) point-in-bottom-line)))))
+    (if (= end (progn
+                 (goto-char beg)
+                 (beginning-of-line)
+                 (point)))
+        (progn
+          (recenter 1)
+          (rope-read-next-paragraph))
+      (rope-read-reol-in-region beg end))))
 
 ;; #+END_SRC
 
