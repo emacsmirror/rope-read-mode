@@ -1,4 +1,4 @@
-;;; rope-read-mode.el --- Rearrange lines to read text smoothly
+;;; rope-read-mode.el --- Rearrange lines to read text smoothly -*- lexical-binding: t -*-
 ;; #+options: toc:2
 
 ;;; Header:                                                           :noexport:
