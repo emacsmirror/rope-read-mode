@@ -103,6 +103,17 @@
 ;; Note that the overlay-image files get stored on disk.  This could be a
 ;; security issue.
 
+;; *** Beep
+
+;; The system beep can be annoying.  The line
+
+;; #+BEGIN_SRC shell
+;; amixer set Beep off
+;; #+END_SRC
+
+;; silences the beep.  Precondition is that you have the ~amixer~ program
+;; ready.
+
 ;; ** Install
 
 ;; *** Emacs Package
