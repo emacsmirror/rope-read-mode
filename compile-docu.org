@@ -1,4 +1,6 @@
-* Generate the README.md
+* Generate README.md
+
+Generate README.md by evaluating the following source block.
 
 #+BEGIN_SRC emacs-lisp
 (find-file "rope-read-mode.el")
