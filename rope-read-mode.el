@@ -586,11 +586,25 @@ Do this at most up to pos END."
             (rope-read-advance-one-visual-line))))
     (transient-mark-mode transient-mark-mode-before))))
 
+(defun rope-read-point-at-bottom-p ()
+  "Return T if point is in one of the last two lines at bottom."
+  (let* ((point-before (point)))
+    (save-excursion
+      (if (< point-before
+             (progn
+               (move-to-window-line -2)
+               (point)))
+          nil t))))
+
 (defun rope-read-next-paragraph ()
   "Apply rope read up to the end of the paragraph and move point there.
-Special handling for paragraphs which continue on beyond the window."
+If point is in one of the two bottom lines recenter the line with
+point to the top."
   (interactive)
   (c-skip-ws-forward)
+  (when (rope-read-point-at-bottom-p)
+    (recenter 0)
+    (redisplay))
   (let ((beg (point))
         (end (save-excursion
                (let ((point-in-bottom-line
@@ -599,15 +613,7 @@ Special handling for paragraphs which continue on beyond the window."
                         (point))))
                  (forward-paragraph)
                  (min (point) point-in-bottom-line)))))
-    (if (= end (progn
-                 (goto-char beg)
-                 (beginning-of-line)
-                 (point)))
-        (progn
-          (recenter 1)
-          (rope-read-next-paragraph))
-      (rope-read-reol-in-region beg end))))
-
+    (rope-read-reol-in-region beg end)))
 ;; #+END_SRC
 
 ;; ** Provide the file as library
