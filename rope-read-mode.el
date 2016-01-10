@@ -3,12 +3,12 @@
 
 ;;; Header:                                                           :noexport:
 
-;; Copyright 2015 Marco Wahl
+;; Copyright 2015-2016 Marco Wahl
 
 ;; Author: Marco Wahl <marcowahlsoft@gmail.com>
 ;; Maintainer: Marco Wahl <marcowahlsoft@gmail.com>
 ;; Created: 4 Jan 2015
-;; Version: 0.3.1
+;; Version: See git tag.
 ;; Keywords: reading, convenience, chill
 ;; URL: https://github.com/marcowahl/rope-read-mode
 
