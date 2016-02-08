@@ -16,4 +16,3 @@ Generate README.md by evaluating the following source block.
 : README.md
 
 ** TODO Refactor with https://github.com/marcowahl/.emacs.d/blob/master/compile-docu.org
-

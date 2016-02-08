@@ -1,4 +1,5 @@
 ;;; rope-read-mode.el --- Rearrange lines to read text smoothly -*- lexical-binding: t -*-
+;; #+STARTUP: oddeven
 ;; #+options: toc:2
 
 ;;; Header:                                                           :noexport:
@@ -29,11 +30,16 @@
 
 ;;; Commentary:
 
-;; ** What rope-read-mode is
+;; ** About rope-read
+
+;; *** What does it?
 
 ;; =rope-read-mode= can reverse every other line of a buffer or in a part
-;; of a buffer.  With every other line reversed reading is like following
-;; a rope.
+;; of a buffer.
+
+;; *** Why?
+
+;; With every other line reversed reading is like following a rope.
 
 ;; *** Illustration
 
@@ -41,48 +47,50 @@
 
 ;; *** Benefits
 
-;; - Chill.  =rope-read-mode= often allows fluent reading by finding the
-;;   start of the next line easily.
-;; - Have an alternative view on text.
+;; - Chill.  =rope-read-mode= allows fluent reading.  It simplifies the
+;;   search for the start of the next line.
+;; - Rope-read allows an alternative view on text.
 
 ;; *** Price
 
-;; Typically you need to invest some time to learn to read upside-down
-;; lines easily.
+;; - Typically you need to invest some time to learn to read upside-down
+;;   lines easily.
 
 ;; ** Usage
 
 ;; *** Turning it on and off
 
-;; Type =M-x rope-read-mode= in a buffer to activate rope-read.  No
-;; visible change is to be expected.
+;; =M-x rope-read-mode= in a buffer activates rope-read.  No visible
+;; change in the buffer is to be expected.  The buffer is set read-only.
 
-;; Type =M-x rope-read-mode= or press 'q' to quit rope-read.
+;; Type =M-x rope-read-mode= or press 'q' to quit rope-read.  The buffer
+;; writability gets restored.
 
 ;; Isn't this amazing?
 
 ;; *** Action
 
 ;; When =rope-read-mode= is on you can press
-;; - =C-g= to interrupt any =rope-read-mode= performance,
-;; - =g= to get a view of the window (which is the currently
-;;   visible part of the buffer) with every other line reversed,
-;; - =r= to go back to the representation of the buffer without
-;;   reversed line,
-;; - =d= to reverse every other line starting with the line below
-;;   the current cursor position,
+;; - =C-g= to interrupt =rope-read-mode= anytime,
+;; - =g= to trigger reversing every other line for the currently visible
+;;   part of the buffer,
+;; - =r= to go back to the representation of the buffer without reversed
+;;   lines (keeping =rope-read-mode=),
+;; - =d= to reverse every other line starting with the line below the
+;;   cursor,
 ;; - =p= to reverse every other line starting with the line below the
-;;   current cursor position up to the end of the paragraph if possible
-;;   and move point there.
-;; - =SPC= to scroll a screen down,
-;; - =<backspace>= or =S-SPC= to scroll a screen up,
-;; - =v= or =<return>= to scroll one line down,
-;; - =V= or =y= to scroll one line up,
+;;   cursor up to the end of the paragraph (if visible) and move point
+;;   there.
+;; - The next four commands are followed by reversing every other line:
+;;   - =SPC= to scroll a screen down,
+;;   - =<backspace>= or =S-SPC= to scroll a screen up,
+;;   - =v= or =<return>= to scroll one line down,
+;;   - =V= or =y= to scroll one line up,
 ;; - =?= to open the help buffer,
-;; - =q= to quit.
+;; - =q= to quit =rope-read-mode=.
 
 ;; For convenience you can bind command =rope-read-mode= to a key.  For
-;; example to activate or deactivate rope-read-mode by pressing scroll
+;; example to activate or deactivate =rope-read-mode= by pressing scroll
 ;; lock two times use the line
 
 ;; #+BEGIN_EXAMPLE
@@ -92,16 +100,17 @@
 ;; *** Image files
 
 ;; The reverse representation of lines is realized with images.  They get
-;; collected in directory =rope-read-image-overlay-path=.  You can delete
-;; this directory any time.
+;; collected in directory =rope-read-image-overlay-path= which defaults
+;; to =~/.emacs.d/rope-reading=.  You can delete this directory any time.
 
 ;; *** Security
 
-;; =rope-read-mode= does not change the content of a buffer.  In the
-;; sense of data loss =rope-read-mode= looks save.
+;; =rope-read-mode= does not change the content of a buffer.  Data loss
+;; has not been reported yet.
 
-;; Note that the overlay-image files get stored on disk.  This could be a
-;; security issue.
+;; Since the overlay-image files get stored on disk this could be a
+;; security issue.  E.g. when you use =rope-read-mode= to look at your
+;; super secret password file.
 
 ;; *** Beep
 
@@ -118,9 +127,9 @@
 
 ;; *** Emacs Package
 
-;; When installed as Emacs package
-;; [[http://melpa.org/#/rope-read-mode][file:http://melpa.org/packages/rope-read-mode-badge.svg]] then there is
-;; no need of a special configuration.
+;; =rope-read-mode= is available as MELPA package
+;; [[http://melpa.org/#/rope-read-mode][file:http://melpa.org/packages/rope-read-mode-badge.svg]] and ready
+;; immediately after the install.
 
 ;; *** Install from el file
 
@@ -156,9 +165,8 @@
 
 ;; *** Vision
 
-;; rope-read-mode gets rope-mode which allows also editing.  rope-mode
-;; would provide a further possibility for the user to use Emacs, just as
-;; changing the default font.
+;; =rope-read-mode= gets =rope-mode= which allows also editing.
+;; =rope-mode= would provide a further editing feeling maybe.
 
 ;; *** Lentic Literate Style
 
@@ -215,6 +223,7 @@
 ;; | 201508081255 | v0.3.1 rope-read-mode starts line reversing at point    |
 ;; | 201510202326 | v0.3.2 rope-read-mode does nothing at start             |
 ;; | 201511182342 | Paragraph wise rope-read is useful.                     |
+;; | 201602082358 | One scan through the documentation                      |
 
 ;;; Code:
 
@@ -451,7 +460,7 @@ This function typically takes a while."
            (car rope-read-overlays) 'display
            (create-image
             (expand-file-name
-             (format 
+             (format
               rope-read-image-overlay-filename-format-string
               olimid-current))
             nil nil
