@@ -32,29 +32,28 @@
 
 ;; ** About rope-read
 
-;; *** What does it?
+;; *** What
 
 ;; =rope-read-mode= can reverse every other line of a buffer or in a part
 ;; of a buffer.
 
-;; *** Why?
+;; With every other line reversed reading can be like following a rope.
 
-;; With every other line reversed reading is like following a rope.
-
-;; *** Illustration
+;; **** Illustration
 
 ;; [[file:rope-read-illustration.png][file:./rope-read-illustration.png]]
 
-;; *** Benefits
+;; *** Why
 
-;; - Chill.  =rope-read-mode= allows fluent reading.  It simplifies the
-;;   search for the start of the next line.
-;; - Rope-read allows an alternative view on text.
+;; - Chill.  =rope-read-mode= allows fluent reading.
+;;   - Avoid stressful eye movement.
+;;   - Find the start of the next line easily.
+;; - Have an alternative view on text.
 
-;; *** Price
+;; *** Learn
 
-;; - Typically you need to invest some time to learn to read upside-down
-;;   lines easily.
+;; Typically you need to practice for some time to be able to read
+;; upside-down lines effortlessly.
 
 ;; ** Usage
 
@@ -65,8 +64,6 @@
 
 ;; Type =M-x rope-read-mode= or press 'q' to quit rope-read.  The buffer
 ;; writability gets restored.
-
-;; Isn't this amazing?
 
 ;; *** Action
 
@@ -120,8 +117,8 @@
 ;; amixer set Beep off
 ;; #+END_SRC
 
-;; silences the beep.  Precondition is that you have the ~amixer~ program
-;; ready.
+;; silences the beep on some systems.  Precondition is that you have the
+;; ~amixer~ program ready.
 
 ;; ** Install
 
@@ -202,7 +199,7 @@
 ;; | Syohei YOSHIDA |
 ;; | Marco WAHL     |
 
-;; ** Links
+;; ** Related
 
 ;; - rope-read for firefox at
 ;;   https://greasyfork.org/en/scripts/10634-rope-read
