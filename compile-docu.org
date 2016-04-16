@@ -1,8 +1,10 @@
+#+TITLE:About Compilation of Documentation
+
 * Generate README.md
 
 Generate README.md by evaluating the following source block.
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results silent
 (find-file "rope-read-mode.el")
 (set-buffer "rope-read-mode.el")
 (lentic-garbage-collect-config)
@@ -11,8 +13,5 @@ Generate README.md by evaluating the following source block.
 (set-buffer "rope-read-mode.org")
 (org-export-to-file 'md "README.md")
 #+END_SRC
-
-#+RESULTS:
-: README.md
 
 ** TODO Refactor with https://github.com/marcowahl/.emacs.d/blob/master/compile-docu.org
