@@ -2,27 +2,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf95e26f">1. Commentary</a>
+<li><a href="#orga40ab7c">1. Commentary</a>
 <ul>
-<li><a href="#org5452332">1.1. About rope-read</a></li>
-<li><a href="#org764906d">1.2. Usage</a></li>
-<li><a href="#org2eeddf8">1.3. Install</a></li>
-<li><a href="#org1593e87">1.4. Dependencies</a></li>
-<li><a href="#org2d56889">1.5. Development</a></li>
-<li><a href="#org4224e2c">1.6. Related</a></li>
-<li><a href="#org74cd210">1.7. History</a></li>
+<li><a href="#org2a30a15">1.1. About rope-read</a></li>
+<li><a href="#orgb38b841">1.2. Usage</a></li>
+<li><a href="#org9d17f37">1.3. Install</a></li>
+<li><a href="#org5cc99e1">1.4. Dependencies</a></li>
+<li><a href="#org2a13f93">1.5. Development</a></li>
+<li><a href="#orgb397850">1.6. Related</a></li>
+<li><a href="#orgecf4122">1.7. History</a></li>
 </ul>
 </li>
-<li><a href="#orgd943759">2. Code</a>
+<li><a href="#orge3f1f34">2. Code</a>
 <ul>
-<li><a href="#org344baf">2.1. Variables</a></li>
-<li><a href="#org82d9b57">2.2. Keys</a></li>
-<li><a href="#org4ec927b">2.3. Mode rope-read</a></li>
-<li><a href="#org73f82bb">2.4. Management and Navigation</a></li>
-<li><a href="#org2809b0">2.5. Y-coordinates of a line</a></li>
-<li><a href="#org6b45e54">2.6. Reverse every other line</a></li>
-<li><a href="#org37b0fe">2.7. Snap the line which contains point</a></li>
-<li><a href="#orgf0bf5ed">2.8. Provide the file as library</a></li>
+<li><a href="#orgbdf3952">2.1. Variables</a></li>
+<li><a href="#orgf6bcaea">2.2. Keys</a></li>
+<li><a href="#orgacb548a">2.3. Mode rope-read</a></li>
+<li><a href="#org9974ad2">2.4. Management and Navigation</a></li>
+<li><a href="#org83b3aac">2.5. Y-coordinates of a line</a></li>
+<li><a href="#orgd6650bb">2.6. Reverse every other line</a></li>
+<li><a href="#org85c91b8">2.7. Snap the line which contains point</a></li>
+<li><a href="#org3520778">2.8. Provide the file as library</a></li>
 </ul>
 </li>
 </ul>
@@ -30,40 +30,40 @@
 </div>
 
 
-# Commentary<a id="orgf95e26f"></a>
+# Commentary<a id="orga40ab7c"></a>
 
-## About rope-read<a id="org5452332"></a>
+## About rope-read<a id="org2a30a15"></a>
 
-### What<a id="org8fb7e2"></a>
+### What<a id="org2c874f8"></a>
 
 `rope-read-mode` can reverse every other line of a buffer or in a part
 of a buffer.
 
 With every other line reversed reading can be like following a rope.
 
-1.  Illustration
+### Illustration<a id="org9c7b50e"></a>
 
-    [![img](./rope-read-illustration.png)](rope-read-illustration.png)
+[![img](./rope-read-illustration.png)](rope-read-illustration.png)
 
-2.  Ad
+### Ad<a id="org216adfa"></a>
 
-    -   Are you tired moving the look from one side of a line to the other
-        side at just because of a line break occurs?
+-   Are you tired moving the look from one end of a line to the other
+    end just because of a line break?
 
-    -   Are you too lazy moving the look from one side of a line to the other
-        side at just because of a line break?
+-   Are you too lazy moving the look from one end of a line to the
+    other end just because of a line break?
 
-    -   Do you think about the line break coercing the brutal change of
-        the look as humiliating?
+-   Do you think about the line break coercing the brutal change of the
+    look from one side to the other as humiliating?
 
-    -   Do you want to read three or four lines more of a text before you
-        fall asleep when you are really tired?
+-   Do you want to read three or four lines more of a text before you
+    fall asleep?
 
-    More than zero yes answers?
+More than zero yes answers?
 
-    Then rope read might help!
+Then rope read might help!
 
-### Why<a id="org4eb659c"></a>
+### Why<a id="org98dfb6c"></a>
 
 -   Chill.  `rope-read-mode` allows fluent reading.
     -   Find the start of the next line easily.
@@ -72,14 +72,14 @@ With every other line reversed reading can be like following a rope.
 
 -   Have an alternative view on text.
 
-### Learn<a id="orgce5676c"></a>
+### Learn<a id="org53b6b2b"></a>
 
 Typically you need to practice for some time to be able to read
 upside-down lines effortlessly.
 
-## Usage<a id="org764906d"></a>
+## Usage<a id="orgb38b841"></a>
 
-### Turning it on and off<a id="org26ac9dd"></a>
+### Turning it on and off<a id="org2ed7e9c"></a>
 
 `M-x rope-read-mode` in a buffer activates rope-read.  No visible
 change in the buffer is to be expected.  The buffer is set read-only.
@@ -87,7 +87,7 @@ change in the buffer is to be expected.  The buffer is set read-only.
 Type `M-x rope-read-mode` or press 'q' to quit rope-read.  The buffer
 writability gets restored.
 
-### Action<a id="orgb2b7c1c"></a>
+### Action<a id="orgbda4737"></a>
 
 When `rope-read-mode` is on you can press
 
@@ -115,13 +115,13 @@ lock two times use the line
 
     (global-set-key (kbd "<Scroll_Lock> <Scroll_Lock>") 'rope-read-mode)
 
-### Image files<a id="orgdea5117"></a>
+### Image files<a id="org2512853"></a>
 
 The reverse representation of lines is realized with images.  They get
 collected in directory `rope-read-image-overlay-path` which defaults
 to `~/.emacs.d/rope-reading`.  You can delete this directory any time.
 
-### Security<a id="orga360c45"></a>
+### Security<a id="org778192b"></a>
 
 `rope-read-mode` does not change the content of a buffer.  Data loss
 has not been reported yet.
@@ -130,7 +130,7 @@ Since the overlay-image files get stored on disk this could be a
 security issue.  E.g. when you use `rope-read-mode` to look at your
 super secret password file.
 
-### Beep<a id="org9e4632c"></a>
+### Beep<a id="org67b3d22"></a>
 
 The system beep can be annoying.  The line
 
@@ -139,15 +139,15 @@ The system beep can be annoying.  The line
 silences the beep on some systems.  Precondition is that you have the
 `amixer` program ready.
 
-## Install<a id="org2eeddf8"></a>
+## Install<a id="org9d17f37"></a>
 
-### Emacs Package<a id="orgb1772f"></a>
+### Emacs Package<a id="org88facd8"></a>
 
 `rope-read-mode` is available as MELPA package
 [![img](http://melpa.org/packages/rope-read-mode-badge.svg)](http://melpa.org/#/rope-read-mode) and ready
 immediately after the install.
 
-### Install from el file<a id="orga923aaf"></a>
+### Install from el file<a id="org8610b41"></a>
 
 If you just have the emacs-lisp file then:
 
@@ -157,7 +157,7 @@ If you just have the emacs-lisp file then:
 That's it.  You installed rope-read-mode and `M-x rope-read-mode` is
 available.
 
-## Dependencies<a id="org1593e87"></a>
+## Dependencies<a id="org5cc99e1"></a>
 
 -   Emacs is running under X.
 -   The programm `convert` of the ImageMagick-suite is available.
@@ -165,9 +165,9 @@ available.
 The `convert` program has the job to create images of lines and rotate
 them.
 
-## Development<a id="org2d56889"></a>
+## Development<a id="org2a13f93"></a>
 
-### Known Bugs<a id="orgac0d7c"></a>
+### Known Bugs<a id="org248b5ba"></a>
 
 -   rope-read-mode sometimes spontaneously fails.
     -   In this case a refresh with `g` might help.
@@ -176,16 +176,16 @@ them.
     -   Possibly this is due to the interference of overlays of org and
         rope-read.
 
-### Wishes<a id="org54bd856"></a>
+### Wishes<a id="org49a5cf2"></a>
 
 -   Quicker transformation.
 
-### Vision<a id="org1192f25"></a>
+### Vision<a id="orgffc1fa8"></a>
 
 `rope-read-mode` gets `rope-mode` which allows also editing.
 `rope-mode` would provide a further editing feeling maybe.
 
-### Lentic Literate Style<a id="orgd1b6d37"></a>
+### Lentic Literate Style<a id="org6f433dc"></a>
 
 This program is written in emacs lisp in lentic style based on the
 'lentic' package [![img](http://melpa.org/packages/lentic-badge.svg)](http://melpa.org/#/lentic).
@@ -202,17 +202,17 @@ A possible initialization of lentic is this:
 Find more about lentic at
 [![img](http://melpa.org/packages/lentic-badge.svg)](http://melpa.org/#/lentic).
 
-### Communication<a id="orgbd3ed2c"></a>
+### Communication<a id="orgf59d824"></a>
 
 Use the GitHub infrastructure i.e. pull requests or
 <https://github.com/marcowahl/rope-read-mode/issues>.  Or contact the
 author directly.
 
-### Contribution<a id="org212213b"></a>
+### Contribution<a id="orgb44bed8"></a>
 
 Contributions in any respect are welcome, e.g. ideas and improvements.
 
-### Contributors<a id="org8aafb05"></a>
+### Contributors<a id="org3054e9e"></a>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -232,7 +232,7 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
 </tbody>
 </table>
 
-## Related<a id="org4224e2c"></a>
+## Related<a id="orgb397850"></a>
 
 -   rope-read for firefox at
     <https://greasyfork.org/en/scripts/10634-rope-read>
@@ -244,7 +244,7 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
 
     ˙ʇxǝʇ pǝddılɟ ɹoɟ poɥʇǝɯ-ʇnduı
 
-## History<a id="org74cd210"></a>
+## History<a id="orgecf4122"></a>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -304,9 +304,9 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
 </tbody>
 </table>
 
-# Code<a id="orgd943759"></a>
+# Code<a id="orge3f1f34"></a>
 
-## Variables<a id="org344baf"></a>
+## Variables<a id="orgbdf3952"></a>
 
     (defvar rope-read-overlays nil
       "List of rope-read-overlays.")
@@ -330,7 +330,7 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
     (defvar rope-read-old-buffer-read-only)
     (make-variable-buffer-local 'rope-read-old-buffer-read-only)
 
-## Keys<a id="org82d9b57"></a>
+## Keys<a id="orgf6bcaea"></a>
 
     (defvar rope-read-mode-hook nil)
 
@@ -360,7 +360,7 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
     This indirection is for the comfort of any coder to try
     out something new.")
 
-## Mode rope-read<a id="org4ec927b"></a>
+## Mode rope-read<a id="orgacb548a"></a>
 
     ;;;###autoload
     (define-minor-mode rope-read-mode
@@ -390,7 +390,7 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
       (rope-read-delete-overlays)
       (setq buffer-read-only rope-read-old-buffer-read-only))
 
-## Management and Navigation<a id="org73f82bb"></a>
+## Management and Navigation<a id="org9974ad2"></a>
 
     (defun rope-read-delete-overlays ()
       "Delete all overlays currently used with the rope-read-feature."
@@ -450,9 +450,9 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
       (interactive)
       (when rope-read-mode (rope-read-mode 'toggle)))
 
-## Y-coordinates of a line<a id="org2809b0"></a>
+## Y-coordinates of a line<a id="org83b3aac"></a>
 
-### Exact y-coordinate calculation of a line<a id="org899c2d7"></a>
+### Exact y-coordinate calculation of a line<a id="orgdc115a6"></a>
 
 This function calculates the y-coordinates straightforward.  This
 function takes a lot of time.
@@ -477,11 +477,11 @@ function takes a lot of time.
            y-top (min y-top (cdr (posn-x-y posn-at-point)))))
         (cons y-top height)))
 
-### TODO Try to speed up the function<a id="org64f0d3a"></a>
+### TODO Try to speed up the function<a id="org893115e"></a>
 
 Try to answer first: Is the speed up possible?
 
-## Reverse every other line<a id="org6b45e54"></a>
+## Reverse every other line<a id="orgd6650bb"></a>
 
     (defun rope-read-reol-in-visible-buffer-part-with-images ()
       "Reverse every other line in the visible buffer part."
@@ -544,7 +544,7 @@ Try to answer first: Is the speed up possible?
               (redisplay t)
               (rope-read-advance-one-visual-line))))))
 
-## Snap the line which contains point<a id="org37b0fe"></a>
+## Snap the line which contains point<a id="org85c91b8"></a>
 
 For testing: (local-set-key (kbd "<f8>")
 'rope-read-snap-visual-line-under-olimid-filename)
@@ -597,6 +597,6 @@ For testing: (local-set-key (kbd "<f8>")
                   rope-read-olimid-next-unused
                   (1+ rope-read-olimid-next-unused)))))))))))
 
-## Provide the file as library<a id="orgf0bf5ed"></a>
+## Provide the file as library<a id="org3520778"></a>
 
     (provide 'rope-read-mode)

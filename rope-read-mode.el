@@ -39,23 +39,23 @@
 
 ;; With every other line reversed reading can be like following a rope.
 
-;; **** Illustration
+;; *** Illustration
 
 ;; [[file:rope-read-illustration.png][file:./rope-read-illustration.png]]
 
-;; **** Ad
+;; *** Ad
 
-;; - Are you tired moving the look from one side of a line to the other
-;;   side at just because of a line break occurs?
+;; - Are you tired moving the look from one end of a line to the other
+;;   end just because of a line break?
 
-;; - Are you too lazy moving the look from one side of a line to the other
-;;   side at just because of a line break?
+;; - Are you too lazy moving the look from one end of a line to the
+;;   other end just because of a line break?
 
-;; - Do you think about the line break coercing the brutal change of
-;;   the look as humiliating?
+;; - Do you think about the line break coercing the brutal change of the
+;;   look from one side to the other as humiliating?
 
 ;; - Do you want to read three or four lines more of a text before you
-;;   fall asleep when you are really tired?
+;;   fall asleep?
 
 ;; More than zero yes answers?
 
@@ -655,4 +655,4 @@ point to the top."
 ;; # lentic-init: lentic-orgel-org-init
 ;; # End:
 
-;;; rope-read-mode.el ends here
+;;; rope:-read-mode.el ends here
