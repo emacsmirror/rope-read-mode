@@ -43,6 +43,24 @@
 
 ;; [[file:rope-read-illustration.png][file:./rope-read-illustration.png]]
 
+;; **** Ad
+
+;; - Are you tired moving the look from one side of a line to the other
+;;   side at just because of a line break occurs?
+
+;; - Are you too lazy moving the look from one side of a line to the other
+;;   side at just because of a line break?
+
+;; - Do you think about the line break coercing the brutal change of
+;;   the look as humiliating?
+
+;; - Do you want to read three or four lines more of a text before you
+;;   fall asleep when you are really tired?
+
+;; More than zero yes answers?
+
+;; Then rope read might help!
+
 ;; *** Why
 
 ;; - Chill.  =rope-read-mode= allows fluent reading.
