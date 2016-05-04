@@ -64,8 +64,11 @@
 ;; *** Why
 
 ;; - Chill.  =rope-read-mode= allows fluent reading.
-;;   - Avoid stressful eye movement.
+
 ;;   - Find the start of the next line easily.
+
+;;   - Avoid stressful eye movement.
+
 ;; - Have an alternative view on text.
 
 ;; *** Learn
