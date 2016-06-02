@@ -347,9 +347,14 @@ annoying search for the next line at the other side of the text."
   (setq rope-read-overlays nil))
 
 (defun rope-read-next-page ()
+  "Scroll up one page.
+If point is at the bottom bring the line with the cursor to the
+top.  This is supposed to ease reading."
   (interactive)
   (rope-read-delete-overlays)
-  (scroll-up-command)
+  (if (rope-read-point-at-bottom-p)
+      (recenter 0)                      ;
+    (scroll-up-command))
   (redisplay t)
   (move-to-window-line 0)
   (funcall rope-read-transform-fun))
@@ -495,7 +500,9 @@ This function typically takes a while."
            )
          (goto-char l-next)
          (redisplay t)
-         (rope-read-advance-one-visual-line)))))
+         (rope-read-advance-one-visual-line)))
+     (forward-line -1)
+     (beginning-of-visual-line)))
 ;; #+END_SRC
 
 ;; ** Snap the line which contains point
