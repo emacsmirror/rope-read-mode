@@ -448,55 +448,54 @@ This function typically takes a while."
 (defun rope-read-reol ()
   "Reverse every other line in the visible part starting with line after point."
   (interactive)
-  (save-excursion
-    (let ((point-at-start (point))
-          (last-line
-           (progn (move-to-window-line -1)
-                  (point))))
-      (goto-char point-at-start)
-      (beginning-of-visual-line)
-      (rope-read-advance-one-visual-line)
-      (while (and (< (point) last-line) ; todo: handle case of last line
-                  (< (save-excursion (end-of-visual-line) (point))
-                     (point-max))) ; todo: try to handle also the very
+   (let ((point-at-start (point))
+         (last-line
+          (progn (move-to-window-line -1)
+                 (point))))
+     (goto-char point-at-start)
+     (beginning-of-visual-line)
+     (rope-read-advance-one-visual-line)
+     (while (and (< (point) last-line) ; todo: handle case of last line
+                 (< (save-excursion (end-of-visual-line) (point))
+                    (point-max)))  ; todo: try to handle also the very
                                         ; last line.  the last line is
                                         ; special because it is
                                         ; special for the
                                         ; beginning-of-visual-line
                                         ; command.  no further
                                         ; iteration!
-        (rope-read-snap-visual-line-under-olimid-filename)
-        (let* ((l-above (save-excursion (beginning-of-visual-line 0) (point)))
-               (l-beg   (save-excursion (beginning-of-visual-line) (point)))
-               (l-end   (save-excursion (end-of-visual-line) (point)))
-               (l-next  (save-excursion
-                          (goto-char l-beg) (beginning-of-visual-line 2) (point)))
+       (rope-read-snap-visual-line-under-olimid-filename)
+       (let* ((l-above (save-excursion (beginning-of-visual-line 0) (point)))
+              (l-beg   (save-excursion (beginning-of-visual-line) (point)))
+              (l-end   (save-excursion (end-of-visual-line) (point)))
+              (l-next  (save-excursion
+                         (goto-char l-beg) (beginning-of-visual-line 2) (point)))
                                         ; try to use for identify truncation of the line
-               (olimid-current (1- rope-read-olimid-next-unused)))
-          (push (make-overlay l-beg l-end) rope-read-overlays)
-          (overlay-put
-           (car rope-read-overlays) 'display
-           (create-image
-            (expand-file-name
-             (format
-              rope-read-image-overlay-filename-format-string
-              olimid-current))
-            nil nil
-            :ascent 'center
-            ;; TODO: try to refine.  hint: try
-            ;; understand.  is this a font-dependent
-            ;; thing?  e.g. :ascent 83 is possible.
-            ;; there are further attributes...
-            ))
-          (when (= l-end l-next)
-            (overlay-put (car rope-read-overlays) 'after-string "\n")
-            ;; this newline makes the images appear in some cases.
-            ;; todo: at least think about doing something similar in
-            ;; the analog case of 'before'.
-            )
-          (goto-char l-next)
-          (redisplay t)
-          (rope-read-advance-one-visual-line))))))
+              (olimid-current (1- rope-read-olimid-next-unused)))
+         (push (make-overlay l-beg l-end) rope-read-overlays)
+         (overlay-put
+          (car rope-read-overlays) 'display
+          (create-image
+           (expand-file-name
+            (format
+             rope-read-image-overlay-filename-format-string
+             olimid-current))
+           nil nil
+           :ascent 'center
+           ;; TODO: try to refine.  hint: try
+           ;; understand.  is this a font-dependent
+           ;; thing?  e.g. :ascent 83 is possible.
+           ;; there are further attributes...
+           ))
+         (when (= l-end l-next)
+           (overlay-put (car rope-read-overlays) 'after-string "\n")
+           ;; this newline makes the images appear in some cases.
+           ;; todo: at least think about doing something similar in
+           ;; the analog case of 'before'.
+           )
+         (goto-char l-next)
+         (redisplay t)
+         (rope-read-advance-one-visual-line)))))
 ;; #+END_SRC
 
 ;; ** Snap the line which contains point
