@@ -669,4 +669,4 @@ point to the top."
 ;; # lentic-init: lentic-orgel-org-init
 ;; # End:
 
-;;; rope:-read-mode.el ends here
+;;; rope-read-mode.el ends here
