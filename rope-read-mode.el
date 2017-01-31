@@ -67,7 +67,7 @@
 
 ;;   - Find the start of the next line easily.
 
-;;   - Avoid stressful eye movement.
+;;   - Avoid flurry eye movement.
 
 ;; - Have an alternative view on text.
 
