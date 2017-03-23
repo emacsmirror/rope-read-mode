@@ -1,4 +1,4 @@
-;;; rope-read-mode.el --- Rearrange lines to read text smoothly -*- lexical-binding: t -*-
+;;; rope-read-mode.el --- Rearrange lines to read text smoothly -*- lexical-binding: t ; -*-
 ;; #+STARTUP: oddeven
 ;; #+options: toc:2
 
@@ -478,8 +478,7 @@ This function typically takes a while."
                                         ; command.  no further
                                         ; iteration!
        (rope-read-snap-visual-line-under-olimid-filename)
-       (let* ((l-above (save-excursion (beginning-of-visual-line 0) (point)))
-              (l-beg   (save-excursion (beginning-of-visual-line) (point)))
+       (let* ((l-beg   (save-excursion (beginning-of-visual-line) (point)))
               (l-end   (save-excursion (end-of-visual-line) (point)))
               (l-next  (save-excursion
                          (goto-char l-beg) (beginning-of-visual-line 2) (point)))
@@ -561,11 +560,9 @@ detail."
        (expand-file-name
         (format
          rope-read-image-overlay-filename-format-string
-         ((lambda ()
-            (1-
-             (setq
-              rope-read-olimid-next-unused
-              (1+ rope-read-olimid-next-unused)))))))))))
+         (1-(setq
+             rope-read-olimid-next-unused
+             (1+ rope-read-olimid-next-unused)))))))))
 ;; #+END_SRC
 
 ;; ** Play   :noexport:
@@ -594,8 +591,7 @@ Do this at most up to pos END."
                                         ; command.  no further
                                         ; iteration!
           (rope-read-snap-visual-line-under-olimid-filename)
-          (let* ((l-above (save-excursion (beginning-of-visual-line 0) (point)))
-                 (l-beg   (save-excursion (beginning-of-visual-line) (point)))
+          (let* ((l-beg   (save-excursion (beginning-of-visual-line) (point)))
                  (l-end   (save-excursion (end-of-visual-line) (point)))
                  (l-next  (save-excursion
                             (goto-char l-beg) (beginning-of-visual-line 2) (point)))
