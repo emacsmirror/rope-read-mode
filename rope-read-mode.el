@@ -185,6 +185,7 @@
 ;; - rope-read-mode often does not work for org-mode files.
 ;;   - Possibly this is due to the interference of overlays of org and
 ;;     rope-read.
+;; - rope-read-mode fails for truncated lines in gnus articles.
 
 ;; *** Wishes
 
@@ -250,6 +251,11 @@
 ;; | 201510202326 | v0.3.2 rope-read-mode does nothing at start             |
 ;; | 201511182342 | Paragraph wise rope-read is useful.                     |
 ;; | 201602082358 | One scan through the documentation                      |
+
+;; **;;; Potential
+
+;; *** TODO Fix display of truncated lines is gnus articles
+;; *** TODO Introduce tests
 
 ;;; Code:
 
