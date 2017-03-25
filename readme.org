@@ -1,1 +1,1 @@
-/home/b/p/elisp/mw/rope-read-mode/rope-read-mode.org
+rope-read-mode.org
