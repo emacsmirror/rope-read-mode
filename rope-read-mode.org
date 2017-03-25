@@ -1,15 +1,14 @@
-# # rope-read-mode.el --- Rearrange lines to read text smoothly -*- lexical-binding: t ; -*-
 #+STARTUP: oddeven
 #+options: toc:2
 
-* Header                                                           :noexport:
+* License
 
 Copyright 2015-2016 Marco Wahl
 
 Author: Marco Wahl <marcowahlsoft@gmail.com>
 Maintainer: Marco Wahl <marcowahlsoft@gmail.com>
 Created: 4 Jan 2015
-Version: See git tag.
+Version: 0.4.0
 Keywords: reading, convenience, chill
 URL: https://github.com/marcowahl/rope-read-mode
 
@@ -30,14 +29,64 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 * Commentary
 
-** About rope-read
+=rope-read-mode= can reverse every other line of a buffer or in a part
+of a buffer.  With every other line reversed reading can be like
+following a rope.
 
-*** What
+Turning it on and off
+---------------------
+
+=M-x rope-read-mode= in a buffer activates rope-read.  No visible
+change in the buffer is to be expected.  The buffer is set read-only.
+
+Type =M-x rope-read-mode= or press 'q' to quit rope-read.  The buffer
+writability gets restored.
+
+Action
+------
+
+When =rope-read-mode= is on you can press
+- =C-g= to interrupt =rope-read-mode= anytime
+- =q= to quit =rope-read-mode=
+- =?= to open the help buffer
+- =r= /redraw standard/ to go back to the representation of the buffer
+  without reversed lines (keeping =rope-read-mode=)
+- =p= /paragraph/ to reverse every other line starting with the line
+  below the cursor up to the end of the paragraph (if visible) and
+  move point there
+- The next four commands are each followed by reversing every other
+  line in the visible part.  The keys are taken the same as in
+  =view-mode=:
+  - =SPC= to scroll a screen down
+  - =<backspace>= or =S-SPC= to scroll a screen up
+  - =v= or =<return>= to scroll one line down
+  - =V= or =y= to scroll one line up
+- =g= /get the rope-read/ to trigger reversing every other line for
+  the currently visible part of the buffer
+- =d= /downwards/ to reverse every other line starting with the line
+  below the cursor
+
+For convenience you can bind command =rope-read-mode= to a key.  For
+example to activate or deactivate =rope-read-mode= by pressing scroll
+lock two times use the line
+
+#+BEGIN_EXAMPLE
+(global-set-key (kbd "<Scroll_Lock> <Scroll_Lock>") 'rope-read-mode)
+#+END_EXAMPLE
+
+*** More
+
+Find more at https://github.com/marcowahl/rope-read-mode.
+
+* Documentation
+
+** Quick
 
 =rope-read-mode= can reverse every other line of a buffer or in a part
-of a buffer.
+of a buffer.  With every other line reversed reading can be like
+following a rope.
 
-With every other line reversed reading can be like following a rope.
+** About rope-read
 
 *** Illustration
 
@@ -136,9 +185,9 @@ super secret password file.
 
 The system beep can be annoying.  The line
 
-#+BEGIN_SRC shell
+#+begin_src shell
 amixer set Beep off
-#+END_SRC
+#+end_src
 
 silences the beep on some systems.  Precondition is that you have the
 ~amixer~ program ready.
@@ -241,6 +290,13 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
   [[http://melpa.org/#/fliptext][file:http://melpa.org/packages/fliptext-badge.svg]] realizes an
   ˙ʇxǝʇ pǝddılɟ ɹoɟ poɥʇǝɯ-ʇnduı
 
+** Potential
+
+*** TODO Fix display of truncated lines is gnus articles
+*** TODO Introduce tests
+*** TODO Automate generation of License and Commentary at tangle
+*** TODO Faster
+
 ** History
 
 | 201501151211 | v0.1 New option rope-read-calculate-exact-y-coordinates |
@@ -251,17 +307,129 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
 | 201510202326 | v0.3.2 rope-read-mode does nothing at start             |
 | 201511182342 | Paragraph wise rope-read is useful.                     |
 | 201602082358 | One scan through the documentation                      |
-
-**;;; Potential
-
-*** TODO Fix display of truncated lines is gnus articles
-*** TODO Introduce tests
+| 201703251210 | v0.4.0 Switch from lentic to classical literate style   |
 
 * Code
 
-** Variables
+** First lines
+:PROPERTIES:
+:ID:       5242fa1f-2aad-4a60-90b5-a39fd863c2cc
+:END:
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp :tangle rope-read-mode.el
+;;; rope-read-mode.el --- Rearrange lines to read text smoothly -*- lexical-binding: t ; -*-
+
+;; THIS FILE HAS BEEN GENERATED.
+
+#+end_src
+
+** License
+:PROPERTIES:
+:ID:       cf7df45e-da1e-450a-b0a7-4d7286d56b5e
+:END:
+
+Update this code block from section 'License'.
+
+#+begin_src emacs-lisp :tangle rope-read-mode.el
+
+;; Copyright 2015-2016 Marco Wahl
+
+;; Author: Marco Wahl <marcowahlsoft@gmail.com>
+;; Maintainer: Marco Wahl <marcowahlsoft@gmail.com>
+;; Created: 4 Jan 2015
+;; Version: See git tag.
+;; Keywords: reading, convenience, chill
+;; URL: https://github.com/marcowahl/rope-read-mode
+
+;; This file is not part of Emacs.
+
+;; This program is free software: you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#+end_src
+
+** Commentary
+:PROPERTIES:
+:ID:       3ec57acd-7f7b-4254-a9fd-e1e7d971ef76
+:END:
+
+#+begin_src emacs-lisp :tangle rope-read-mode.el
+
+;;; Commentary:
+#+end_src
+
+Update this code block from section 'Commentary'.
+
+#+begin_src emacs-lisp :tangle rope-read-mode.el
+;; =rope-read-mode= can reverse every other line of a buffer or in a part
+;; of a buffer.  With every other line reversed reading can be like
+;; following a rope.
+
+;; Turning it on and off
+;; ---------------------
+
+;; =M-x rope-read-mode= in a buffer activates rope-read.  No visible
+;; change in the buffer is to be expected.  The buffer is set read-only.
+
+;; Type =M-x rope-read-mode= or press 'q' to quit rope-read.  The buffer
+;; writability gets restored.
+
+;; Action
+;; ------
+
+;; When =rope-read-mode= is on you can press
+;; - =C-g= to interrupt =rope-read-mode= anytime
+;; - =q= to quit =rope-read-mode=
+;; - =?= to open the help buffer
+;; - =r= /redraw standard/ to go back to the representation of the buffer
+;;   without reversed lines (keeping =rope-read-mode=)
+;; - =p= /paragraph/ to reverse every other line starting with the line
+;;   below the cursor up to the end of the paragraph (if visible) and
+;;   move point there
+;; - The next four commands are each followed by reversing every other
+;;   line in the visible part.  The keys are taken the same as in
+;;   =view-mode=:
+;;   - =SPC= to scroll a screen down
+;;   - =<backspace>= or =S-SPC= to scroll a screen up
+;;   - =v= or =<return>= to scroll one line down
+;;   - =V= or =y= to scroll one line up
+;; - =g= /get the rope-read/ to trigger reversing every other line for
+;;   the currently visible part of the buffer
+;; - =d= /downwards/ to reverse every other line starting with the line
+;;   below the cursor
+
+;; For convenience you can bind command =rope-read-mode= to a key.  For
+;; example to activate or deactivate =rope-read-mode= by pressing scroll
+;; lock two times use the line
+
+;; #+BEGIN_EXAMPLE
+;; (global-set-key (kbd "<Scroll_Lock> <Scroll_Lock>") 'rope-read-mode)
+;; #+END_EXAMPLE
+#+end_src
+
+** Variables
+:PROPERTIES:
+:ID:       51f6b5d6-85a8-40e2-b9f0-79d44ef9b7d1
+:END:
+
+#+begin_src emacs-lisp :tangle rope-read-mode.el
+
+;;; Code:
+
+#+end_src
+
+#+begin_src emacs-lisp :tangle rope-read-mode.el
+;; Variables
+
 (defvar rope-read-overlays nil
   "List of rope-read-overlays.")
 
@@ -283,12 +451,26 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
 
 (defvar rope-read-old-buffer-read-only)
 (make-variable-buffer-local 'rope-read-old-buffer-read-only)
-#+END_SRC
+
+(defvar rope-read-transform-fun
+  ;; #'rope-read-reol-in-visible-buffer-part-with-images
+  #'rope-read-reol
+  "The function which transforms a screen for rope-reading.
+
+This indirection is for the comfort of any coder to try
+out something new.")
+
+(defvar rope-read-mode-hook nil)
+#+end_src
 
 ** Keys
+:PROPERTIES:
+:ID:       c6dcf0cf-507f-4024-a446-3b5b48af67da
+:END:
 
-#+BEGIN_SRC emacs-lisp
-(defvar rope-read-mode-hook nil)
+#+begin_src emacs-lisp :tangle rope-read-mode.el
+
+;; Keys
 
 (defvar rope-read-mode-map
   (let ((map (make-sparse-keymap)))
@@ -307,21 +489,17 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
     (define-key map "?" #'describe-mode)
     map)
   "Keymap for ‘rope-read-mode’.")
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-(defvar rope-read-transform-fun
-  ;; #'rope-read-reol-in-visible-buffer-part-with-images
-  #'rope-read-reol
-  "The function which transforms a screen for rope-reading.
-
-This indirection is for the comfort of any coder to try
-out something new.")
-#+END_SRC
+#+end_src
 
 ** Mode rope-read
+:PROPERTIES:
+:ID:       c16579f6-96ac-492f-9141-017cec91f94f
+:END:
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp :tangle rope-read-mode.el
+
+;; The mode
+
 ;;;###autoload
 (define-minor-mode rope-read-mode
   "Rope Reading mode.
@@ -349,11 +527,17 @@ annoying search for the next line at the other side of the text."
 (defun rope-read-mode-disable ()
   (rope-read-delete-overlays)
   (setq buffer-read-only rope-read-old-buffer-read-only))
-#+END_SRC
+#+end_src
 
 ** Management and Navigation
+:PROPERTIES:
+:ID:       8fcadb0f-9d5d-43f8-9a9e-4676a1fd8834
+:END:
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp :tangle rope-read-mode.el
+
+;; Commands
+
 (defun rope-read-delete-overlays ()
   "Delete all overlays currently used with the rope-read-feature."
   (interactive)
@@ -416,16 +600,22 @@ top.  This is supposed to ease reading."
 (defun rope-read-quit ()
   (interactive)
   (when rope-read-mode (rope-read-mode 'toggle)))
-#+END_SRC
+#+end_src
 
 ** Y-coordinates of a line
 
 *** Exact y-coordinate calculation of a line
+:PROPERTIES:
+:ID:       ff858dd0-a385-4ffe-acd0-967ebb9bf39c
+:END:
 
 This function calculates the y-coordinates straightforward.  This
 function takes a lot of time.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp :tangle rope-read-mode.el
+
+;; Coordinates calculation
+
 (defun rope-read-y-info-of-line ()
   "Return the top coordinate and the height of the line that contains `(point)'.
 This function typically takes a while."
@@ -445,22 +635,22 @@ This function typically takes a while."
        height (max height (cdr (nth 9 posn-at-point)))
        y-top (min y-top (cdr (posn-x-y posn-at-point)))))
     (cons y-top height)))
-#+END_SRC
-
-*** TODO Try to speed up the function
-
-Try to answer first: Is the speed up possible?
+#+end_src
 
 ** Reverse every other line
+:PROPERTIES:
+:ID:       3255720b-54a7-465d-80d3-7eb3d1182a59
+:END:
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp :tangle rope-read-mode.el
+
+;; Reverse those lines
+
 (defun rope-read-reol-in-visible-buffer-part-with-images ()
   "Reverse every other line in the visible buffer part."
   (move-to-window-line 0)
   (rope-read-reol))
-#+END_SRC
 
-#+BEGIN_SRC emacs-lisp
 (defun rope-read-advance-one-visual-line ()
   (beginning-of-visual-line 2))
 
@@ -516,14 +706,20 @@ Try to answer first: Is the speed up possible?
          (rope-read-advance-one-visual-line)))
      (forward-line -1)
      (beginning-of-visual-line)))
-#+END_SRC
+#+end_src
 
 ** Snap the line which contains point
+:PROPERTIES:
+:ID:       50791c6b-0265-44c3-9479-4740ec94c13a
+:END:
 
 For testing: (local-set-key (kbd "<f8>")
 'rope-read-snap-visual-line-under-olimid-filename)
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp :tangle rope-read-mode.el
+
+;; Line snapper
+
 (defun rope-read-snap-visual-line-under-olimid-filename ()
   "Snapshot the visual line with `(point)' flipflopped.
 
@@ -569,11 +765,17 @@ detail."
          (1-(setq
              rope-read-olimid-next-unused
              (1+ rope-read-olimid-next-unused)))))))))
-#+END_SRC
+#+end_src
 
-** Play   :noexport:
+** Paragraph wise rope read
+:PROPERTIES:
+:ID:       931ba55f-1172-4de3-bdc8-2305b3376fde
+:END:
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp :tangle rope-read-mode.el
+
+;; Paragraph wise rope read
+
 (defun rope-read-reol-in-region (start end)
   "Reverse every other line starting with line with pos START.
 Do this at most up to pos END."
@@ -657,18 +859,17 @@ point to the top."
                  (forward-paragraph)
                  (min (point) point-in-bottom-line)))))
     (rope-read-reol-in-region beg end)))
-#+END_SRC
+#+end_src
 
-** Provide the file as library
+** Last lines
+:PROPERTIES:
+:ID:       e319e440-205c-444f-a6e7-2a75ff5a15bb
+:END:
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp :tangle rope-read-mode.el
+
 (provide 'rope-read-mode)
-#+END_SRC
 
-* Tail                                                             :noexport:
-
-# Local Variables:
-# lentic-init: lentic-orgel-org-init
-# End:
-
+
 ;;; rope-read-mode.el ends here
+#+end_src
