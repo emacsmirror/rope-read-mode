@@ -337,7 +337,7 @@ Update this code block from section 'License'.
 ;; Author: Marco Wahl <marcowahlsoft@gmail.com>
 ;; Maintainer: Marco Wahl <marcowahlsoft@gmail.com>
 ;; Created: 4 Jan 2015
-;; Version: See git tag.
+;; Version: 0.4.0
 ;; Keywords: reading, convenience, chill
 ;; URL: https://github.com/marcowahl/rope-read-mode
 
@@ -363,6 +363,7 @@ Update this code block from section 'License'.
 :END:
 
 #+begin_src emacs-lisp :tangle rope-read-mode.el
+
 
 ;;; Commentary:
 #+end_src
