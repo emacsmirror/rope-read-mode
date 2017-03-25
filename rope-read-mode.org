@@ -245,25 +245,6 @@ them.
 =rope-read-mode= gets =rope-mode= which allows also editing.
 =rope-mode= would provide a further editing feeling maybe.
 
-*** Lentic Literate Style
-
-This program is written in emacs lisp in lentic style based on the
-'lentic' package [[http://melpa.org/#/lentic][file:http://melpa.org/packages/lentic-badge.svg]].
-
-This means the that this file can be regarded just as an emacs lisp
-file.  But actually this file contains extra comments which allow the
-interpretation of the file as Org file.  Lentic-mode makes it easy to
-write this style.
-
-A possible initialization of lentic is this:
-
-#+BEGIN_EXAMPLE
-(global-lentic-start-mode)
-#+END_EXAMPLE
-
-Find more about lentic at
-[[http://melpa.org/#/lentic][file:http://melpa.org/packages/lentic-badge.svg]].
-
 *** Communication
 
 Use the GitHub infrastructure i.e. pull requests or
