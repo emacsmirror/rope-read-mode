@@ -3,7 +3,7 @@
 ;; THIS FILE HAS BEEN GENERATED.
 
 
-;; Copyright 2015-2016 Marco Wahl
+;; Copyright 2015-2017 Marco Wahl
 
 ;; Author: Marco Wahl <marcowahlsoft@gmail.com>
 ;; Maintainer: Marco Wahl <marcowahlsoft@gmail.com>

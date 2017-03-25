@@ -3,7 +3,7 @@
 
 * License
 
-Copyright 2015-2016 Marco Wahl
+Copyright 2015-2017 Marco Wahl
 
 Author: Marco Wahl <marcowahlsoft@gmail.com>
 Maintainer: Marco Wahl <marcowahlsoft@gmail.com>
@@ -332,7 +332,7 @@ Update this code block from section 'License'.
 
 #+begin_src emacs-lisp :tangle rope-read-mode.el
 
-;; Copyright 2015-2016 Marco Wahl
+;; Copyright 2015-2017 Marco Wahl
 
 ;; Author: Marco Wahl <marcowahlsoft@gmail.com>
 ;; Maintainer: Marco Wahl <marcowahlsoft@gmail.com>
