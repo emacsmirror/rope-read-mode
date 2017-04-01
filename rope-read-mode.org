@@ -1,5 +1,6 @@
 #+STARTUP: oddeven
 #+options: toc:2
+#+PROPERTY: header-args:emacs-lisp :tangle rope-read-mode.el
 
 * License
 
@@ -297,7 +298,7 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
 :ID:       5242fa1f-2aad-4a60-90b5-a39fd863c2cc
 :END:
 
-#+begin_src emacs-lisp :tangle rope-read-mode.el
+#+begin_src emacs-lisp
 ;;; rope-read-mode.el --- Rearrange lines to read text smoothly -*- lexical-binding: t ; -*-
 
 ;; THIS FILE HAS BEEN GENERATED.
@@ -311,7 +312,7 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
 
 Update this code block from section 'License'.
 
-#+begin_src emacs-lisp :tangle rope-read-mode.el
+#+begin_src emacs-lisp
 
 ;; Copyright 2015-2017 Marco Wahl
 
@@ -343,7 +344,7 @@ Update this code block from section 'License'.
 :ID:       3ec57acd-7f7b-4254-a9fd-e1e7d971ef76
 :END:
 
-#+begin_src emacs-lisp :tangle rope-read-mode.el
+#+begin_src emacs-lisp
 
 
 ;;; Commentary:
@@ -351,7 +352,7 @@ Update this code block from section 'License'.
 
 Update this code block from section 'Commentary'.
 
-#+begin_src emacs-lisp :tangle rope-read-mode.el
+#+begin_src emacs-lisp
 ;; =rope-read-mode= can reverse every other line of a buffer or in a part
 ;; of a buffer.  With every other line reversed reading can be like
 ;; following a rope.
@@ -403,13 +404,13 @@ Update this code block from section 'Commentary'.
 :ID:       51f6b5d6-85a8-40e2-b9f0-79d44ef9b7d1
 :END:
 
-#+begin_src emacs-lisp :tangle rope-read-mode.el
+#+begin_src emacs-lisp
 
 ;;; Code:
 
 #+end_src
 
-#+begin_src emacs-lisp :tangle rope-read-mode.el
+#+begin_src emacs-lisp
 ;; Variables
 
 (defvar rope-read-overlays nil
@@ -450,7 +451,7 @@ out something new.")
 :ID:       c6dcf0cf-507f-4024-a446-3b5b48af67da
 :END:
 
-#+begin_src emacs-lisp :tangle rope-read-mode.el
+#+begin_src emacs-lisp
 
 ;; Keys
 
@@ -478,7 +479,7 @@ out something new.")
 :ID:       c16579f6-96ac-492f-9141-017cec91f94f
 :END:
 
-#+begin_src emacs-lisp :tangle rope-read-mode.el
+#+begin_src emacs-lisp
 
 ;; The mode
 
@@ -516,7 +517,7 @@ annoying search for the next line at the other side of the text."
 :ID:       8fcadb0f-9d5d-43f8-9a9e-4676a1fd8834
 :END:
 
-#+begin_src emacs-lisp :tangle rope-read-mode.el
+#+begin_src emacs-lisp
 
 ;; Commands
 
@@ -594,7 +595,7 @@ top.  This is supposed to ease reading."
 This function calculates the y-coordinates straightforward.  This
 function takes a lot of time.
 
-#+begin_src emacs-lisp :tangle rope-read-mode.el
+#+begin_src emacs-lisp
 
 ;; Coordinates calculation
 
@@ -624,7 +625,7 @@ This function typically takes a while."
 :ID:       3255720b-54a7-465d-80d3-7eb3d1182a59
 :END:
 
-#+begin_src emacs-lisp :tangle rope-read-mode.el
+#+begin_src emacs-lisp
 
 ;; Reverse those lines
 
@@ -698,7 +699,7 @@ This function typically takes a while."
 For testing: (local-set-key (kbd "<f8>")
 'rope-read-snap-visual-line-under-olimid-filename)
 
-#+begin_src emacs-lisp :tangle rope-read-mode.el
+#+begin_src emacs-lisp
 
 ;; Line snapper
 
@@ -754,7 +755,7 @@ detail."
 :ID:       931ba55f-1172-4de3-bdc8-2305b3376fde
 :END:
 
-#+begin_src emacs-lisp :tangle rope-read-mode.el
+#+begin_src emacs-lisp
 
 ;; Paragraph wise rope read
 
@@ -848,7 +849,7 @@ point to the top."
 :ID:       e319e440-205c-444f-a6e7-2a75ff5a15bb
 :END:
 
-#+begin_src emacs-lisp :tangle rope-read-mode.el
+#+begin_src emacs-lisp
 
 (provide 'rope-read-mode)
 
