@@ -9,7 +9,7 @@ Copyright 2015-2017 Marco Wahl
 Author: Marco Wahl <marcowahlsoft@gmail.com>
 Maintainer: Marco Wahl <marcowahlsoft@gmail.com>
 Created: 4 Jan 2015
-Version: 0.4.0
+Version: 0.4.1
 Keywords: reading, convenience, chill
 URL: https://github.com/marcowahl/rope-read-mode
 
@@ -307,6 +307,7 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
 | 201511182342 | Paragraph wise rope-read is useful.                     |
 | 201602082358 | One scan through the documentation                      |
 | 201703251210 | v0.4.0 Switch from lentic to classical literate style   |
+| 201706201135 | flips customizable                                      |
 
 * Code
 
@@ -336,7 +337,7 @@ Update this code block from section 'License'.
 ;; Author: Marco Wahl <marcowahlsoft@gmail.com>
 ;; Maintainer: Marco Wahl <marcowahlsoft@gmail.com>
 ;; Created: 4 Jan 2015
-;; Version: 0.4.0
+;; Version: 0.4.1
 ;; Keywords: reading, convenience, chill
 ;; URL: https://github.com/marcowahl/rope-read-mode
 
