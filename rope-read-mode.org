@@ -239,6 +239,11 @@ them.
 
 ** Development
 
+*** Literate Style
+
+This program is in literate style.  Generate the source code by
+tangling the respective Org file.  Hint: =C-cvt=
+
 *** Known Bugs
 
 - rope-read-mode sometimes spontaneously fails.
