@@ -1,4 +1,4 @@
-;;; rope-read-mode.el --- Rearrange lines to read text smoothly -*- lexical-binding: t ; -*-
+;;; rope-read-mode.el --- Rearrange lines to read text smoothly -*- lexical-binding: t ; eval: (read-only-mode 1) -*-
 
 ;; THIS FILE HAS BEEN GENERATED.
 
@@ -8,7 +8,7 @@
 ;; Author: Marco Wahl <marcowahlsoft@gmail.com>
 ;; Maintainer: Marco Wahl <marcowahlsoft@gmail.com>
 ;; Created: 4 Jan 2015
-;; Version: 0.4.0
+;; Version: 0.4.1
 ;; Keywords: reading, convenience, chill
 ;; URL: https://github.com/marcowahl/rope-read-mode
 
@@ -67,6 +67,9 @@
 ;; - =d= /downwards/ to reverse every other line starting with the line
 ;;   below the cursor
 
+;; Configuration
+;; -------------
+
 ;; For convenience you can bind command =rope-read-mode= to a key.  For
 ;; example to activate or deactivate =rope-read-mode= by pressing scroll
 ;; lock two times use the line
@@ -75,9 +78,29 @@
 ;; (global-set-key (kbd "<Scroll_Lock> <Scroll_Lock>") 'rope-read-mode)
 ;; #+END_EXAMPLE
 
+;; You can control the flipping via customization.  See M-x
+;; customize-apropos rope-read.  Shortcut: With point after the next
+;; closing parenthesis do C-xe (customize-apropos "rope-read").
+
 
 ;;; Code:
 
+
+;; Variables for customization
+
+(defcustom rope-read-flip-line-horizontally t
+  "When not nil the line in rope-read-mode gets flipped upside
+  down.  When nil no upside down flip occurs."
+  :group 'rope-read
+  :type 'boolean)
+
+(defcustom rope-read-flip-line-vertically t
+  "When not nil the line in rope-read-mode gets flipped left
+  right.  When nil no left right flip occurs."
+  :group 'rope-read
+  :type 'boolean)
+
+
 ;; Variables
 
 (defvar rope-read-overlays nil
@@ -357,8 +380,8 @@ detail."
        (format "x:%s[%dx%d+%d+%d]"
                (frame-parameter nil 'window-id)
                width height x-anchor y-anchor)
-       "-flip"
-       "-flop"
+       (if rope-read-flip-line-horizontally "-flip" "")
+       (if rope-read-flip-line-vertically "-flop" "")
        (expand-file-name
         (format
          rope-read-image-overlay-filename-format-string
