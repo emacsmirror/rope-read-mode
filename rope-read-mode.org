@@ -247,7 +247,7 @@ them.
 - rope-read-mode often does not work for org-mode files.
   - Possibly this is due to the interference of overlays of org and
     rope-read.
-- rope-read-mode fails for truncated lines in gnus articles.
+- rope-read-mode fails for truncated lines sometimes.
 
 *** Wishes
 
@@ -311,7 +311,7 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
 :END:
 
 #+begin_src emacs-lisp
-;;; rope-read-mode.el --- Rearrange lines to read text smoothly -*- lexical-binding: t ; -*-
+;;; rope-read-mode.el --- Rearrange lines to read text smoothly -*- lexical-binding: t ; eval: (read-only-mode 1) -*-
 
 ;; THIS FILE HAS BEEN GENERATED.
 
@@ -424,7 +424,6 @@ Update this code block from section 'Commentary'.
 ;;; Code:
 
 #+end_src
-
 
 ** Customizable Variables
 :PROPERTIES:
