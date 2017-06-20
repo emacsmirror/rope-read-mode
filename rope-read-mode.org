@@ -159,6 +159,10 @@ When =rope-read-mode= is on you can press
 - =d= /downwards/ to reverse every other line starting with the line
   below the cursor
 
+*** Customization
+
+**** Keybinding to activate rope-read
+
 For convenience you can bind command =rope-read-mode= to a key.  For
 example to activate or deactivate =rope-read-mode= by pressing scroll
 lock two times use the line
@@ -166,6 +170,14 @@ lock two times use the line
 #+BEGIN_EXAMPLE
 (global-set-key (kbd "<Scroll_Lock> <Scroll_Lock>") 'rope-read-mode)
 #+END_EXAMPLE
+
+**** Customize the flipping
+
+You can control the flipping via customization.  See M-x
+customize-apropos rope-read.
+
+Shortcut when reading this in Emacs: With point after the next closing
+parenthesis do C-xe (customize-apropos "rope-read").
 
 *** Image files
 
@@ -390,6 +402,9 @@ Update this code block from section 'Commentary'.
 ;; - =d= /downwards/ to reverse every other line starting with the line
 ;;   below the cursor
 
+;; Configuration
+;; -------------
+
 ;; For convenience you can bind command =rope-read-mode= to a key.  For
 ;; example to activate or deactivate =rope-read-mode= by pressing scroll
 ;; lock two times use the line
@@ -397,6 +412,41 @@ Update this code block from section 'Commentary'.
 ;; #+BEGIN_EXAMPLE
 ;; (global-set-key (kbd "<Scroll_Lock> <Scroll_Lock>") 'rope-read-mode)
 ;; #+END_EXAMPLE
+
+;; You can control the flipping via customization.  See M-x
+;; customize-apropos rope-read.  Shortcut: With point after the next
+;; closing parenthesis do C-xe (customize-apropos "rope-read").
+
+#+end_src
+
+#+begin_src emacs-lisp
+
+;;; Code:
+
+#+end_src
+
+
+** Customizable Variables
+:PROPERTIES:
+:ID:       8c881cdb-1e2b-4a82-9eae-7c82c6c34a7e
+:END:
+
+#+begin_src emacs-lisp
+
+;; Variables for customization
+
+(defcustom rope-read-flip-line-horizontally t
+  "When not nil the line in rope-read-mode gets flipped upside
+  down.  When nil no upside down flip occurs."
+  :group 'rope-read
+  :type 'boolean)
+
+(defcustom rope-read-flip-line-vertically t
+  "When not nil the line in rope-read-mode gets flipped left
+  right.  When nil no left right flip occurs."
+  :group 'rope-read
+  :type 'boolean)
+
 #+end_src
 
 ** Variables
@@ -406,11 +456,6 @@ Update this code block from section 'Commentary'.
 
 #+begin_src emacs-lisp
 
-;;; Code:
-
-#+end_src
-
-#+begin_src emacs-lisp
 ;; Variables
 
 (defvar rope-read-overlays nil
@@ -445,7 +490,6 @@ out something new.")
 
 (defvar rope-read-mode-hook nil)
 #+end_src
-
 ** Keys
 :PROPERTIES:
 :ID:       c6dcf0cf-507f-4024-a446-3b5b48af67da
@@ -740,8 +784,8 @@ detail."
        (format "x:%s[%dx%d+%d+%d]"
                (frame-parameter nil 'window-id)
                width height x-anchor y-anchor)
-       "-flip"
-       "-flop"
+       (if rope-read-flip-line-horizontally "-flip" "")
+       (if rope-read-flip-line-vertically "-flop" "")
        (expand-file-name
         (format
          rope-read-image-overlay-filename-format-string
