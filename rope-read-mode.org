@@ -248,7 +248,8 @@ tangling the respective Org file.  Hint: =C-cvt=
 
 - rope-read-mode sometimes spontaneously fails.
   - In this case a refresh with =g= might help.
-  - You can always try =C-g q= and start again.
+  - You can always leave rope read with =C-g q= and start rope read
+    again.
 - rope-read-mode often does not work for org-mode files.
   - Possibly this is due to the interference of overlays of org and
     rope-read.
