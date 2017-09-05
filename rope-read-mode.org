@@ -292,6 +292,8 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
 
 ** Potential
 
+*** TODO Consider pos-visible-in-window-p
+
 *** TODO Fix display of truncated lines is gnus articles
 *** TODO Introduce tests
 *** TODO Automate generation of License and Commentary at tangle
