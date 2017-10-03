@@ -154,7 +154,7 @@ out something new.")
     (define-key map "q" #'rope-read-quit)
     (define-key map "?" #'describe-mode)
     map)
-  "Keymap for ‘rope-read-mode’.")
+  "Keymap for `rope-read-mode'.")
 
 
 ;; The mode
