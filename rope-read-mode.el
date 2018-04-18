@@ -391,7 +391,6 @@ detail."
 
 
 ;; Paragraph wise rope read
-
 (defun rope-read-reol-in-region (start end)
   "Reverse every other line starting with line with pos START.
 Do this at most up to pos END."
@@ -399,8 +398,9 @@ Do this at most up to pos END."
   (rope-read-delete-overlays)
   (let ((transient-mark-mode-before transient-mark-mode))
     (unwind-protect
-      (let ((point-at-start start)
-            (point-at-end (min end (progn (move-to-window-line -1) (point)))))
+        (let* ((point-at-start start)
+             (point-at-last-window-line (progn (move-to-window-line -1) (point)))
+             (point-at-end (min end point-at-last-window-line)))
         (transient-mark-mode -1)
         (goto-char point-at-start)
         (beginning-of-visual-line)
@@ -444,7 +444,9 @@ Do this at most up to pos END."
               )
             (goto-char l-next)
             (redisplay t)
-            (rope-read-advance-one-visual-line))))
+            (rope-read-advance-one-visual-line)))
+        (when ( <= point-at-last-window-line (point))
+          (beginning-of-line 0)))
     (transient-mark-mode transient-mark-mode-before))))
 
 (defun rope-read-point-at-bottom-p ()
