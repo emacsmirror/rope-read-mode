@@ -464,7 +464,7 @@ Do this at most up to pos END."
 If point is in one of the two bottom lines recenter the line with
 point to the top."
   (interactive)
-  (c-skip-ws-forward)
+  (skip-chars-forward " \t\n\r")
   (when (rope-read-point-at-bottom-p)
     (recenter 0)
     (redisplay))
