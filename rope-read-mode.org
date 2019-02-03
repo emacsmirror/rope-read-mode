@@ -2,95 +2,25 @@
 #+options: toc:2
 #+PROPERTY: header-args:emacs-lisp :tangle rope-read-mode.el
 
-* Commentary
-
-=rope-read-mode= can reverse every other line of a buffer or in a part
-of a buffer.  With every other line reversed reading can be like
-following a rope.
-
-Turning it on and off
----------------------
-
-=M-x rope-read-mode= in a buffer activates rope-read.  No visible
-change in the buffer is to be expected.  The buffer is set read-only.
-
-Type =M-x rope-read-mode= or press 'q' to quit rope-read.  The buffer
-writability gets restored.
-
-Action
-------
-
-When =rope-read-mode= is on you can press
-- =C-g= to interrupt =rope-read-mode= anytime
-- =q= to quit =rope-read-mode=
-- =?= to open the help buffer
-- =r= /redraw standard/ to go back to the representation of the buffer
-  without reversed lines (keeping =rope-read-mode=)
-- =p= /paragraph/ to reverse every other line starting with the line
-  below the cursor up to the end of the paragraph (if visible) and
-  move point there
-- The next four commands are each followed by reversing every other
-  line in the visible part.  The keys are taken the same as in
-  =view-mode=:
-  - =SPC= to scroll a screen down
-  - =<backspace>= or =S-SPC= to scroll a screen up
-  - =v= or =<return>= to scroll one line down
-  - =V= or =y= to scroll one line up
-- =g= /get the rope-read/ to trigger reversing every other line for
-  the currently visible part of the buffer
-- =d= /downwards/ to reverse every other line starting with the line
-  below the cursor
-
-For convenience you can bind command =rope-read-mode= to a key.  For
-example to activate or deactivate =rope-read-mode= by pressing scroll
-lock two times use the line
-
-#+BEGIN_EXAMPLE
-(global-set-key (kbd "<Scroll_Lock> <Scroll_Lock>") 'rope-read-mode)
-#+END_EXAMPLE
-
-** License
-
-#+name: gpl3license
-#+begin_src text
-Copyright 2015-2019 Marco Wahl
-
-Author: Marco Wahl <marcowahlsoft@gmail.com>
-Maintainer: Marco Wahl <marcowahlsoft@gmail.com>
-Created: 4 Jan 2015
-Version: 0.4.1
-Keywords: reading, convenience, chill
-URL: https://github.com/marcowahl/rope-read-mode
-
-This file is not part of Emacs.
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#+end_src
-
-** More
-
-Find more at https://github.com/marcowahl/rope-read-mode.
-
 * Documentation
 
-** Quick
+** TL;DR
+
+=rope-read-mode= can reverse every other line of a buffer or in a part
+of a buffer.
+
+1. Move to beginning of a buffer.
+2. { M-x rope-read-mode }
+3. Press SPC.
+4. Read.
+5. Goto step 3 or:
+6. Press q.
+
+** About rope-read
 
 =rope-read-mode= can reverse every other line of a buffer or in a part
 of a buffer.  With every other line reversed reading can be like
 following a rope.
-
-** About rope-read
 
 *** Illustration
 
@@ -188,26 +118,6 @@ The reverse representation of lines is realized with images.  They get
 collected in directory =rope-read-image-overlay-path= which defaults
 to =~/.emacs.d/rope-reading=.  You can delete this directory any time.
 
-*** Security
-
-=rope-read-mode= does not change the content of a buffer.  Data loss
-has not been reported yet.
-
-Since the overlay-image files get stored on disk this could be a
-security issue.  E.g. when you use =rope-read-mode= to look at your
-super secret password file.
-
-*** Beep
-
-The system beep can be annoying.  The line
-
-#+begin_src shell
-amixer set Beep off
-#+end_src
-
-silences the beep on some systems.  Precondition is that you have the
-~amixer~ program ready.
-
 *** User Feedback
 
 [2016-10-03 Mon 15:04] M: "I use rope read mode occasionally to read
@@ -240,23 +150,46 @@ available.
 The =convert= program has the job to create images of lines and rotate
 them.
 
+** Known problems
+*** Security
+
+=rope-read-mode= does not change the content of a buffer.  Data loss
+has not been reported yet.
+
+Since the overlay-image files get stored on disk this could be a
+security issue.  E.g. when you use =rope-read-mode= to look at your
+super secret password file.
+
+*** Beep bug
+
+There have been reports about system beep.  The line
+
+#+begin_src shell
+amixer set Beep off
+#+end_src
+
+silences the beep on some systems.  Precondition is that you have the
+~amixer~ program ready.
+
+*** rope-read-mode sometimes spontaneously fails
+
+- In this case a refresh with =g= might help.
+- You can always leave rope read with =C-g q= and start rope read
+  again.
+
+*** rope-read-mode often does not work for org-mode files
+
+- Possibly this is due to the interference of overlays of org and
+  rope-read.
+
+*** rope-read-mode fails for truncated lines sometimes
+
 ** Development
 
 *** Literate Style
 
 This program is in literate style.  Generate the source code by
 tangling the respective Org file.  Hint: =C-cvt=
-
-*** Known Bugs
-
-- rope-read-mode sometimes spontaneously fails.
-  - In this case a refresh with =g= might help.
-  - You can always leave rope read with =C-g q= and start rope read
-    again.
-- rope-read-mode often does not work for org-mode files.
-  - Possibly this is due to the interference of overlays of org and
-    rope-read.
-- rope-read-mode fails for truncated lines sometimes.
 
 *** Wishes
 
@@ -300,7 +233,7 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
 *** TODO Fix display of truncated lines is gnus articles
 *** TODO Introduce tests
 *** TODO Automate generation of License and Commentary at tangle
-*** TODO Faster
+*** TODO Make conversion faster
 
 ** History
 
@@ -314,6 +247,35 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
 | 201602082358 | One scan through the documentation                      |
 | 201703251210 | v0.4.0 Switch from lentic to classical literate style   |
 | 201706201135 | flips customizable                                      |
+
+** License
+
+#+name: gpl3license
+#+begin_src text
+Copyright 2015-2019 Marco Wahl
+
+Author: Marco Wahl <marcowahlsoft@gmail.com>
+Maintainer: Marco Wahl <marcowahlsoft@gmail.com>
+Created: 4 Jan 2015
+Version: 0.4.1
+Keywords: reading, convenience, chill
+URL: https://github.com/marcowahl/rope-read-mode
+
+This file is not part of Emacs.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#+end_src
 
 * Code
 
