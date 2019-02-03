@@ -2,9 +2,7 @@
 #+options: toc:2
 #+PROPERTY: header-args:emacs-lisp :tangle rope-read-mode.el
 
-* Documentation
-
-** TL;DR
+* TL;DR
 
 =rope-read-mode= can reverse every other line of a buffer or in a part
 of a buffer.
@@ -15,6 +13,8 @@ of a buffer.
 4. Read.
 5. Goto step 3 or:
 6. Press q.
+
+* Documentation
 
 ** About rope-read
 
