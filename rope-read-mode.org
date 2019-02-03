@@ -298,7 +298,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Update this code block from section 'License'.
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :noweb yes
 
 
 ;; <<gpl3license>>
