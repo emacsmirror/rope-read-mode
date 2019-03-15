@@ -322,7 +322,8 @@ This function typically takes a while."
             (format
              rope-read-image-overlay-filename-format-string
              olimid-current))
-           nil nil
+           'imagemagick nil
+           :scale 1.0
            :ascent 'center
            ;; TODO: try to refine.  hint: try
            ;; understand.  is this a font-dependent
@@ -430,7 +431,8 @@ Do this at most up to pos END."
                (format
                 rope-read-image-overlay-filename-format-string
                 olimid-current))
-              nil nil
+              'imagemagick nil
+              :scale 1.0
               :ascent 'center
               ;; TODO: try to refine.  hint: try
               ;; understand.  is this a font-dependent
