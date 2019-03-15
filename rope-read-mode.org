@@ -7,10 +7,10 @@
 =rope-read-mode= can reverse every other line of a buffer or in a part
 of a buffer.
 
-1. Move to beginning of a buffer.
-2. { M-x rope-read-mode }
-3. Press SPC.
-4. Read.
+1. Activate with {M-x rope-read-mode RET}
+2. Press g or p.
+3. Read.
+4. Press SPC, p, DEL, r or g.
 5. Goto step 3 or:
 6. Press q.
 
