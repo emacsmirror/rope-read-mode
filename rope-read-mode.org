@@ -8,11 +8,11 @@
 of a buffer.
 
 1. Activate with {M-x rope-read-mode RET}
-2. Press g or p.
-3. Read.
-4. Press SPC, p, DEL, r or g.
+2. Press p or g.
+3. Enjoy.
+4. Press p, SPC, DEL, r or g.
 5. Goto step 3 or:
-6. Press q.
+6. Press q to quit.
 
 * Documentation
 
@@ -151,6 +151,7 @@ The =convert= program has the job to create images of lines and rotate
 them.
 
 ** Known problems
+
 *** Security
 
 =rope-read-mode= does not change the content of a buffer.  Data loss
@@ -231,8 +232,11 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
 *** TODO Consider pos-visible-in-window-p
 
 *** TODO Fix display of truncated lines is gnus articles
+
 *** TODO Introduce tests
+
 *** TODO Automate generation of License and Commentary at tangle
+
 *** TODO Make conversion faster
 
 ** History
@@ -442,6 +446,7 @@ out something new.")
 
 (defvar rope-read-mode-hook nil)
 #+end_src
+
 ** Keys
 :PROPERTIES:
 :ID:       c6dcf0cf-507f-4024-a446-3b5b48af67da
