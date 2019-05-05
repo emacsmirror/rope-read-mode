@@ -194,7 +194,7 @@ tangling the respective Org file.  Hint: =C-cvt=
 
 *** Wishes
 
-- Quicker transformation.
+- Quicker transformation of the text into rope-read form.
 
 *** Vision
 
