@@ -190,7 +190,7 @@ silences the beep on some systems.  Precondition is that you have the
 *** Literate Style
 
 This program is in literate style.  Generate the source code by
-tangling the respective Org file.  Hint: =C-cvt=
+tangling the respective Org file.  Hint: { C-c C-v C-t }
 
 *** Wishes
 
