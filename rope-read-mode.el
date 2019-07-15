@@ -9,7 +9,7 @@
 ;; Author: Marco Wahl <marcowahlsoft@gmail.com>
 ;; Maintainer: Marco Wahl <marcowahlsoft@gmail.com>
 ;; Created: 4 Jan 2015
-;; Version: 0.4.1
+;; Version: 0.4.2
 ;; Keywords: reading, convenience, chill
 ;; URL: https://github.com/marcowahl/rope-read-mode
 ;; Package-Requires: ((emacs "24"))
