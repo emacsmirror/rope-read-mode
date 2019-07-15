@@ -1,4 +1,4 @@
-;;; rope-read-mode.el --- Rearrange lines to read text smoothly -*- lexical-binding: t ; eval: (read-only-mode 1) -*-
+;;; rope-read-mode.el --- Rearrange lines to read text smoothly -*- lexical-binding: t -*-
 
 ;; THIS FILE HAS BEEN GENERATED.
 
@@ -12,6 +12,7 @@
 ;; Version: 0.4.1
 ;; Keywords: reading, convenience, chill
 ;; URL: https://github.com/marcowahl/rope-read-mode
+;; Package-Requires: ((emacs "24"))
 ;; 
 ;; This file is not part of Emacs.
 ;; 
@@ -113,7 +114,8 @@
   The program must reset this variable reasonably when an id gets
   used.")
 
-(defvar rope-read-image-overlay-path "~/.emacs.d/rope-reading/"
+(defvar rope-read-image-overlay-path
+  (concat user-emacs-directory "rope-read-mode/")
   "Path where the overlay images get stored.")
 
 (defvar rope-read-image-overlay-filename-format-string
