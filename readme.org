@@ -130,7 +130,7 @@ text.  Finally I use key 'q' to quit."
 *** Emacs Package
 
 =rope-read-mode= is available as MELPA package
-[[http://melpa.org/#/rope-read-mode][file:http://melpa.org/packages/rope-read-mode-badge.svg]] and ready
+[[https://melpa.org/#/rope-read-mode][file:https://melpa.org/packages/rope-read-mode-badge.svg]] and ready
 immediately after the install.
 
 *** Install from el file
@@ -220,10 +220,10 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
 
 - rope-read in a browser: https://marcowahl.github.io/rope-read/
 - 'spray' which is available as Elpa package
-  [[http://melpa.org/#/spray][file:http://melpa.org/packages/spray-badge.svg]] realizes another
+  [[https://melpa.org/#/spray][file:https://melpa.org/packages/spray-badge.svg]] realizes another
   alternative view mode.
 - 'fliptext' which also is available as Elpa package
-  [[http://melpa.org/#/fliptext][file:http://melpa.org/packages/fliptext-badge.svg]] realizes an
+  [[http://melpa.org/#/fliptext][file:https://melpa.org/packages/fliptext-badge.svg]] realizes an
   ˙ʇxǝʇ pǝddılɟ ɹoɟ poɥʇǝɯ-ʇnduı
 
 ** Potential
@@ -277,7 +277,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #+end_src
 
 * Code
