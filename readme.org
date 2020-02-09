@@ -5,7 +5,7 @@
 * TL;DR
 
 =rope-read-mode= can reverse every other line of a buffer or in a part
-of a buffer.
+of a buffer.  With rope-read-mode reading is like following a rope.
 
 1. Activate with {M-x rope-read-mode RET}
 2. Press p or g.
