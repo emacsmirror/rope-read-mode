@@ -204,7 +204,7 @@ tangling the respective Org file.  Hint: { C-c C-v C-t }
 *** Communication
 
 Please use the Gitlab infrastructure at
-https://gitlab.com/marcowahl/rope-read-mode for communication e.g.
+[[https://gitlab.com/marcowahl/rope-read-mode]] for communication e.g.
 file a pull request.
 
 *** Contribution
@@ -218,7 +218,7 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
 
 ** Related
 
-- rope-read in a browser: https://marcowahl.gitlab.io/rope-read/
+- rope-read in a browser: [[https://marcowahl.gitlab.io/rope-read/]]
 - 'spray' which is available as Elpa package
   [[https://melpa.org/#/spray][file:https://melpa.org/packages/spray-badge.svg]] realizes another
   alternative view mode.
@@ -630,12 +630,15 @@ This function typically takes a while."
 #+end_src
 
 *** line height
+:PROPERTIES:
+:ID:       048ea9ed-dfdc-49af-8c37-3fc689602149
+:END:
 
 #+begin_src emacs-lisp
 (defun rope-read-line-height ()
   "Height of the current line."
   (let* ((beg (progn (beginning-of-visual-line) (point)))
-         (height (cdr (nth 9 (posn-at-point begin))))
+         (height (cdr (nth 9 (posn-at-point beg))))
          (end (progn (end-of-visual-line) (point))))
     (goto-char beg)
     (forward-char)
@@ -646,6 +649,9 @@ This function typically takes a while."
 #+end_src
 
 *** line width
+:PROPERTIES:
+:ID:       3f8b4a7f-fc37-4e4e-a667-e580622afcab
+:END:
 
 #+begin_src emacs-lisp
 (defun rope-read-line-width ()
@@ -655,6 +661,9 @@ This function typically takes a while."
 #+end_src
 
 *** line top
+:PROPERTIES:
+:ID:       ac7df93d-3c30-4e69-b75c-6492a508587a
+:END:
 
 #+begin_src emacs-lisp
 (defun rope-read-line-top ()
@@ -664,6 +673,9 @@ This function typically takes a while."
 #+end_src
 
 *** widths and tops
+:PROPERTIES:
+:ID:       5bba4bed-8f75-4798-882d-3ff76ebc3907
+:END:
 
 #+begin_src emacs-lisp
 (defun rope-read-line-widths-and-tops ()

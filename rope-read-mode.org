@@ -204,7 +204,7 @@ tangling the respective Org file.  Hint: { C-c C-v C-t }
 *** Communication
 
 Please use the Gitlab infrastructure at
-https://gitlab.com/marcowahl/rope-read-mode for communication e.g.
+[[https://gitlab.com/marcowahl/rope-read-mode]] for communication e.g.
 file a pull request.
 
 *** Contribution
@@ -218,7 +218,7 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
 
 ** Related
 
-- rope-read in a browser: https://marcowahl.gitlab.io/rope-read/
+- rope-read in a browser: [[https://marcowahl.gitlab.io/rope-read/]]
 - 'spray' which is available as Elpa package
   [[https://melpa.org/#/spray][file:https://melpa.org/packages/spray-badge.svg]] realizes another
   alternative view mode.
