@@ -203,9 +203,9 @@ tangling the respective Org file.  Hint: { C-c C-v C-t }
 
 *** Communication
 
-Use the GitHub infrastructure i.e. pull requests or
-https://github.com/marcowahl/rope-read-mode/issues.  Or contact the
-author directly.
+Please use the Gitlab infrastructure at
+https://gitlab.com/marcowahl/rope-read-mode for communication e.g.
+file a pull request.
 
 *** Contribution
 
@@ -218,7 +218,7 @@ Contributions in any respect are welcome, e.g. ideas and improvements.
 
 ** Related
 
-- rope-read in a browser: https://marcowahl.github.io/rope-read/
+- rope-read in a browser: https://marcowahl.gitlab.io/rope-read/
 - 'spray' which is available as Elpa package
   [[https://melpa.org/#/spray][file:https://melpa.org/packages/spray-badge.svg]] realizes another
   alternative view mode.
@@ -260,9 +260,9 @@ Copyright 2015-2019 Marco Wahl
 Author: Marco Wahl <marcowahlsoft@gmail.com>
 Maintainer: Marco Wahl <marcowahlsoft@gmail.com>
 Created: 4 Jan 2015
-Version: 0.4.2
+Version: 0.4.3
 Keywords: reading, convenience, chill
-URL: https://github.com/marcowahl/rope-read-mode
+URL: https://gitlab.com/marcowahl/rope-read-mode
 Package-Requires: ((emacs "24"))
 
 This file is not part of Emacs.
