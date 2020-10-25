@@ -288,7 +288,7 @@ This function typically takes a while."
 (defun rope-read-line-height ()
   "Height of the current line."
   (let* ((beg (progn (beginning-of-visual-line) (point)))
-         (height (cdr (nth 9 (posn-at-point begin))))
+         (height (cdr (nth 9 (posn-at-point beg))))
          (end (progn (end-of-visual-line) (point))))
     (goto-char beg)
     (forward-char)
