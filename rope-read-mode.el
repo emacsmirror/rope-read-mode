@@ -9,9 +9,9 @@
 ;; Author: Marco Wahl <marcowahlsoft@gmail.com>
 ;; Maintainer: Marco Wahl <marcowahlsoft@gmail.com>
 ;; Created: 4 Jan 2015
-;; Version: 0.4.2
+;; Version: 0.4.3
 ;; Keywords: reading, convenience, chill
-;; URL: https://github.com/marcowahl/rope-read-mode
+;; URL: https://gitlab.com/marcowahl/rope-read-mode
 ;; Package-Requires: ((emacs "24"))
 ;; 
 ;; This file is not part of Emacs.
@@ -284,6 +284,40 @@ This function typically takes a while."
        height (max height (cdr (nth 9 posn-at-point)))
        y-top (min y-top (cdr (posn-x-y posn-at-point)))))
     (cons y-top height)))
+
+(defun rope-read-line-height ()
+  "Height of the current line."
+  (let* ((beg (progn (beginning-of-visual-line) (point)))
+         (height (cdr (nth 9 (posn-at-point begin))))
+         (end (progn (end-of-visual-line) (point))))
+    (goto-char beg)
+    (forward-char)
+    (while (progn (< (point) end))
+      (setq height (max height (cdr (nth 9 (posn-at-point (point))))))
+      (forward-char))
+    height))
+
+(defun rope-read-line-width ()
+  "Width of the current line."
+  (end-of-visual-line)
+  (car (posn-x-y (posn-at-point (point)))))
+
+(defun rope-read-line-top ()
+  "Top coordinate of the current line."
+  (end-of-visual-line)
+  (cdr (posn-x-y (posn-at-point (point)))))
+
+(defun rope-read-line-widths-and-tops ()
+  "Line widths and tops of the window."
+  (let ((max-line-number (move-to-window-line -1))
+        (line 0)
+        widths tops)
+    (while (<= line max-line-number)
+      (move-to-window-line line)
+      (setq tops (cons (rope-read-line-top) tops)
+            widths (cons (rope-read-line-width) widths))
+      (incf line))
+    (cons (vconcat (nreverse widths)) (vconcat (nreverse tops)))))
 
 
 ;; Reverse those lines
