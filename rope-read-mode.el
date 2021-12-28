@@ -316,7 +316,7 @@ This function typically takes a while."
       (move-to-window-line line)
       (setq tops (cons (rope-read-line-top) tops)
             widths (cons (rope-read-line-width) widths))
-      (incf line))
+      (cl-incf line))
     (cons (vconcat (nreverse widths)) (vconcat (nreverse tops)))))
 
 
